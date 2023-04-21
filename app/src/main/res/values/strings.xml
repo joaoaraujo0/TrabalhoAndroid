@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TrabalhoAndroid</string>
+    <string-array name="spiner_edittext">
+        <item>Anunciante</item>
+        <item>Interessado</item>
+    </string-array>
+</resources>

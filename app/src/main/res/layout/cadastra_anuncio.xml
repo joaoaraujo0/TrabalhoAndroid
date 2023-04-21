@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    >
+
+    <TextView
+        android:id="@+id/title_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cadastro de Anuncios"
+        android:textSize="24sp"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/area_conhecimento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="   Area de Conhecimento"
+
+        android:layout_below="@+id/title_textview" >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/disc_vaga"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="   Descrição da vaga"
+
+        android:layout_below="@+id/area_conhecimento" >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/valor_remunecao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="   Valor da Remuneração"
+        android:layout_below="@+id/disc_vaga" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="R$: "
+
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/local_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="   Localidade"
+        android:layout_below="@+id/valor_remunecao" >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/email_edittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="   Email de Contato"
+        android:layout_below="@+id/local_edittext" >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/telefonee"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="   Telefone de contato"
+        android:layout_below="@+id/email_edittext" >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:inputType="phone"
+
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/anuciante"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="   Anunciante"
+        android:layout_below="@+id/telefonee"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/date_inicio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="   Data de inicio"
+        android:layout_below="@+id/anuciante">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/dateInicioEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:focusableInTouchMode="false"
+            android:clickable="true" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/date_final"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="   Data Final"
+        android:layout_below="@+id/date_inicio">
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/dateFinalEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/submit_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Anunciar"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_below="@id/date_final"
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/submit_buttoncancelar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="cancelar"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_below="@id/submit_button"
+
+        />
+
+
+</RelativeLayout>

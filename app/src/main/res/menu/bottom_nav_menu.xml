@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/page_Vagas"
+        android:enabled="true"
+        android:icon="@drawable/baseline_library_books_24"
+        android:title="Vagas"/>
+    <item
+        android:id="@+id/page_Anunciar"
+        android:enabled="true"
+        android:icon="@drawable/baseline_screen_share_24"
+        android:title="Anunciar"/>
+    <item
+        android:id="@+id/page_MinhasVagas"
+        android:enabled="true"
+        android:icon="@drawable/baseline_menu_book_24"
+        android:title="Minhas Vagas"/>
+    <item
+        android:id="@+id/page_Perfil"
+        android:enabled="true"
+        android:icon="@drawable/baseline_emoji_people_24"
+        android:title="Perfil"/>
+</menu>
