@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         val textView = findViewById<MaterialButton>(R.id.botaoCadastrar)
 
         textView.setOnClickListener {
-            setContentView(R.layout.cadastro)
+            setContentView(R.layout.menu_nav)
         }
 
         val btnEntrar = findViewById<MaterialButton>(R.id.botaoEntrar)
@@ -24,10 +24,6 @@ class MainActivity : AppCompatActivity() {
             val intentCadastro = Intent(this, CadastroActivity::class.java)
             startActivity(intentCadastro)
         }
-
-
-
-
 
 
     }
