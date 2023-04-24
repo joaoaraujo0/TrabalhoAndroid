@@ -7,6 +7,7 @@
     >
 
     <androidx.cardview.widget.CardView
+        app:cardMaxElevation="8dp"
         android:backgroundTint="@color/rosinha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,12 +30,14 @@
 
             <!-- Title, secondary and supporting text -->
             <TextView
+                android:id="@+id/tituloNomeEmpresa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Microsoft"
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 />
             <TextView
+                android:id="@+id/nomeArea"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -43,6 +46,7 @@
                 android:textColor="?android:attr/textColorSecondary"
                 />
             <TextView
+                android:id="@+id/nomeLocalidade"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -51,6 +55,7 @@
                 android:textColor="?android:attr/textColorSecondary"
                 />
             <TextView
+                android:id="@+id/dataTerminoVaga"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

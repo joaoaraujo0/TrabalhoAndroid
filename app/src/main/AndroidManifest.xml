@@ -22,9 +22,13 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".CadastroActivity" />
         <activity android:name=".Menu" />
         <activity android:name=".CadastroUsuario" />
+        <activity android:name=".CadastroVaga" />
+        <activity android:name=".CardListFragment" />
+
+
+
 
 
 

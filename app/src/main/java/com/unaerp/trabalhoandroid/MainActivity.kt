@@ -15,13 +15,14 @@ class MainActivity : AppCompatActivity() {
         val textView = findViewById<MaterialButton>(R.id.botaoCadastrar)
 
         textView.setOnClickListener {
-            setContentView(R.layout.menu_nav)
+            val intentCadastro = Intent(this, CardListFragment::class.java)
+            startActivity(intentCadastro)
         }
 
         val btnEntrar = findViewById<MaterialButton>(R.id.botaoEntrar)
 
         btnEntrar.setOnClickListener {
-            val intentCadastro = Intent(this, CadastroActivity::class.java)
+            val intentCadastro = Intent(this, Menu::class.java)
             startActivity(intentCadastro)
         }
 

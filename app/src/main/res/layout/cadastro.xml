@@ -129,6 +129,5 @@
         android:layout_below="@id/submit_button"
 
         />
-    <include layout="@layout/menu_nav"/>
 
 </RelativeLayout>
