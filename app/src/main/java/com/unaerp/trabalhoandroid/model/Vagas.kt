@@ -1,11 +1,12 @@
 package com.unaerp.trabalhoandroid.model
-
-import java.util.Date
-
 data class Vagas(
-    val nomeEmpresa : String,
     val areaVaga : String,
+    val descricaoVaga : String,
+    val valorRemuneracao : String,
     val localidade : String,
-    val dataTermino : String
-
+    val emailContato : String,
+    val telefoneContato : String,
+    val anunciante : String,
+    val dataInicioVaga : String,
+    val dataTermino : String,
 )

@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.unaerp.trabalhoandroid.R
 
 
-class MinhasVagas : Fragment() {
+class MinhasVagasFragment : Fragment() {
 
 
     override fun onCreateView(

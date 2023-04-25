@@ -12,17 +12,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val textView = findViewById<MaterialButton>(R.id.botaoCadastrar)
-
-        textView.setOnClickListener {
-            val intentCadastro = Intent(this, CardListFragment::class.java)
-            startActivity(intentCadastro)
-        }
-
         val btnEntrar = findViewById<MaterialButton>(R.id.botaoEntrar)
 
         btnEntrar.setOnClickListener {
             val intentCadastro = Intent(this, Menu::class.java)
+            startActivity(intentCadastro)
+        }
+
+        val textView = findViewById<MaterialButton>(R.id.botaoCadastrar)
+        textView.setOnClickListener {
+            val intentCadastro = Intent(this, CadastroUsuario::class.java)
             startActivity(intentCadastro)
         }
 

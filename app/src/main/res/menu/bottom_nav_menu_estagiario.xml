@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/page_Vagas"
+        android:id="@+id/page_Vagas_estagio"
         android:enabled="true"
         android:icon="@drawable/baseline_library_books_24"
         android:title="Vagas"/>
     <item
-        android:id="@+id/page_Perfil"
+        android:id="@+id/page_Perfil_estagio"
         android:enabled="true"
         android:icon="@drawable/baseline_emoji_people_24"
         android:title="Perfil"/>

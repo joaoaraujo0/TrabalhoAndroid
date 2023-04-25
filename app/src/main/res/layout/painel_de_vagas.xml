@@ -7,8 +7,6 @@
     android:layout_margin="8dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
 >
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,72 +24,110 @@
 
             <!-- Title, secondary and supporting text -->
             <TextView
+                android:id="@+id/anunciante"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nome da empresa: Microsoft"
                 android:textAppearance="?attr/textAppearanceHeadline6"
-                android:textSize="15dp"
+                android:textSize="25sp"
                 />
             <TextView
+                android:id="@+id/areaVaga"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_margin="8dp"
                 android:text="Área da vaga: Ti"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15dp"
+                android:textSize="15sp"
 
                 />
             <TextView
+                android:id="@+id/descricaoVaga"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_margin="8dp"
+                android:text="Precisamos de pessoas com ex em kotlin"
+                android:textAppearance="?attr/textAppearanceBody2"
+                android:textColor="?android:attr/textColorSecondary"
+                android:textSize="15sp"
+                />
+            <TextView
+                android:id="@+id/localidadeVaga"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 android:text="Localidade: São Paulo"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 />
             <TextView
+                android:id="@+id/dataTerminoDaVaga"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_margin="8dp"
                 android:text="Data termino da vaga: 06/06/2023"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 />
             <TextView
+                android:id="@+id/remuneracaoEstagio"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_margin="8dp"
                 android:text="Remuneração: 2000"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15dp"
+                android:textSize="15sp"
+
                 />
             <TextView
                 android:id="@+id/email"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_margin="8dp"
                 android:text="E-mail de contato: microsoft@hotmail.com"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15dp"
-                android:clickable="true"
+                android:textSize="15sp"
                 />
             <TextView
+                android:id="@+id/telefoneContatoEmpresa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_margin="8dp"
                 android:text="Telefone:(11)99555-1211 "
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15dp"
+                android:textSize="15sp"
                 />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/enviarEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Clique e envie um e-mail"
+                android:orientation="horizontal"
+                android:layout_gravity="end"
+                android:layout_margin="8dp"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/verde"
+                style="?attr/borderlessButtonStyle" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/voltarBotao"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Voltar"
+                android:orientation="horizontal"
+                android:layout_margin="8dp"
+                android:textColor="@color/black"
+                android:backgroundTint="@color/verde"
+                style="?attr/borderlessButtonStyle" />
         </LinearLayout>
+
     </LinearLayout>
 
 

@@ -1,6 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -22,11 +29,11 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".MenuEstagiario" />
         <activity android:name=".Menu" />
         <activity android:name=".CadastroUsuario" />
-        <activity android:name=".CadastroVaga" />
-        <activity android:name=".CardListFragment" />
-
+        <activity android:name=".VagaExpandida" />
+        <activity android:name=".EditarPerfil" />
 
 
 
