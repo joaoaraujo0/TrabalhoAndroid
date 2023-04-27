@@ -16,5 +16,6 @@
     <color name="background">#BCBDC0</color>
     <color name="vermelho">#80FF0000</color>
     <color name="amarelo">#FFFF00</color>
+    <color name="searchView">#7Fdadada</color>
 
 </resources>

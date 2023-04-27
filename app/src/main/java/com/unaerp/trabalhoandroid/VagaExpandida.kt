@@ -31,14 +31,15 @@ class VagaExpandida : AppCompatActivity() {
         val textViewemailContato = findViewById<TextView>(R.id.email)
         val textViewtelefoneContato = findViewById<TextView>(R.id.telefoneContatoEmpresa)
 
-        textViewAnunciante.text = anunciante
-        textViewAreaVaga.text = areaVaga
-        textViewdescricaoVaga.text = descricaoVaga
-        textViewLocalidade.text = localidade
-        textViewDataTermino.text = dataTermino
-        textViewvalorRemuneracao.text = valorRemuneracao
-        textViewemailContato.text = emailContato
-        textViewtelefoneContato.text = telefoneContato
+
+        textViewAnunciante.text = getString(R.string.anunciante, anunciante)
+        textViewAreaVaga.text = getString(R.string.areaVaga, areaVaga)
+        textViewdescricaoVaga.text =getString(R.string.descricao, descricaoVaga)
+        textViewLocalidade.text = getString(R.string.text_localidade, localidade)
+        textViewDataTermino.text = getString(R.string.dataTermino, dataTermino)
+        textViewvalorRemuneracao.text = getString(R.string.valorRemuneracao, valorRemuneracao)
+        textViewemailContato.text = getString(R.string.emailContato, emailContato)
+        textViewtelefoneContato.text = getString(R.string.telefoneContato, telefoneContato)
 
         val voltar = findViewById<MaterialButton>(R.id.voltarBotao)
         val enviarEmail = findViewById<MaterialButton>(R.id.enviarEmail)
@@ -56,7 +57,7 @@ class VagaExpandida : AppCompatActivity() {
         val intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
 
-        intent.putExtra(Intent.EXTRA_EMAIL, arrayOf("$areaVaga"))
+        intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(emailContato))
 
         intent.putExtra(Intent.EXTRA_SUBJECT, subject)
 

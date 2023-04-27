@@ -18,15 +18,19 @@ import com.google.android.material.button.MaterialButton
 import com.unaerp.trabalhoandroid.EditarPerfil
 import com.unaerp.trabalhoandroid.MainActivity
 import com.unaerp.trabalhoandroid.R
+import java.io.File
+import java.io.FileOutputStream
 
+private var userBitmap:Bitmap? = null
 class PerfilEmpresaFragment : Fragment() {
     private var imgPicture: ImageView? = null
-    private var btnTakePicture: Button? = null
+    private var botaoTirarFoto: Button? = null
 
     private val cameraLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) {
         val bitmap: Bitmap? = it.data?.getParcelableExtra("data")
+        userBitmap = bitmap
         imgPicture?.setImageBitmap(bitmap)
     }
 
@@ -40,7 +44,6 @@ class PerfilEmpresaFragment : Fragment() {
             Toast.makeText(requireContext(), "Permissão necessária", Toast.LENGTH_LONG).show()
         }
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -61,22 +64,31 @@ class PerfilEmpresaFragment : Fragment() {
         }
 
         imgPicture = view.findViewById(R.id.imagemPerfilEmpresa)
-        btnTakePicture = view.findViewById(R.id.botaoTirarFoto)
+        userBitmap?.let { imgPicture?.setImageBitmap(it) }
+        botaoTirarFoto = view.findViewById(R.id.botaoTirarFotoEmpresa)
 
-        btnTakePicture?.setOnClickListener {
-            if(ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                val intentOpenCamera = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                cameraLauncher.launch(intentOpenCamera)
-            } else {
-                permissionLauncher.launch(android.Manifest.permission.CAMERA)
+        botaoTirarFoto?.setOnClickListener {
+                if(ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+                    val intentOpenCamera = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                    cameraLauncher.launch(intentOpenCamera)
+                } else {
+                    permissionLauncher.launch(android.Manifest.permission.CAMERA)
+                }
             }
-        }
-
 
 
 
         return view
     }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+    }
+
+
+
 
 
 }
+
+
+

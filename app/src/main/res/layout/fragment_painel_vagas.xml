@@ -23,12 +23,14 @@
             android:id="@+id/searchView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:background="@drawable/search_view_bg"
-            app:layout_constraintBottom_toTopOf="@+id/recyclerViewVagas"
-            app:queryHint="Pesquise aqui.."
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:queryHint="Escreva aqui...."
+            android:background="@color/searchView"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginStart="8dp"/>
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

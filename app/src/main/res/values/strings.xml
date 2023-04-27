@@ -4,6 +4,13 @@
         <item>Anunciante</item>
         <item>Interessado</item>
     </string-array>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="anunciante">Nome da empresa: %1$s</string>
+    <string name="areaVaga">Área da vaga: %1$s</string>
+    <string name="descricao">Descrição: %1$s</string>
+    <string name="text_localidade">Localidade: %1$s</string>
+    <string name="dataTermino">dataTermino: %1$s</string>
+    <string name="valorRemuneracao">Valor da Remuneração: %1$s</string>
+    <string name="emailContato">Email de Contato: %1$s</string>
+    <string name="telefoneContato">Telefone de Contato: %1$s</string>
+
 </resources>
