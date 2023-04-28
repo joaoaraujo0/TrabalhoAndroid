@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">TrabalhoAndroid</string>
     <string-array name="spiner_edittext">
-        <item>Anunciante</item>
-        <item>Interessado</item>
+        <item>Empresa</item>
+        <item>Estagiario</item>
     </string-array>
 
     <string name="anunciante">Nome da empresa: %1$s</string>
