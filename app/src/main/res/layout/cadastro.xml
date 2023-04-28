@@ -12,7 +12,7 @@
         android:id="@+id/title_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cadastro"
+        android:text="@string/cadastro"
         android:textSize="24sp"
         android:textColor="@android:color/black"
         android:textStyle="bold"
@@ -23,26 +23,26 @@
         android:id="@+id/nome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="  Nome do Usuário"
+        android:hint="@string/nomedeusuario"
         android:layout_below="@+id/title_textview"
         android:textColorHint="@color/black">
 
-    <com.google.android.material.textfield.TextInputEditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        />
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            />
 
 
 
-</com.google.android.material.textfield.TextInputLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
 
-<com.google.android.material.textfield.TextInputLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/email_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint=" Email"
+        android:hint="@string/emailcadastro"
         android:layout_below="@+id/nome"
         android:textColorHint="@color/black">
 
@@ -60,7 +60,7 @@
         android:layout_below="@id/email_edit"
         android:layout_margin="8dp"
         android:padding="8dp"
-        android:text="Defina seu perfil"
+        android:text="@string/definaperfil"
         android:textColor="@android:color/black"
         android:textColorHint="@color/black"
         android:textSize="17sp" />
@@ -78,7 +78,7 @@
         android:id="@+id/senha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="  Senha"
+        android:hint="@string/senhacadastro"
         android:textColorHint="@color/black"
         android:layout_below="@+id/spiner_edittext" >
         <com.google.android.material.textfield.TextInputEditText
@@ -93,7 +93,7 @@
         android:id="@+id/comfirme_senha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="  Confirme sua Senha"
+        android:hint="@string/confirmesenha"
         android:textColorHint="@color/black"
         android:layout_below="@+id/senha" >
         <com.google.android.material.textfield.TextInputEditText
@@ -108,7 +108,7 @@
         android:id="@+id/submit_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cadastrar"
+        android:text="@string/btncadastrarlogin"
         android:layout_margin="8dp"
         android:layout_below="@id/comfirme_senha"
 
@@ -117,7 +117,7 @@
         android:id="@+id/submit_buttoncancelar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cancelar"
+        android:text="@string/btncancelar"
         android:layout_margin="8dp"
         android:layout_below="@id/submit_button"
 

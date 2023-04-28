@@ -34,6 +34,8 @@
         <activity android:name=".CadastroUsuario" />
         <activity android:name=".VagaExpandida" />
         <activity android:name=".EditarPerfil" />
+        <activity android:name=".EditarVaga" />
+
 
 
 

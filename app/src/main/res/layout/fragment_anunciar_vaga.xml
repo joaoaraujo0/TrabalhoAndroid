@@ -30,7 +30,7 @@
                 android:id="@+id/area_conhecimento"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="   Area de Conhecimento"
+                android:hint="@string/anuncianteCadastro"
 
                 android:layout_below="@+id/title_textview" >
                 <com.google.android.material.textfield.TextInputEditText
@@ -45,7 +45,7 @@
                 android:id="@+id/disc_vaga"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="   Descrição da vaga"
+                android:hint="@string/descricaoCadastro"
 
                 android:layout_below="@+id/area_conhecimento" >
                 <com.google.android.material.textfield.TextInputEditText
@@ -59,14 +59,14 @@
                 android:id="@+id/valor_remunecao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="   Valor da Remuneração"
+                android:hint="@string/remuneracaocadastro"
                 android:layout_below="@+id/disc_vaga" >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
-                    android:text="R$: "
+                    android:text="@string/valor"
 
                     />
             </com.google.android.material.textfield.TextInputLayout>
@@ -75,7 +75,7 @@
                 android:id="@+id/local_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="   Localidade"
+                android:hint="@string/text_localidadeCadastro"
                 android:layout_below="@+id/valor_remunecao" >
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -89,7 +89,7 @@
                 android:id="@+id/email_edittext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="   Email de Contato"
+                android:hint="@string/emailContatoCadastro"
                 android:layout_below="@+id/local_edittext" >
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -103,7 +103,7 @@
                 android:id="@+id/telefonee"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="   Telefone de contato"
+                android:hint="@string/telefoneContatoCadastro"
                 android:layout_below="@+id/email_edittext" >
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -118,7 +118,7 @@
                 android:id="@+id/anuciante"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="   Anunciante"
+                android:hint="@string/anuncianteCadastro"
                 android:layout_below="@+id/telefonee"
                 >
                 <com.google.android.material.textfield.TextInputEditText
@@ -132,7 +132,7 @@
                 android:id="@+id/date_inicio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="   Data de inicio"
+                android:hint="@string/datainicioCadastro"
                 android:layout_below="@+id/anuciante">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -150,7 +150,7 @@
                 android:id="@+id/date_final"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="   Data Final"
+                android:hint="@string/datafinalCadastro"
                 android:layout_below="@+id/date_inicio">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/dateFinalEditText"
@@ -172,9 +172,6 @@
                 android:layout_marginStart="20dp"
                 android:layout_below="@id/date_final"
                 />
-
-
-
         </RelativeLayout>
     </ScrollView>
 </FrameLayout>

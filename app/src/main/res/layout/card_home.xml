@@ -21,74 +21,74 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp"
-            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                >
 
-            <!-- Title, secondary and supporting text -->
-            <TextView
-                android:id="@+id/tituloNomeEmpresa"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Microsoft"
-                android:textSize="25sp"
-                android:textAppearance="?attr/textAppearanceHeadline6"
-                />
-            <TextView
-                android:id="@+id/nomeArea"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Área da vaga: Ti"
-                android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15sp"
-                />
-            <TextView
-                android:id="@+id/nomeLocalidade"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Localidade São Paulo"
-                android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15sp"
-                />
-            <TextView
-                android:id="@+id/dataTerminoVaga"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Data termino da vaga: 06/06/2023"
-                android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15sp"
-                />
+                <!-- Title, secondary and supporting text -->
+                <TextView
+                    android:id="@+id/tituloNomeEmpresa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/microsoftcard"
+                    android:textSize="25sp"
+                    android:textAppearance="?attr/textAppearanceHeadline6"
+                    />
+                <TextView
+                    android:id="@+id/nomeArea"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/areadavagacard"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textSize="15sp"
+                    />
+                <TextView
+                    android:id="@+id/nomeLocalidade"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/localidadecard"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textSize="15sp"
+                    />
+                <TextView
+                    android:id="@+id/dataTerminoVaga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/datacard"
+                    android:textAppearance="?attr/textAppearanceBody2"
+                    android:textColor="?android:attr/textColorSecondary"
+                    android:textSize="15sp"
+                    />
 
-        </LinearLayout>
+            </LinearLayout>
 
-        <!-- Buttons -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:orientation="horizontal"
-            android:layout_gravity="end"
-            >
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/verVagas"
+            <!-- Buttons -->
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
-                android:layout_marginEnd="8dp"
-                android:text="Ver vaga"
-                android:textColor="@color/black"
-                android:backgroundTint="@color/verde"
-                style="?attr/borderlessButtonStyle"
-                />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:orientation="horizontal"
+                android:layout_gravity="end"
+                >
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/verVagas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/btnvervagacard"
+                    android:textColor="@color/black"
+                    android:backgroundTint="@color/verde"
+                    style="?attr/borderlessButtonStyle"
+                    />
+            </LinearLayout>
 
         </LinearLayout>
 

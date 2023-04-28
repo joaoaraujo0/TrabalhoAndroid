@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -11,12 +13,15 @@ import com.unaerp.trabalhoandroid.Adapter.AdapterVaga
 import com.unaerp.trabalhoandroid.R
 import com.unaerp.trabalhoandroid.model.Vagas
 
-class AnunciosFragment : Fragment() { // Adicione a herança de Fragment
+class AnunciosFragment : Fragment() {
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_anuncio_estagiario, container, false)
+
+        //val pesquisa = view.findViewById<SearchView>(R.id.searchViewEstagiario)
 
         val recyclerViewVagas = view.findViewById<RecyclerView>(R.id.recyclerViewVagasEstagio)
         recyclerViewVagas.layoutManager = LinearLayoutManager(requireContext())
@@ -66,6 +71,8 @@ class AnunciosFragment : Fragment() { // Adicione a herança de Fragment
             "15/09/2022"
         )
         listaVagas.add(vaga3)
+
+
 
         return view
     }

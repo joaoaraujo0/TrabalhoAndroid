@@ -4,6 +4,7 @@
         <item>Anunciante</item>
         <item>Interessado</item>
     </string-array>
+
     <string name="anunciante">Nome da empresa: %1$s</string>
     <string name="areaVaga">Área da vaga: %1$s</string>
     <string name="descricao">Descrição: %1$s</string>
@@ -12,5 +13,74 @@
     <string name="valorRemuneracao">Valor da Remuneração: %1$s</string>
     <string name="emailContato">Email de Contato: %1$s</string>
     <string name="telefoneContato">Telefone de Contato: %1$s</string>
+
+    <!-- Tela Login. -->
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="senha">Senha</string>
+    <string name="btnentrar">Entrar</string>
+    <string name="btncadastrarlogin">Cadastrar</string>
+
+    <!-- Tela Cadastro. -->
+
+    <string name="cadastro">    Cadastro</string>
+    <string name="nomedeusuario">   Nome de usuário</string>
+    <string name="emailcadastro">   Email</string>
+    <string name="definaperfil">Defina seu perfil</string>
+    <string name="senhacadastro">   Senha</string>
+    <string name="confirmesenha">   Confirme sua senha</string>
+    <string name="btncadastrar">Cadastrar</string>
+    <string name="btncancelar">Cancelar</string>
+
+    <!-- Tela Card. -->
+
+    <string name="microsoftcard">Microsoft</string>
+    <string name="areadavagacard">Área da vaga: Ti</string>
+    <string name="localidadecard">Localidade São Paulo</string>
+    <string name="datacard">Data termino da vaga: 06/06/2023</string>
+    <string name="btnvervagacard">Ver Vaga</string>
+
+    <!-- Tela Editar Perfil. -->
+    <string name="editarperfil">Editar</string>
+    <string name="editarnome">  Nome</string>
+    <string name="editaremail"> Email</string>
+    <string name="btneditar">Editar</string>
+    <string name="btneditarcancelar">Cancelar</string>
+
+    <!-- Tela Cadastro Anuncio. -->
+
+
+    <string name="areaVagaCadastro"> Área da vaga</string>
+    <string name="descricaoCadastro"> Descrição</string>
+    <string name="remuneracaocadastro"> Valor</string>
+    <string name="valor"> R$</string>
+    <string name="text_localidadeCadastro"> Localidade</string>
+    <string name="emailContatoCadastro"> Email de Contato</string>
+    <string name="telefoneContatoCadastro"> Telefone de Contato</string>
+    <string name="anuncianteCadastro"> Nome da empresa</string>
+    <string name="datainicioCadastro"> Data de Inicio</string>
+    <string name="datafinalCadastro"> Data Final</string>
+
+
+    <!-- Tela de Perfil -->
+
+    <string name="perfil">Perfil</string>
+    <string name="btnsair">Sair</string>
+    <string name="btntirarfoto">Tirar Foto</string>
+    <string name="nomeperfil">Nome: Juan</string>
+    <string name="emailperfil">Email: Juan@gmail.com</string>
+    <string name="btneditarperfil">Editar</string>
+
+    <!-- Tela Editar Cadastro Anuncio. -->
+    <string name="areaVagaCadastroed">  TI</string>
+    <string name="descricaoCadastroed">  Precisamos de pessoas com ex em kotlin</string>
+    <string name="remuneracaocadastroed">   Valor</string>
+    <string name="valored">  R$ 2.000,00</string>
+    <string name="text_localidadeCadastroed">  São Paulo</string>
+    <string name="emailContatoCadastroed">  microsoft@hotmail.com</string>
+    <string name="telefoneContatoCadastroed">  (11)99555-1211</string>
+    <string name="anuncianteCadastroed">  Microsoft</string>
+    <string name="datainicioCadastroed">  06/04/2023</string>
+    <string name="datafinalCadastroed">  06/06/2023</string>
 
 </resources>
