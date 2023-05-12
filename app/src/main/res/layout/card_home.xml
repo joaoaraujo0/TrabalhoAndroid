@@ -8,18 +8,12 @@
 
     <androidx.cardview.widget.CardView
         app:cardMaxElevation="8dp"
-        android:backgroundTint="@color/rosinha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:clickable="true"
         app:cardElevation="4dp"
         >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -34,8 +28,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/microsoftcard"
-                    android:textSize="25sp"
+                    android:textSize="16sp"
                     android:textAppearance="?attr/textAppearanceHeadline6"
+                    android:fontFamily="@font/roboto_medium"
                     />
                 <TextView
                     android:id="@+id/nomeArea"
@@ -45,7 +40,8 @@
                     android:text="@string/areadavagacard"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary"
-                    android:textSize="15sp"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/roboto_medium"
                     />
                 <TextView
                     android:id="@+id/nomeLocalidade"
@@ -55,7 +51,8 @@
                     android:text="@string/localidadecard"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary"
-                    android:textSize="15sp"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/roboto_medium"
                     />
                 <TextView
                     android:id="@+id/dataTerminoVaga"
@@ -65,32 +62,23 @@
                     android:text="@string/datacard"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary"
-                    android:textSize="15sp"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/roboto_medium"
                     />
 
-            </LinearLayout>
 
-            <!-- Buttons -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:orientation="horizontal"
-                android:layout_gravity="end"
-                >
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/verVagas"
-                    android:layout_width="wrap_content"
-                    android:layout_height="60dp"
+                    android:layout_width="99dp"
+                    android:layout_height="40dp"
                     android:layout_marginEnd="8dp"
                     android:text="@string/btnvervagacard"
-                    android:textColor="@color/black"
-                    android:backgroundTint="@color/verde"
+                    android:layout_gravity="right"
+                    android:textColor="@color/branco"
+                    android:backgroundTint="@color/md_theme_light_primary"
                     style="?attr/borderlessButtonStyle"
                     />
             </LinearLayout>
-
-        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 

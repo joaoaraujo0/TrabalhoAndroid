@@ -5,6 +5,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/seed"
         >
 
         <TextView
@@ -16,7 +17,10 @@
             android:textColor="@android:color/black"
             android:textStyle="bold"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"
+            android:layout_margin="8dp"
+            android:fontFamily="@font/open_sans_bold"
+            />
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -30,7 +34,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="@string/areaVagaCadastroed"
+                android:fontFamily="@font/roboto_medium"
 
                 />
         </com.google.android.material.textfield.TextInputLayout>
@@ -46,7 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="@string/descricaoCadastroed"
+                android:fontFamily="@font/roboto_medium"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -61,7 +65,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="@string/valored"
+                android:fontFamily="@font/roboto_medium"
+                android:drawableStart="@drawable/baseline_attach_money_24"
+
 
                 />
         </com.google.android.material.textfield.TextInputLayout>
@@ -76,7 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="@string/text_localidadeCadastroed"
+                android:fontFamily="@font/roboto_medium"
 
                 />
         </com.google.android.material.textfield.TextInputLayout>
@@ -86,13 +92,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/emailContatoCadastro"
-            android:layout_below="@+id/local_edittext" >
+            android:layout_below="@+id/local_edittext"
+            >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="@string/emailContatoCadastroed"
+                android:fontFamily="@font/roboto_medium"
+                android:drawableEnd="@drawable/baseline_email_24"
+
 
                 />
         </com.google.android.material.textfield.TextInputLayout>
@@ -107,7 +116,9 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:inputType="phone"
-                android:text="@string/telefoneContatoCadastroed"
+                android:fontFamily="@font/roboto_medium"
+                android:drawableEnd="@drawable/baseline_contact_phone_24"
+
 
                 />
         </com.google.android.material.textfield.TextInputLayout>
@@ -123,7 +134,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="@string/anuncianteCadastroed"
+                android:fontFamily="@font/roboto_medium"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -142,7 +153,9 @@
                 android:layout_margin="8dp"
                 android:focusableInTouchMode="false"
                 android:clickable="true"
-                android:text="@string/datainicioCadastroed"/>
+                android:fontFamily="@font/roboto_medium"
+                android:drawableEnd="@drawable/baseline_date_range_24"
+                />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -158,8 +171,8 @@
                 android:layout_height="wrap_content"
                 android:inputType="date"
                 android:layout_margin="8dp"
-                android:text="@string/datafinalCadastroed"
-
+                android:fontFamily="@font/roboto_medium"
+                android:drawableEnd="@drawable/baseline_date_range_24"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 

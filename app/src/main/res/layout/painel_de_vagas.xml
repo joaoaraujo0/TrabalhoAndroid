@@ -1,35 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-<com.google.android.material.card.MaterialCardView android:id="@+id/card"
+<com.google.android.material.card.MaterialCardView
+    android:id="@+id/card"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    xmlns:android="http://schemas.android.com/apk/res/android"
->
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="@color/cards"
+        android:background="@color/seed"
+        android:padding="8dp"
 
         >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp"
-            >
-
-            <!-- Title, secondary and supporting text -->
             <TextView
                 android:id="@+id/anunciante"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nome da empresa: Microsoft"
                 android:textAppearance="?attr/textAppearanceHeadline6"
-                android:textSize="25sp"
+                android:textSize="16sp"
+                android:fontFamily="@font/open_sans_bold"
                 />
             <TextView
                 android:id="@+id/areaVaga"
@@ -39,8 +31,8 @@
                 android:text="Área da vaga: Ti"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15sp"
-
+                android:textSize="14sp"
+                android:fontFamily="@font/roboto_medium"
                 />
             <TextView
                 android:id="@+id/descricaoVaga"
@@ -50,7 +42,8 @@
                 android:text="Precisamos de pessoas com ex em kotlin"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15sp"
+                android:textSize="14sp"
+                android:fontFamily="@font/roboto_medium"
                 />
             <TextView
                 android:id="@+id/localidadeVaga"
@@ -60,7 +53,8 @@
                 android:text="Localidade: São Paulo"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15sp"
+                android:textSize="14sp"
+                android:fontFamily="@font/roboto_medium"
                 />
             <TextView
                 android:id="@+id/dataTerminoDaVaga"
@@ -70,7 +64,8 @@
                 android:text="Data termino da vaga: 06/06/2023"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15sp"
+                android:textSize="14sp"
+                android:fontFamily="@font/roboto_medium"
                 />
             <TextView
                 android:id="@+id/remuneracaoEstagio"
@@ -80,7 +75,8 @@
                 android:text="Remuneração: 2000"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15sp"
+                android:textSize="14sp"
+                android:fontFamily="@font/roboto_medium"
 
                 />
             <TextView
@@ -91,7 +87,8 @@
                 android:text="E-mail de contato: microsoft@hotmail.com"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15sp"
+                android:textSize="14sp"
+                android:fontFamily="@font/roboto_medium"
                 />
             <TextView
                 android:id="@+id/telefoneContatoEmpresa"
@@ -101,7 +98,8 @@
                 android:text="Telefone:(11)99555-1211 "
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
-                android:textSize="15sp"
+                android:textSize="14sp"
+                android:fontFamily="@font/roboto_medium"
                 />
 
             <com.google.android.material.button.MaterialButton
@@ -112,8 +110,8 @@
                 android:orientation="horizontal"
                 android:layout_gravity="end"
                 android:layout_margin="8dp"
-                android:textColor="@color/black"
-                android:backgroundTint="@color/verde"
+                android:textColor="@color/branco"
+                android:backgroundTint="@color/md_theme_light_primary"
                 style="?attr/borderlessButtonStyle" />
 
             <com.google.android.material.button.MaterialButton
@@ -123,13 +121,9 @@
                 android:text="Voltar"
                 android:orientation="horizontal"
                 android:layout_margin="8dp"
-                android:textColor="@color/black"
-                android:backgroundTint="@color/verde"
+                android:textColor="@color/branco"
+                android:backgroundTint="@color/md_theme_light_primary"
                 style="?attr/borderlessButtonStyle" />
         </LinearLayout>
-
-    </LinearLayout>
-
-
 
 </com.google.android.material.card.MaterialCardView>
