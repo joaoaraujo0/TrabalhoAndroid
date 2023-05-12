@@ -146,7 +146,7 @@
             android:layout_below="@+id/anuciante">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/dateInicioEditText"
+                android:id="@+id/dateInicioEditVagaInicio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="none"
@@ -166,7 +166,7 @@
             android:hint="@string/datafinalCadastro"
             android:layout_below="@+id/date_inicio">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/dateFinalEditText"
+                android:id="@+id/dateFinalEditVagaFinal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="date"

@@ -33,7 +33,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/inputEmail"
+        android:id="@+id/inputEmailInput"
         android:layout_width="0dp"
         android:hint="@string/email"
         android:padding="8dp"
@@ -43,6 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textLogin">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputEmailLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -53,20 +54,22 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/inputSenha"
+        android:id="@+id/inputSenhaInput"
         android:layout_width="0dp"
         android:hint="@string/senha"
         android:padding="8dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputEmail">
+        app:layout_constraintTop_toBottomOf="@+id/inputEmailInput">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputSenhaLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:fontFamily="@font/roboto_medium"
+            android:inputType="textPassword"
             />
 
 
@@ -80,7 +83,7 @@
         android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputSenha"
+        app:layout_constraintTop_toBottomOf="@+id/inputSenhaInput"
         />
 
 

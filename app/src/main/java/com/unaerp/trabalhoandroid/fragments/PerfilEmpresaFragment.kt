@@ -15,6 +15,8 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.google.android.material.button.MaterialButton
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.unaerp.trabalhoandroid.EditarPerfil
 import com.unaerp.trabalhoandroid.MainActivity
 import com.unaerp.trabalhoandroid.R
@@ -54,6 +56,7 @@ class PerfilEmpresaFragment : Fragment() {
         val editarPerfilEmpresa = view.findViewById<MaterialButton>(R.id.editarPerfilEmpresa)
 
         botaoSair.setOnClickListener {
+            Firebase.auth.signOut()
             val intent = Intent(activity, MainActivity::class.java)
             startActivity(intent)
         }

@@ -20,13 +20,14 @@
         android:layout_marginBottom="16dp" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/nome"
+        android:id="@+id/nomeCadastroInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/nomedeusuario"
         android:layout_below="@+id/title_textview">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nomeCadastro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -37,13 +38,14 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/email_edit"
+        android:id="@+id/emailCadastroInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/emailcadastro"
-        android:layout_below="@+id/nome">
+        android:layout_below="@+id/nomeCadastroInput">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailCadastro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -55,32 +57,31 @@
         android:id="@+id/titulo_defina"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/email_edit"
+        android:layout_below="@id/emailCadastroInput"
         android:layout_margin="8dp"
-        android:padding="8dp"
         android:text="@string/definaperfil"
         android:textColor="@android:color/black"
         android:fontFamily="@font/roboto_medium"
         android:textSize="24sp" />
 
     <Spinner
-        android:id="@+id/spiner_edittext"
+        android:id="@+id/spinerDefinirPerfil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/titulo_defina"
+        android:fontFamily="@font/roboto_medium"
         android:padding="17dp"
         android:layout_margin="8dp"
-        android:fontFamily="@font/roboto_medium"
-        android:popupBackground="@color/seed"
-        />
+        android:popupBackground="@color/seed" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/senha"
+        android:id="@+id/senhaCadastro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/senhacadastro"
-        android:layout_below="@+id/spiner_edittext" >
+        android:layout_below="@+id/spinerDefinirPerfil" >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textSenhaCadastro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -90,12 +91,13 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/comfirme_senha"
+        android:id="@+id/comfirmaSenha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/confirmesenha"
-        android:layout_below="@+id/senha" >
+        android:layout_below="@+id/senhaCadastro" >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textConfirmaSenhaCadastro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -110,7 +112,7 @@
         android:layout_height="wrap_content"
         android:text="@string/btncadastrarlogin"
         android:layout_margin="8dp"
-        android:layout_below="@id/comfirme_senha"
+        android:layout_below="@id/comfirmaSenha"
 
         />
     <com.google.android.material.button.MaterialButton
