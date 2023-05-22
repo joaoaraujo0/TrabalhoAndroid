@@ -1,127 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.MinhasVagasFragment"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/seed">
 
 
-    <com.google.android.material.card.MaterialCardView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewMinhasVagas"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_marginTop="25dp"
-        tools:context=".MainActivity">
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"
+        tools:listitem="@layout/card_minhas_vagas"
+        />
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/branco"
-            android:padding="8dp">
-
-
-                <!-- Title, secondary and supporting text -->
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nome da empresa: Microsoft"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/roboto_medium"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Área da vaga: Ti"
-                    android:textAppearance="?attr/textAppearanceBody2"
-                    android:textColor="?android:attr/textColorSecondary"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/roboto_medium"
-
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Localidade: São Paulo"
-                    android:textAppearance="?attr/textAppearanceBody2"
-                    android:textColor="?android:attr/textColorSecondary"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/roboto_medium"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Data termino da vaga: 06/06/2023"
-                    android:textAppearance="?attr/textAppearanceBody2"
-                    android:textColor="?android:attr/textColorSecondary"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/roboto_medium"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Remuneração: 2000"
-                    android:textAppearance="?attr/textAppearanceBody2"
-                    android:textColor="?android:attr/textColorSecondary"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/roboto_medium"
-                    />
-                <TextView
-                    android:id="@+id/email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="E-mail de contato: microsoft@hotmail.com"
-                    android:textAppearance="?attr/textAppearanceBody2"
-                    android:textColor="?android:attr/textColorSecondary"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/roboto_medium"
-                    />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="Telefone:(11)99555-1211 "
-                    android:textAppearance="?attr/textAppearanceBody2"
-                    android:textColor="?android:attr/textColorSecondary"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/roboto_medium"
-                    />
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="7dp"
-                android:orientation="horizontal"
-                android:layout_gravity="end">
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/editarVagasEmpresa"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:text="Editar"
-                    android:textColor="@color/branco"
-                    android:backgroundTint="@color/md_theme_light_tertiary"
-                    style="?attr/borderlessButtonStyle"
-                    />
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/excluirvaga"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Excluir"
-                    android:textColor="@color/branco"
-                    android:backgroundTint="@color/md_theme_light_primary"
-                    style="?attr/borderlessButtonStyle" />
-            </LinearLayout>
-        </LinearLayout>
-
-
-    </com.google.android.material.card.MaterialCardView>
-
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

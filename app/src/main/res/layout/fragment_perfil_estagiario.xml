@@ -1,12 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments_estagio.PerfilEstagiarioFragment"
-    android:theme="@style/Base.Theme.TrabalhoAndroid"
-    >
-
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -106,7 +98,3 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-</FrameLayout>

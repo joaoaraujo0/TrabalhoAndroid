@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,13 +12,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.unaerp.trabalhoandroid.Adapter.AdapterVaga
 import com.unaerp.trabalhoandroid.R
 import com.unaerp.trabalhoandroid.model.Vagas
+import java.util.Locale
 
 class PainelVagasFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         val view = inflater.inflate(R.layout.fragment_painel_vagas, container, false)
         val searchView = view.findViewById<SearchView>(R.id.searchView)
 
@@ -70,6 +71,40 @@ class PainelVagasFragment : Fragment() {
             "15/09/2022"
         )
         listaVagas.add(vaga3)
+        fun filterList(query: String?) {
+            val filteredList: MutableList<Vagas> = mutableListOf()
+
+            if (!query.isNullOrEmpty()) {
+                for (vaga in listaVagas) {
+                    if (vaga.anunciante.lowercase(Locale.ROOT).contains(query.lowercase(Locale.ROOT))) {
+                        filteredList.add(vaga)
+                    }
+                }
+            } else {
+                filteredList.addAll(listaVagas) // Restaurar a lista original quando o texto de pesquisa estiver vazio
+            }
+
+            if (filteredList.isEmpty()) {
+                Toast.makeText(requireContext(), "Não foi encontrado nenhum resultado.", Toast.LENGTH_SHORT).show()
+            } else {
+                adapterVaga.setFilteredList(filteredList)
+            }
+        }
+
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                filterList(newText)
+                return true
+            }
+
+
+        })
+
 
         return view
     }

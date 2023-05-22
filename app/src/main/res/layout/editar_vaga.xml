@@ -24,7 +24,7 @@
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/area_conhecimento"
+            android:id="@+id/areaDeEditarVaga"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/areaVagaCadastro"
@@ -40,12 +40,11 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/disc_vaga"
+            android:id="@+id/descricaoVagaEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/descricaoCadastro"
-
-            android:layout_below="@+id/area_conhecimento" >
+            android:layout_below="@+id/areaDeEditarVaga" >
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -55,11 +54,11 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/valor_remunecao"
+            android:id="@+id/valorRemuneracaoEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/remuneracaocadastro"
-            android:layout_below="@+id/disc_vaga" >
+            android:layout_below="@+id/descricaoVagaEditar" >
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -73,11 +72,11 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/local_edittext"
+            android:id="@+id/localidadeEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/text_localidadeCadastro"
-            android:layout_below="@+id/valor_remunecao" >
+            android:layout_below="@+id/valorRemuneracaoEditar" >
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -88,11 +87,11 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/email_edittext"
+            android:id="@+id/emailContatoEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/emailContatoCadastro"
-            android:layout_below="@+id/local_edittext"
+            android:layout_below="@+id/localidadeEditar"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -106,11 +105,11 @@
                 />
         </com.google.android.material.textfield.TextInputLayout>
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/telefonee"
+            android:id="@+id/telefoneContatoEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/telefoneContatoCadastro"
-            android:layout_below="@+id/email_edittext" >
+            android:layout_below="@+id/emailContatoEditar" >
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -124,11 +123,11 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/anuciante"
+            android:id="@+id/nomeDaEmpresaEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/anuncianteCadastro"
-            android:layout_below="@+id/telefonee"
+            android:layout_below="@+id/telefoneContatoEditar"
             >
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -139,11 +138,11 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/date_inicio"
+            android:id="@+id/dataDeInicioEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/datainicioCadastro"
-            android:layout_below="@+id/anuciante">
+            android:layout_below="@+id/nomeDaEmpresaEditar">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/dateInicioEditVagaInicio"
@@ -160,11 +159,11 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/date_final"
+            android:id="@+id/dataFinalEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/datafinalCadastro"
-            android:layout_below="@+id/date_inicio">
+            android:layout_below="@+id/dataDeInicioEditar">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/dateFinalEditVagaFinal"
                 android:layout_width="match_parent"
@@ -184,7 +183,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="20dp"
             android:layout_marginStart="20dp"
-            android:layout_below="@id/date_final"
+            android:layout_below="@id/dataFinalEditar"
             />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/botaoVoltarEditarVaga"

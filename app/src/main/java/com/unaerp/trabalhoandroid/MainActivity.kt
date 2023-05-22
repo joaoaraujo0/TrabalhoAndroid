@@ -27,12 +27,15 @@ class MainActivity : AppCompatActivity() {
         btnEntrar.setOnClickListener {
             val email = findViewById<TextInputEditText>(R.id.inputEmailLogin).text.toString()
             val senha = findViewById<TextInputEditText>(R.id.inputSenhaLogin).text.toString()
+
             if(email.isEmpty() || senha.isEmpty()){
                 val snackbar = Snackbar.make(it,"Preencha os campos!!", Snackbar.LENGTH_SHORT)
                 snackbar.setBackgroundTint(Color.RED)
                 snackbar.show()
             }else{
-                Login(email,senha)
+                //Login(email,senha)
+                val intent = Intent(this, Menu::class.java)
+                startActivity(intent)
             }
 
 
@@ -46,7 +49,7 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-    private fun Login(email:String,senha:String){
+   /* private fun Login(email:String,senha:String){
         auth.signInWithEmailAndPassword(email,senha)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -65,7 +68,7 @@ class MainActivity : AppCompatActivity() {
                     updateUI(null)
                 }
         }
-    }
+    }*/
 
     public override fun onStart() {
         super.onStart()

@@ -12,7 +12,7 @@ import com.unaerp.trabalhoandroid.R
 import com.unaerp.trabalhoandroid.VagaExpandida
 import com.unaerp.trabalhoandroid.model.Vagas
 
-class AdapterVaga(private val context : Context, private val vagas : MutableList<Vagas>) : RecyclerView.Adapter<AdapterVaga.VagaViewHolder>() {
+class AdapterVaga(private val context : Context, private var vagas : MutableList<Vagas>) : RecyclerView.Adapter<AdapterVaga.VagaViewHolder>() {
 
     inner class VagaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val anunciante = itemView.findViewById<TextView>(R.id.tituloNomeEmpresa)
@@ -28,6 +28,11 @@ class AdapterVaga(private val context : Context, private val vagas : MutableList
         return holder
 
     }
+    fun setFilteredList(vagas: MutableList<Vagas>){
+        this.vagas = vagas
+        notifyDataSetChanged()
+    }
+
 
     override fun getItemCount(): Int = vagas.size
 
