@@ -8,9 +8,8 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.unaerp.trabalhoandroid.Adapter.AdapterVaga
-import com.unaerp.trabalhoandroid.R
+import com.unaerp.trabalhoandroid.databinding.FragmentPainelVagasBinding
 import com.unaerp.trabalhoandroid.model.Vagas
 import java.util.Locale
 
@@ -18,12 +17,11 @@ class PainelVagasFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_painel_vagas, container, false)
-        val searchView = view.findViewById<SearchView>(R.id.searchView)
+    ): View {
+        val binding = FragmentPainelVagasBinding.inflate(inflater, container, false)
+        val view = binding.root
 
-
-        val recyclerViewVagas = view.findViewById<RecyclerView>(R.id.recyclerViewVagas)
+        val recyclerViewVagas = binding.recyclerViewVagas
         recyclerViewVagas.layoutManager = LinearLayoutManager(requireContext())
         recyclerViewVagas.setHasFixedSize(true)
 
@@ -47,8 +45,8 @@ class PainelVagasFragment : Fragment() {
         listaVagas.add(vaga1)
 
         val vaga2 = Vagas(
-            "Analista de Sistemas Kotlin",
-            "Vaga para analista de sistemas com experiência em Kotlin",
+            "Analista de Sistemas Java",
+            "Vaga para analista de sistemas com experiência em Java",
             "3200.00",
             "Rio de Janeiro",
             "maria@gmail.com",
@@ -60,17 +58,30 @@ class PainelVagasFragment : Fragment() {
         listaVagas.add(vaga2)
 
         val vaga3 = Vagas(
-            "Engenheiro(a) de Software Kotlin",
-            "Oportunidade para engenheiro(a) de software com expertise em Kotlin",
-            "4500.00",
-            "Belo Horizonte",
-            "carlos@gmail.com",
+            "Engenheiro(a) de Software php",
+            "Oportunidade para engenheiro(a) de software com expertise em php",
+            "43400.00",
+            "bh",
+            "carlos@@#@gmail.com",
             "112233445566",
             "Amazon",
             "10/02/2015",
             "15/09/2022"
         )
         listaVagas.add(vaga3)
+
+        val vaga4 = Vagas(
+            "Engenheiro(a) de Software lua",
+            "Oportunidade para engenheiro(a) de software com expertise em lua",
+            "450000.00",
+            "Belo Mar",
+            "Lulu@gmail.com",
+            "1734y73y43y",
+            "polupi",
+            "10/02/2015",
+            "15/09/2022"
+        )
+        listaVagas.add(vaga4)
         fun filterList(query: String?) {
             val filteredList: MutableList<Vagas> = mutableListOf()
 
@@ -92,7 +103,7 @@ class PainelVagasFragment : Fragment() {
         }
 
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }

@@ -39,7 +39,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/Perfil"
-            android:background="@drawable/logoperfil"
+            android:src="@drawable/logoperfil"
             android:contentDescription="Foto estagiario" />
 
         <com.google.android.material.button.MaterialButton

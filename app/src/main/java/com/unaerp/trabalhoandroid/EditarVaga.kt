@@ -6,31 +6,30 @@ import android.icu.util.Calendar
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
+import com.unaerp.trabalhoandroid.databinding.EditarVagaBinding
 
 class EditarVaga : AppCompatActivity() {
+    private lateinit var binding: EditarVagaBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.editar_vaga)
+        binding = EditarVagaBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val botaoCancelar = findViewById<MaterialButton>(R.id.botaoVoltarEditarVaga)
-        val botaoEditar = findViewById<MaterialButton>(R.id.botaoEditarVagaEmpresa)
-
-        botaoCancelar.setOnClickListener {
+        binding.botaoVoltarEditarVaga.setOnClickListener {
             finish()
         }
 
-        botaoEditar.setOnClickListener {
+        binding.botaoEditarVagaEmpresa.setOnClickListener {
             Toast.makeText(this, "Anuncio de vaga editado", Toast.LENGTH_SHORT).show()
             finish()
         }
 
 
-        val dateInicioEditText =findViewById<TextInputEditText>(R.id.dateInicioEditVagaInicio)
-        val dateFinalEditText = findViewById<TextInputEditText>(R.id.dateFinalEditVagaFinal)
+        val dateInicioEditText = binding.dateInicioEditVagaInicio
+        val dateFinalEditText = binding.dateFinalEditVagaFinal
 
         val calendar = Calendar.getInstance()
 

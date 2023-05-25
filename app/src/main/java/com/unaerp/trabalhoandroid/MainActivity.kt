@@ -1,74 +1,84 @@
 package com.unaerp.trabalhoandroid
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
-import com.google.android.material.button.MaterialButton
+import android.view.View
+import android.view.inputmethod.InputMethodManager
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.textfield.TextInputEditText
+import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.unaerp.trabalhoandroid.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         auth = Firebase.auth
 
-        val btnEntrar = findViewById<MaterialButton>(R.id.botaoEntrar)
 
-        btnEntrar.setOnClickListener {
-            val email = findViewById<TextInputEditText>(R.id.inputEmailLogin).text.toString()
-            val senha = findViewById<TextInputEditText>(R.id.inputSenhaLogin).text.toString()
-
-            if(email.isEmpty() || senha.isEmpty()){
-                val snackbar = Snackbar.make(it,"Preencha os campos!!", Snackbar.LENGTH_SHORT)
+        binding.botaoEntrar.setOnClickListener {
+            closeKeyboard()
+            if (binding.inputEmailLogin.text.isNullOrEmpty() || binding.inputSenhaLogin.text.isNullOrEmpty()) {
+                val snackbar = Snackbar.make(it, "Preencha os campos!!", Snackbar.LENGTH_SHORT)
                 snackbar.setBackgroundTint(Color.RED)
                 snackbar.show()
-            }else{
-                //Login(email,senha)
-                val intent = Intent(this, Menu::class.java)
-                startActivity(intent)
+                return@setOnClickListener
+            } else {
+                Login(binding.inputEmailLogin.text.toString(),binding.inputSenhaLogin.text.toString(),it)
+                /*val intent = Intent(this, Menu::class.java)
+                startActivity(intent)*/
             }
-
-
         }
 
-        val textView = findViewById<MaterialButton>(R.id.botaoCadastrar)
-        textView.setOnClickListener {
+        binding.botaoCadastrar.setOnClickListener {
             val intentCadastro = Intent(this, CadastroUsuario::class.java)
             startActivity(intentCadastro)
         }
-
-
     }
-   /* private fun Login(email:String,senha:String){
-        auth.signInWithEmailAndPassword(email,senha)
-            .addOnCompleteListener(this) { task ->
+
+    private fun closeKeyboard(){
+        val view = currentFocus
+        view?.let{
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(it.windowToken, 0)
+
+        }
+    }
+    private fun Login(email: String, senha: String,view: View) {
+        auth.signInWithEmailAndPassword(email, senha).addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithEmail:success")
                     val user = auth.currentUser
                     updateUI(user)
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w(TAG, "signInWithCustomToken:failure", task.exception)
-                    Toast.makeText(
-                        baseContext,
-                        "Ops, algo deu errado tente novamente.",
-                        Toast.LENGTH_SHORT,
-                    ).show()
-                    updateUI(null)
                 }
+            }.addOnFailureListener {exeption ->
+            val mensagemErro = when (exeption) {
+                is FirebaseAuthWeakPasswordException -> "Digite uma senha com no mínimo 6 caracteres!"
+                is FirebaseAuthInvalidCredentialsException -> "Digite uma email válido!"
+                is FirebaseNetworkException -> "Sem conexão com a internet!"
+                else -> "Erro ao fazer login!"
+            }
+            val snackbar = Snackbar.make(view, mensagemErro, Snackbar.LENGTH_SHORT)
+            snackbar.setBackgroundTint(Color.RED)
+            snackbar.show()
+
         }
-    }*/
+    }
+
 
     public override fun onStart() {
         super.onStart()
@@ -76,13 +86,17 @@ class MainActivity : AppCompatActivity() {
         val currentUser = auth.currentUser
         updateUI(currentUser)
     }
-    private fun updateUI(user: FirebaseUser?/*, nome: String?*/) {
+
+    private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
             val intent = Intent(this, Menu::class.java)
-            intent.putExtra("mensagem", "Bem vindo: .")
+            intent.putExtra("mensagem", "Bem vindo!")
             startActivity(intent)
+            binding.inputEmailLogin.setText("")
+            binding.inputSenhaLogin.setText("")
         }
     }
+
     private fun reload() {
     }
 

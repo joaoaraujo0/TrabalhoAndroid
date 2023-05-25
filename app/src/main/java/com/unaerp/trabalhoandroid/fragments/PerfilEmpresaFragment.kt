@@ -5,7 +5,6 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,19 +13,22 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import com.google.android.material.button.MaterialButton
+import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.unaerp.trabalhoandroid.EditarPerfil
-import com.unaerp.trabalhoandroid.MainActivity
 import com.unaerp.trabalhoandroid.R
-import java.io.File
-import java.io.FileOutputStream
+import com.unaerp.trabalhoandroid.databinding.FragmentPerfilUserBinding
 
 private var userBitmap:Bitmap? = null
 class PerfilEmpresaFragment : Fragment() {
     private var imgPicture: ImageView? = null
     private var botaoTirarFoto: Button? = null
+    private var db = FirebaseFirestore.getInstance()
+
 
     private val cameraLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -49,26 +51,25 @@ class PerfilEmpresaFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_perfil_user, container, false)
+    ): View {
+        val binding = FragmentPerfilUserBinding.inflate(inflater, container, false)
+        val view = binding.root
 
-        val botaoSair = view.findViewById<MaterialButton>(R.id.sairBotao)
-        val editarPerfilEmpresa = view.findViewById<MaterialButton>(R.id.editarPerfilEmpresa)
+        PegarDadoUsuario(binding)
 
-        botaoSair.setOnClickListener {
+        binding.sairBotao.setOnClickListener {
             Firebase.auth.signOut()
-            val intent = Intent(activity, MainActivity::class.java)
-            startActivity(intent)
+            requireActivity().finish()
         }
 
-        editarPerfilEmpresa.setOnClickListener {
+        binding.editarPerfilEmpresa.setOnClickListener {
             val intent = Intent(activity, EditarPerfil::class.java)
             startActivity(intent)
         }
 
-        imgPicture = view.findViewById(R.id.imagemPerfilEmpresa)
+        imgPicture = binding.imagemPerfilEmpresa
         userBitmap?.let { imgPicture?.setImageBitmap(it) }
-        botaoTirarFoto = view.findViewById(R.id.botaoTirarFotoEmpresa)
+        botaoTirarFoto = binding.botaoTirarFotoEmpresa
 
         botaoTirarFoto?.setOnClickListener {
                 if(ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
@@ -83,13 +84,42 @@ class PerfilEmpresaFragment : Fragment() {
 
         return view
     }
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
+    private fun PegarDadoUsuario(binding:FragmentPerfilUserBinding){
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            val userId = currentUser.uid
+            // Recupere o documento do usuário no Firestore
+            db.collection("users")
+                .document(userId)
+                .get()
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        val document: DocumentSnapshot? = task.result
+                        if (document != null && document.exists()) {
+                            // O documento existe, você pode acessar os dados
+                            val nome = document.getString("Nome")
+                            val tipoDoPerfil = document.getString("Tipo do perfil")
+                            val nomePerfilText = getString(R.string.nomePerfil, nome)
+                            val tipoDoPerfilText = getString(R.string.emailPerfil, tipoDoPerfil)
+                            binding.nomePerfil.text = nomePerfilText
+                            binding.emailPerfil.text = tipoDoPerfilText
+
+
+
+
+
+
+                        }
+                    }
+                }
+        }
+
     }
 
 
-
-
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+    }
 
 }
 

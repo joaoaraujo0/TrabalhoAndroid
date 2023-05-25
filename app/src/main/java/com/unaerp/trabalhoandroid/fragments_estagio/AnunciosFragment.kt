@@ -4,13 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.unaerp.trabalhoandroid.Adapter.AdapterVaga
-import com.unaerp.trabalhoandroid.R
+import com.unaerp.trabalhoandroid.databinding.FragmentAnuncioEstagiarioBinding
 import com.unaerp.trabalhoandroid.model.Vagas
 
 class AnunciosFragment : Fragment() {
@@ -18,12 +15,12 @@ class AnunciosFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_anuncio_estagiario, container, false)
-
+    ): View {
+        val binding = FragmentAnuncioEstagiarioBinding.inflate(inflater, container, false)
+        val view = binding.root
         //val pesquisa = view.findViewById<SearchView>(R.id.searchViewEstagiario)
 
-        val recyclerViewVagas = view.findViewById<RecyclerView>(R.id.recyclerViewVagasEstagio)
+        val recyclerViewVagas = binding.recyclerViewVagasEstagio
         recyclerViewVagas.layoutManager = LinearLayoutManager(requireContext())
         recyclerViewVagas.setHasFixedSize(true)
 
@@ -71,6 +68,18 @@ class AnunciosFragment : Fragment() {
             "15/09/2022"
         )
         listaVagas.add(vaga3)
+        val vaga4 = Vagas(
+            "Engenheiro(a) de Software csharp",
+            "Oportunidade para engenheiro(a) de software com expertise em csharp",
+            "4500.00",
+            "Belo csharp",
+            "carlos@csharp.com",
+            "112233445566",
+            "Amazon",
+            "10/02/2015",
+            "15/09/2022"
+        )
+        listaVagas.add(vaga4)
 
 
 

@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.unaerp.trabalhoandroid.Adapter.AdapterMinhasVagas
-import com.unaerp.trabalhoandroid.R
+import com.unaerp.trabalhoandroid.databinding.FragmentMinhasVagasBinding
 import com.unaerp.trabalhoandroid.model.Vagas
 
 
@@ -17,10 +16,11 @@ class MinhasVagasFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_minhas_vagas, container, false)
+    ): View {
+        val binding = FragmentMinhasVagasBinding.inflate(inflater, container, false)
+        val view = binding.root
 
-        val recyclerViewMinhasVagas = view.findViewById<RecyclerView>(R.id.recyclerViewMinhasVagas)
+        val recyclerViewMinhasVagas = binding.recyclerViewMinhasVagas
         recyclerViewMinhasVagas.layoutManager = LinearLayoutManager(requireContext())
         recyclerViewMinhasVagas.setHasFixedSize(true)
 
@@ -68,17 +68,6 @@ class MinhasVagasFragment : Fragment() {
             "15/09/2022"
         )
         listaMinhasVagas.add(vaga3)
-
-        /*val botaoEditarVagaEmpresa = view.findViewById<MaterialButton>(R.id.editarVagasEmpresa)
-
-        botaoEditarVagaEmpresa.setOnClickListener {
-            val intent = Intent(activity, EditarVaga::class.java)
-            startActivity(intent)
-        }*/
-
-
-
-
 
 
         return view

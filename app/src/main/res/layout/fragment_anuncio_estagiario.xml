@@ -24,12 +24,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewVagasEstagio"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:scrollbars="vertical"
         tools:listitem="@layout/card_home"
-        app:layout_constraintTop_toBottomOf="@+id/searchViewEstagiario"/>
-
-
+        app:layout_constraintTop_toBottomOf="@+id/searchViewEstagiario"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
 

@@ -4,16 +4,18 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.unaerp.trabalhoandroid.databinding.ActivityMainBinding
+import com.unaerp.trabalhoandroid.databinding.MenuEstagiarioBinding
 import com.unaerp.trabalhoandroid.fragments_estagio.AnunciosFragment
 import com.unaerp.trabalhoandroid.fragments_estagio.PerfilEstagiarioFragment
 
 class MenuEstagiario : AppCompatActivity() {
+    private lateinit var binding: MenuEstagiarioBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.menu_estagiario)
-
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation_estagio)
+        binding = MenuEstagiarioBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val homeFragmentEstagiario = AnunciosFragment()
         val perfilEstagiarioFragmentEstagiario = PerfilEstagiarioFragment()
@@ -21,7 +23,7 @@ class MenuEstagiario : AppCompatActivity() {
         // Define o fragment inicial como homeFragmentEstagiario
         makeCurrentFragment(homeFragmentEstagiario)
 
-        bottomNavigationView.setOnNavigationItemSelectedListener { menuItem ->
+        binding.bottomNavigationEstagio.setOnNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.page_Vagas_estagio -> makeCurrentFragment(homeFragmentEstagiario)
                 R.id.page_Perfil_estagio -> makeCurrentFragment(perfilEstagiarioFragmentEstagiario)

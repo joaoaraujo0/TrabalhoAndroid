@@ -4,21 +4,19 @@ import android.app.DatePickerDialog
 import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.textfield.TextInputEditText
-import com.unaerp.trabalhoandroid.R
+import androidx.fragment.app.Fragment
+import com.unaerp.trabalhoandroid.databinding.FragmentAnunciarVagaBinding
 
 class AnunciarVagaFragment : Fragment() {
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_anunciar_vaga, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+        val binding = FragmentAnunciarVagaBinding.inflate(inflater, container, false)
+        val view = binding.root
 
-        val dateInicioEditText = view.findViewById<TextInputEditText>(R.id.dateInicioEditText)
-        val dateFinalEditText = view.findViewById<TextInputEditText>(R.id.dateFinalEditText)
+        val dateInicioEditText = binding.dateInicioEditText
+        val dateFinalEditText = binding.dateFinalEditText
 
         val calendar = Calendar.getInstance()
 
@@ -52,9 +50,7 @@ class AnunciarVagaFragment : Fragment() {
         }
 
 
-        val submitBotao =  view.findViewById<MaterialButton>(R.id.submitBotao)
-
-        submitBotao.setOnClickListener {
+        binding.submitBotao.setOnClickListener {
         }
 
 

@@ -39,7 +39,7 @@
             android:layout_height="120dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:background="@drawable/logoperfil"
+            android:src="@drawable/logoperfil"
             app:layout_constraintTop_toBottomOf="@+id/Perfil"
             android:contentDescription="Foto estagiario"
             />
@@ -54,10 +54,10 @@
             app:layout_constraintRight_toRightOf="parent"/>
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/nome"
+            android:id="@+id/nomePerfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nome: Juan"
+            android:text="@string/nomePerfil"
             android:textAlignment="center"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
@@ -73,10 +73,10 @@
             />
 
         <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/email"
+            android:id="@+id/emailPerfil"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Email: Juan@gmail.com"
+            android:text="@string/emailPerfil"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:textAlignment="center"
@@ -87,7 +87,7 @@
             android:layout_margin="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/nome"
+            app:layout_constraintTop_toBottomOf="@+id/nomePerfil"
             android:fontFamily="@font/roboto_medium"
             />
         <com.google.android.material.button.MaterialButton
@@ -98,7 +98,7 @@
             android:layout_margin="8dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email"/>
+            app:layout_constraintTop_toBottomOf="@+id/emailPerfil"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -121,7 +121,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     style="?attr/borderlessButtonStyle"
-                    android:backgroundTint="@color/md_theme_light_primary"
+                    android:backgroundTint="@color/md_theme_light_error"
                     android:id="@+id/excluirvaga"
                     android:layout_width="99dp"
                     android:layout_height="40dp"

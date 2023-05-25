@@ -5,7 +5,6 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,10 +13,11 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
-import com.google.android.material.button.MaterialButton
+import androidx.fragment.app.Fragment
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.unaerp.trabalhoandroid.EditarPerfil
-import com.unaerp.trabalhoandroid.MainActivity
-import com.unaerp.trabalhoandroid.R
+import com.unaerp.trabalhoandroid.databinding.FragmentPerfilEstagiarioBinding
 
 private var userBitmap:Bitmap? = null
 class PerfilEstagiarioFragment : Fragment() {
@@ -47,27 +47,24 @@ class PerfilEstagiarioFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_perfil_estagiario, container, false)
-
-        val botaoSair = view.findViewById<MaterialButton>(R.id.sairBotao)
-        val editarEstagiario = view.findViewById<MaterialButton>(R.id.editarEstagiario)
+    ): View {
+        val binding = FragmentPerfilEstagiarioBinding.inflate(inflater, container, false)
+        val view = binding.root
 
 
-
-        botaoSair.setOnClickListener {
-            val intent = Intent(activity, MainActivity::class.java)
-            startActivity(intent)
+        binding.sairBotao.setOnClickListener {
+            Firebase.auth.signOut()
+            requireActivity().finish()
         }
 
-        editarEstagiario.setOnClickListener {
+         binding.editarEstagiario.setOnClickListener {
             val intent = Intent(activity, EditarPerfil::class.java)
             startActivity(intent)
         }
 
-        imgPicture = view.findViewById(R.id.imagemPerfilEstagiario)
+        imgPicture = binding.imagemPerfilEstagiario
         userBitmap?.let { imgPicture?.setImageBitmap(it) }
-        btnTakePicture = view.findViewById(R.id.botaoTirarFoto)
+        btnTakePicture =binding.botaoTirarFoto
 
         btnTakePicture?.setOnClickListener {
             if(ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
