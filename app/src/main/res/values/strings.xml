@@ -34,10 +34,10 @@
 
     <!-- Tela Card. -->
 
-    <string name="microsoftcard">Microsoft</string>
-    <string name="areadavagacard">Área da vaga: Ti</string>
-    <string name="localidadecard">Localidade São Paulo</string>
-    <string name="datacard">Data termino da vaga: 06/06/2023</string>
+    <string name="microsoftcard">Microsoft: %s</string>
+    <string name="areadavagacard">Área da vaga: %s</string>
+    <string name="localidadecard">Localidade: %s</string>
+    <string name="datacard">Data termino da vaga: %s</string>
     <string name="btnvervagacard">Ver Vaga</string>
 
     <!-- Tela Editar Perfil. -->
@@ -59,7 +59,7 @@
     <string name="telefoneContatoCadastro"> Telefone de Contato</string>
     <string name="anuncianteCadastro"> Nome da empresa</string>
     <string name="datainicioCadastro"> Data de Inicio</string>
-    <string name="datafinalCadastro"> Data Final</string>
+    <string name="datafinalCadastro"> Data de vencimento</string>
 
 
     <!-- Tela de Perfil -->

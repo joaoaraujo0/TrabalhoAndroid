@@ -29,7 +29,7 @@ class MinhasVagasFragment : Fragment() {
         val adapterMinhasVaga = AdapterMinhasVagas(requireContext(), listaMinhasVagas)
         recyclerViewMinhasVagas.adapter = adapterMinhasVaga
 
-
+/*
         val vaga1 = Vagas(
             "Ti",
             "Para esta vaga buscamos gente com experiencia em kotlin",
@@ -68,7 +68,7 @@ class MinhasVagasFragment : Fragment() {
             "15/09/2022"
         )
         listaMinhasVagas.add(vaga3)
-
+*/
 
         return view
 

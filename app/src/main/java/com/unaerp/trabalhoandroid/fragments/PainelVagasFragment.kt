@@ -8,7 +8,9 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import com.unaerp.trabalhoandroid.Adapter.AdapterVaga
+import com.unaerp.trabalhoandroid.FirestoreSingleton
 import com.unaerp.trabalhoandroid.databinding.FragmentPainelVagasBinding
 import com.unaerp.trabalhoandroid.model.Vagas
 import java.util.Locale
@@ -26,68 +28,20 @@ class PainelVagasFragment : Fragment() {
         recyclerViewVagas.setHasFixedSize(true)
 
         //Configurar adapter
-        val listaVagas : MutableList<Vagas> = mutableListOf()
+        val listaVagas: MutableList<Vagas> = mutableListOf()
         val adapterVaga = AdapterVaga(requireContext(), listaVagas)
         recyclerViewVagas.adapter = adapterVaga
 
+        PegarAnuncios(binding, listaVagas)
 
-        val vaga1 = Vagas(
-            "Ti",
-            "Para esta vaga buscamos gente com experiencia em kotlin",
-            "2500.00",
-            "São Paulo",
-            "joao@gmail.com",
-            "158877665544",
-            "Microsoft",
-            "15/05/2010",
-            "25/06/2022",
-        )
-        listaVagas.add(vaga1)
-
-        val vaga2 = Vagas(
-            "Analista de Sistemas Java",
-            "Vaga para analista de sistemas com experiência em Java",
-            "3200.00",
-            "Rio de Janeiro",
-            "maria@gmail.com",
-            "119988776655",
-            "Google",
-            "01/06/2019",
-            "30/07/2022"
-        )
-        listaVagas.add(vaga2)
-
-        val vaga3 = Vagas(
-            "Engenheiro(a) de Software php",
-            "Oportunidade para engenheiro(a) de software com expertise em php",
-            "43400.00",
-            "bh",
-            "carlos@@#@gmail.com",
-            "112233445566",
-            "Amazon",
-            "10/02/2015",
-            "15/09/2022"
-        )
-        listaVagas.add(vaga3)
-
-        val vaga4 = Vagas(
-            "Engenheiro(a) de Software lua",
-            "Oportunidade para engenheiro(a) de software com expertise em lua",
-            "450000.00",
-            "Belo Mar",
-            "Lulu@gmail.com",
-            "1734y73y43y",
-            "polupi",
-            "10/02/2015",
-            "15/09/2022"
-        )
-        listaVagas.add(vaga4)
         fun filterList(query: String?) {
             val filteredList: MutableList<Vagas> = mutableListOf()
 
             if (!query.isNullOrEmpty()) {
                 for (vaga in listaVagas) {
-                    if (vaga.anunciante.lowercase(Locale.ROOT).contains(query.lowercase(Locale.ROOT))) {
+                    if (vaga.anunciante.lowercase(Locale.ROOT)
+                            .contains(query.lowercase(Locale.ROOT))
+                    ) {
                         filteredList.add(vaga)
                     }
                 }
@@ -96,7 +50,11 @@ class PainelVagasFragment : Fragment() {
             }
 
             if (filteredList.isEmpty()) {
-                Toast.makeText(requireContext(), "Não foi encontrado nenhum resultado.", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireContext(),
+                    "Não foi encontrado nenhum resultado.",
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
                 adapterVaga.setFilteredList(filteredList)
             }
@@ -118,5 +76,43 @@ class PainelVagasFragment : Fragment() {
 
 
         return view
+    }
+
+    private fun PegarAnuncios(binding: FragmentPainelVagasBinding, listaVagas: MutableList<Vagas>) {
+        val db = FirestoreSingleton.getInstance()
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            val userId = currentUser.uid
+            db.collection("AnunciosEmpresas")
+                .document(userId)
+                .collection("Anuncios")
+                .get()
+                .addOnSuccessListener { result ->
+                    for (document in result) {
+                        val nomeEmpresa = document.getString("NomeEmpresa").toString()
+                        val descricaoVaga = document.getString("Descricao").toString()
+                        val areaVaga = document.getString("AreaDaVaga").toString()
+                        val valorRemuneracao = document.getString("ValorRemuneracao").toString()
+                        val localidade = document.getString("Localidade").toString()
+                        val emailContato = document.getString("EmailContato").toString()
+                        val telefoneContato = document.getString("TelefoneContato").toString()
+                        val dataTermino = document.getString("DataVencimento").toString()
+                        val dataInicioVaga = document.getDate("DataPublicacao")
+
+                        val vaga = Vagas(
+                            nomeEmpresa,
+                            descricaoVaga,
+                            areaVaga,
+                            valorRemuneracao,
+                            localidade,
+                            emailContato,
+                            telefoneContato,
+                            dataTermino,
+                            dataInicioVaga,
+                        )
+                        listaVagas.add(vaga)
+                    }
+                }
+        }
     }
 }

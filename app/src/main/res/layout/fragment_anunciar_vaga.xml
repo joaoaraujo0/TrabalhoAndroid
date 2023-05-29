@@ -20,18 +20,18 @@
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="16dp"
+                android:layout_margin="10dp"
                 android:fontFamily="@font/open_sans_bold"/>
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/nomeEmpresaCadastro"
+                android:id="@+id/nomeEmpresaAnuncio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/anuncianteCadastro"
-
                 android:layout_below="@+id/title_textview" >
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nomeEmpresaInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
@@ -41,13 +41,14 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/descricaoVagaCadastro"
+                android:id="@+id/descricaoVagaAnuncio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/descricaoCadastro"
-                android:layout_below="@+id/nomeEmpresaCadastro">
+                android:layout_below="@+id/nomeEmpresaAnuncio">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/descricaoInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
@@ -55,15 +56,34 @@
 
                     />
             </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/areaDaVagaCadastro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Área da vaga"
+                android:layout_below="@+id/descricaoVagaAnuncio" >
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/areaDaVagaCadastroInput"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:fontFamily="@font/roboto_medium"
+
+
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/valorRemuneracaoCadastro"
+                android:id="@+id/valorRemuneracaoAnuncio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/remuneracaocadastro"
-                android:layout_below="@+id/descricaoVagaCadastro" >
+                android:layout_below="@+id/areaDaVagaCadastro" >
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/valorRemuneracaoInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
@@ -75,12 +95,13 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/localidadeCadastro"
+                android:id="@+id/localidadeAnuncio"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/text_localidadeCadastro"
-                android:layout_below="@+id/valorRemuneracaoCadastro" >
+                android:layout_below="@+id/valorRemuneracaoAnuncio" >
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/localidadeAnuncioInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
@@ -94,9 +115,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/emailContatoCadastro"
-                android:layout_below="@+id/localidadeCadastro" >
+                android:layout_below="@+id/localidadeAnuncio" >
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/emailContatoInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
@@ -105,6 +127,7 @@
 
                     />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/telefoneContatoCadastro"
                 android:layout_width="match_parent"
@@ -112,6 +135,7 @@
                 android:hint="@string/telefoneContatoCadastro"
                 android:layout_below="@+id/emailContatoCadastro" >
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/telefoneContatoInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
@@ -123,33 +147,13 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/dataInicioCadastro"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/datainicioCadastro"
-                android:layout_below="@+id/telefoneContatoCadastro">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/dateInicioEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="none"
-                    android:layout_margin="8dp"
-                    android:focusableInTouchMode="false"
-                    android:clickable="true"
-                    android:fontFamily="@font/roboto_medium"
-                    android:drawableEnd="@drawable/baseline_date_range_24"/>
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/dataFinalCadastro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/datafinalCadastro"
-                android:layout_below="@+id/dataInicioCadastro">
+                android:layout_below="@+id/telefoneContatoCadastro">
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/dateFinalEditText"
+                    android:id="@+id/dataVencimentoInput"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="date"

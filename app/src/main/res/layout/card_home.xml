@@ -7,12 +7,12 @@
     >
 
     <androidx.cardview.widget.CardView
-        app:cardMaxElevation="8dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:clickable="true"
-        app:cardElevation="4dp"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="20dp"
         >
 
             <LinearLayout

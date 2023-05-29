@@ -1,11 +1,13 @@
 package com.unaerp.trabalhoandroid
 
 import android.content.ContentValues.TAG
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
@@ -17,7 +19,6 @@ import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.unaerp.trabalhoandroid.databinding.CadastroBinding
 
@@ -25,7 +26,6 @@ class CadastroUsuario : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: CadastroBinding
-    private var db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +34,7 @@ class CadastroUsuario : AppCompatActivity() {
         auth = Firebase.auth
 
         binding.submitButtoncancelar.setOnClickListener {
+            closeKeyboard()
             finish()
         }
 
@@ -48,14 +49,13 @@ class CadastroUsuario : AppCompatActivity() {
         }
 
         binding.submitButton.setOnClickListener {
-            if (binding.nomeCadastro.text.isNullOrEmpty() || binding.emailCadastro.text.isNullOrEmpty()) {
-                val snackbar = Snackbar.make(it, "Campos vazios, preencha! ", Snackbar.LENGTH_SHORT)
-                snackbar.setBackgroundTint(Color.RED)
-                snackbar.show()
+            closeKeyboard()
+            if (binding.nomeCadastro.text.isNullOrEmpty() || binding.emailCadastro.text.isNullOrEmpty()
+                ||binding.textSenhaCadastro.text.isNullOrEmpty() || binding.textConfirmaSenhaCadastro.text.isNullOrEmpty()
+            ) {
+                Aviso("Campos vazios, preencha!",binding)
             }else if (binding.textSenhaCadastro.text.toString() != binding.textConfirmaSenhaCadastro.text.toString()){
-                val snackbar = Snackbar.make(it, "Senhas diferentes! ", Snackbar.LENGTH_SHORT)
-                snackbar.setBackgroundTint(Color.RED)
-                snackbar.show()
+                Aviso("Senhas diferentes! ",binding)
             }
             else {
                 cadastrarUsuario(binding.emailCadastro.text.toString(), binding.textSenhaCadastro.text.toString(), binding.nomeCadastro.text.toString(),it)
@@ -69,7 +69,7 @@ class CadastroUsuario : AppCompatActivity() {
                 Log.d(TAG, "createUserWithEmail:success")
                 val user = auth.currentUser
                 updateUI(user, nome)
-                SalvarDados()
+                SalvarDados(view)
             }
         }.addOnFailureListener { exeption ->
             val mensagemErro = when (exeption) {
@@ -79,25 +79,24 @@ class CadastroUsuario : AppCompatActivity() {
                 is FirebaseNetworkException -> "Sem conexão com a internet!"
                 else -> "Erro ao cadastrar usuario!"
             }
-            val snackbar = Snackbar.make(view, mensagemErro, Snackbar.LENGTH_SHORT)
-            snackbar.setBackgroundTint(Color.RED)
-            snackbar.show()
+            Aviso(mensagemErro,binding)
+
         }
     }
-    private fun SalvarDados() {
-        val nome = binding.nomeCadastro.text.toString()
-        val spiner = binding.spinerDefinirPerfil.selectedItem.toString()
+    private fun SalvarDados(view:View) {
+        val db = FirestoreSingleton.getInstance()
 
         val user = hashMapOf(
-            "Nome" to nome,
-            "Tipo do perfil" to spiner
+            "Nome" to binding.nomeCadastro.text.toString(),
+            "Email" to binding.emailCadastro.text.toString(),
+            "Tipo do perfil" to binding.spinerDefinirPerfil.selectedItem.toString(),
         )
 
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
             val userId = currentUser.uid
 
-            db.collection("users")
+            db.collection("InformacoesPerfil")
                 .document(userId)
                 .set(user)
                 .addOnSuccessListener {
@@ -105,10 +104,8 @@ class CadastroUsuario : AppCompatActivity() {
                     // ...
                 }
                 .addOnFailureListener { e ->
-                    // Armazenamento com falha
-                    // ...
+                     Aviso("Não foi possivel cadastrar usuario",binding)
                 }
-
 
         }
     }
@@ -121,8 +118,18 @@ class CadastroUsuario : AppCompatActivity() {
             finish()
         }
     }
+    private fun closeKeyboard(){
+        val view = currentFocus
+        view?.let{
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(it.windowToken, 0)
 
-    private fun reload() {
-        // Método reload
+        }
+    }
+
+    private fun Aviso(mensagem: String, binding: CadastroBinding){
+        val snackbar = Snackbar.make(binding.root, mensagem, Snackbar.LENGTH_SHORT)
+        snackbar.setBackgroundTint(Color.RED)
+        snackbar.show()
     }
 }
