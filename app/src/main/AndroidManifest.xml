@@ -19,13 +19,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TrabalhoAndroid"
         tools:targetApi="31" >
-        <activity android:name=".MainActivity"
-            android:exported="true">
-        <!-- <activity
+        <activity android:name=".MainActivity"/>
+        <activity
             android:name=".SplashScreenActivity"
-            android:exported="true" >-->
+            android:exported="true" >
 
-            <intent-filter>
+        <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -33,11 +32,11 @@
         </activity>
 
         <activity android:name=".MenuEstagiario" />
-        <activity android:name=".Menu" />
-        <activity android:name=".CadastroUsuario" />
+        <activity android:name=".MenuActivity" />
+        <activity android:name=".CadastroUsuarioActivity" />
         <activity android:name=".VagaExpandida" />
-        <activity android:name=".EditarPerfil" />
-        <activity android:name=".EditarVaga" />
+        <activity android:name=".EditarPerfilActivity" />
+        <activity android:name=".EditarVagaActivity" />
 
 
 

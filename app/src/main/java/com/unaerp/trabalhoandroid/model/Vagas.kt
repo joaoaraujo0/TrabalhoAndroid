@@ -1,7 +1,5 @@
 package com.unaerp.trabalhoandroid.model
 
-import java.util.Date
-
 data class Vagas(
     val anunciante : String,
     val descricaoVaga : String,
@@ -11,5 +9,5 @@ data class Vagas(
     val emailContato : String,
     val telefoneContato : String,
     val dataTermino : String,
-    val dataInicioVaga : Date?,
+    val dataInicioVaga : String,
 )

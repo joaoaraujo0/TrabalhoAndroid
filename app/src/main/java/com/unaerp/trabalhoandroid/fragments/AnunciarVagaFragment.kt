@@ -71,6 +71,9 @@ class AnunciarVagaFragment : Fragment() {
         {
             Aviso("Campos vazios, preencha!",binding)
         }else{
+            val dataHoraAtual = Date()
+            val data = SimpleDateFormat("dd/MM/yyyy", Locale("pt", "BR")).format(dataHoraAtual)
+            val currentUser = FirebaseAuth.getInstance().currentUser
             val db = FirestoreSingleton.getInstance()
             val Anuncio = hashMapOf(
                 "NomeEmpresa" to binding.nomeEmpresaInput.text.toString(),
@@ -81,15 +84,11 @@ class AnunciarVagaFragment : Fragment() {
                 "EmailContato" to binding.emailContatoInput.text.toString(),
                 "TelefoneContato" to binding.telefoneContatoInput.text.toString(),
                 "DataVencimento" to binding.dataVencimentoInput.text.toString(),
-                "DataPublicacao" to Date()
+                "DataPublicacao" to data,
+                "IdEmpresa" to currentUser?.uid
                 )
-            val currentUser = FirebaseAuth.getInstance().currentUser
             if (currentUser != null) {
-                val userId = currentUser.uid
-
                 db.collection("AnunciosEmpresas")
-                    .document(userId)
-                    .collection("Anuncios")
                     .add(Anuncio)
                     .addOnSuccessListener {
                         Sucesso("Vaga postada com sucesso!!", binding)
@@ -128,5 +127,7 @@ class AnunciarVagaFragment : Fragment() {
         binding.telefoneContatoInput.setText("")
         binding.dataVencimentoInput.setText("")
     }
-
+    fun criarMascaraData(): SimpleDateFormat {
+        return SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+    }
 }

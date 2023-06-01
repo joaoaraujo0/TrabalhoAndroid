@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditarPerfil"
+    tools:context=".EditarPerfilActivity"
     android:paddingTop="8dp"
     android:background="@color/seed"
     >
@@ -34,7 +34,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/inputEmail"
+        android:id="@+id/inputNome"
         android:layout_width="0dp"
         android:hint="@string/editarnome"
         android:padding="8dp"
@@ -44,6 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textLogin">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputNomeEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -54,16 +55,17 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/inputSenha"
+        android:id="@+id/inputEmail"
         android:layout_width="0dp"
         android:hint="@string/editaremail"
         android:padding="8dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputEmail">
+        app:layout_constraintTop_toBottomOf="@+id/inputNome">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputEmailEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -81,7 +83,7 @@
         android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputSenha"
+        app:layout_constraintTop_toBottomOf="@+id/inputEmail"
         />
 
 

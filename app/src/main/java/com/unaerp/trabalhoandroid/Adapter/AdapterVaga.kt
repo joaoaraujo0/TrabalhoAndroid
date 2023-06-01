@@ -2,6 +2,7 @@ package com.unaerp.trabalhoandroid.Adapter
 
 import android.content.Context
 import android.content.Intent
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,6 +32,7 @@ class AdapterVaga(private val context : Context, private var vagas : MutableList
     fun setFilteredList(vagas: MutableList<Vagas>){
         this.vagas = vagas
         notifyDataSetChanged()
+
     }
 
 
@@ -53,7 +55,6 @@ class AdapterVaga(private val context : Context, private var vagas : MutableList
             intent.putExtra("anunciante", vagas[position].anunciante)
             intent.putExtra("dataInicioVaga", vagas[position].dataInicioVaga)
             intent.putExtra("dataTermino", vagas[position].dataTermino)
-
             context.startActivity(intent)}
     }
 

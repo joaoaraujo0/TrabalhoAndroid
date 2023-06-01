@@ -6,11 +6,9 @@ import android.icu.util.Calendar
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.textfield.TextInputEditText
 import com.unaerp.trabalhoandroid.databinding.EditarVagaBinding
 
-class EditarVaga : AppCompatActivity() {
+class EditarVagaActivity : AppCompatActivity() {
     private lateinit var binding: EditarVagaBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

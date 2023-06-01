@@ -4,14 +4,13 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.unaerp.trabalhoandroid.databinding.MenuNavBinding
 import com.unaerp.trabalhoandroid.fragments.AnunciarVagaFragment
 import com.unaerp.trabalhoandroid.fragments.MinhasVagasFragment
 import com.unaerp.trabalhoandroid.fragments.PainelVagasFragment
 import com.unaerp.trabalhoandroid.fragments.PerfilEmpresaFragment
 
-class Menu : AppCompatActivity() {
+class MenuActivity : AppCompatActivity() {
     private lateinit var binding: MenuNavBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

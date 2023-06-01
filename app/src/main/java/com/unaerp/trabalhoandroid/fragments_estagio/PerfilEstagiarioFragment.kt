@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.ktx.Firebase
-import com.unaerp.trabalhoandroid.EditarPerfil
+import com.unaerp.trabalhoandroid.EditarPerfilActivity
 import com.unaerp.trabalhoandroid.FirestoreSingleton
 import com.unaerp.trabalhoandroid.MainActivity
 import com.unaerp.trabalhoandroid.R
@@ -76,7 +76,7 @@ class PerfilEstagiarioFragment : Fragment() {
         }
 
         binding.editarEstagiario.setOnClickListener {
-            val intent = Intent(activity, EditarPerfil::class.java)
+            val intent = Intent(activity, EditarPerfilActivity::class.java)
             startActivity(intent)
         }
 

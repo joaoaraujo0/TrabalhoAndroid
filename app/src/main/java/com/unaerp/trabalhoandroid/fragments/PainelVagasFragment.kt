@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.Query
 import com.unaerp.trabalhoandroid.Adapter.AdapterVaga
 import com.unaerp.trabalhoandroid.FirestoreSingleton
 import com.unaerp.trabalhoandroid.databinding.FragmentPainelVagasBinding
@@ -16,6 +16,9 @@ import com.unaerp.trabalhoandroid.model.Vagas
 import java.util.Locale
 
 class PainelVagasFragment : Fragment() {
+    val listaVagas: MutableList<Vagas> = mutableListOf()
+    val adapterVaga by lazy { AdapterVaga(requireContext(), listaVagas) }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -23,16 +26,15 @@ class PainelVagasFragment : Fragment() {
         val binding = FragmentPainelVagasBinding.inflate(inflater, container, false)
         val view = binding.root
 
+
         val recyclerViewVagas = binding.recyclerViewVagas
         recyclerViewVagas.layoutManager = LinearLayoutManager(requireContext())
-        recyclerViewVagas.setHasFixedSize(true)
 
         //Configurar adapter
-        val listaVagas: MutableList<Vagas> = mutableListOf()
-        val adapterVaga = AdapterVaga(requireContext(), listaVagas)
+
         recyclerViewVagas.adapter = adapterVaga
 
-        PegarAnuncios(binding, listaVagas)
+        pegarAnuncios(listaVagas)
 
         fun filterList(query: String?) {
             val filteredList: MutableList<Vagas> = mutableListOf()
@@ -78,41 +80,39 @@ class PainelVagasFragment : Fragment() {
         return view
     }
 
-    private fun PegarAnuncios(binding: FragmentPainelVagasBinding, listaVagas: MutableList<Vagas>) {
+    private fun pegarAnuncios(listaVagas: MutableList<Vagas>) {
         val db = FirestoreSingleton.getInstance()
-        val currentUser = FirebaseAuth.getInstance().currentUser
-        if (currentUser != null) {
-            val userId = currentUser.uid
-            db.collection("AnunciosEmpresas")
-                .document(userId)
-                .collection("Anuncios")
-                .get()
-                .addOnSuccessListener { result ->
-                    for (document in result) {
-                        val nomeEmpresa = document.getString("NomeEmpresa").toString()
-                        val descricaoVaga = document.getString("Descricao").toString()
-                        val areaVaga = document.getString("AreaDaVaga").toString()
-                        val valorRemuneracao = document.getString("ValorRemuneracao").toString()
-                        val localidade = document.getString("Localidade").toString()
-                        val emailContato = document.getString("EmailContato").toString()
-                        val telefoneContato = document.getString("TelefoneContato").toString()
-                        val dataTermino = document.getString("DataVencimento").toString()
-                        val dataInicioVaga = document.getDate("DataPublicacao")
+        db.collection("AnunciosEmpresas")
+            .orderBy("DataPublicacao", Query.Direction.ASCENDING)
+            .get().addOnSuccessListener { result ->
+                listaVagas.clear()
+                for (document in result) {
+                    val nomeEmpresa = document.getString("NomeEmpresa").toString()
+                    val descricaoVaga = document.getString("Descricao").toString()
+                    val areaVaga = document.getString("AreaDaVaga").toString()
+                    val valorRemuneracao = document.getString("ValorRemuneracao").toString()
+                    val localidade = document.getString("Localidade").toString()
+                    val emailContato = document.getString("EmailContato").toString()
+                    val telefoneContato = document.getString("TelefoneContato").toString()
+                    val dataTermino = document.getString("DataVencimento").toString()
+                    val dataInicioVaga = document.getString("DataPublicacao").toString()
 
-                        val vaga = Vagas(
-                            nomeEmpresa,
-                            descricaoVaga,
-                            areaVaga,
-                            valorRemuneracao,
-                            localidade,
-                            emailContato,
-                            telefoneContato,
-                            dataTermino,
-                            dataInicioVaga,
-                        )
-                        listaVagas.add(vaga)
-                    }
+                    val vaga = Vagas(
+                        nomeEmpresa,
+                        descricaoVaga,
+                        areaVaga,
+                        valorRemuneracao,
+                        localidade,
+                        emailContato,
+                        telefoneContato,
+                        dataTermino,
+                        dataInicioVaga,
+                    )
+
+                    listaVagas.add(vaga)
+                    adapterVaga.notifyDataSetChanged()
                 }
-        }
+            }
     }
 }
+

@@ -22,7 +22,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.unaerp.trabalhoandroid.databinding.CadastroBinding
 
-class CadastroUsuario : AppCompatActivity() {
+class CadastroUsuarioActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: CadastroBinding
@@ -69,7 +69,7 @@ class CadastroUsuario : AppCompatActivity() {
                 Log.d(TAG, "createUserWithEmail:success")
                 val user = auth.currentUser
                 updateUI(user, nome)
-                SalvarDados(view)
+                SalvarDados()
             }
         }.addOnFailureListener { exeption ->
             val mensagemErro = when (exeption) {
@@ -83,13 +83,12 @@ class CadastroUsuario : AppCompatActivity() {
 
         }
     }
-    private fun SalvarDados(view:View) {
+    private fun SalvarDados() {
         val db = FirestoreSingleton.getInstance()
 
         val user = hashMapOf(
             "Nome" to binding.nomeCadastro.text.toString(),
-            "Email" to binding.emailCadastro.text.toString(),
-            "Tipo do perfil" to binding.spinerDefinirPerfil.selectedItem.toString(),
+            "TipodoPerfil" to binding.spinerDefinirPerfil.selectedItem.toString(),
         )
 
         val currentUser = FirebaseAuth.getInstance().currentUser
@@ -112,7 +111,7 @@ class CadastroUsuario : AppCompatActivity() {
 
     private fun updateUI(user: FirebaseUser?, nome: String?) {
         if (user != null) {
-            val intent = Intent(this, Menu::class.java)
+            val intent = Intent(this, MenuActivity::class.java)
             intent.putExtra("mensagem", "Bem vindo: $nome.")
             startActivity(intent)
             finish()

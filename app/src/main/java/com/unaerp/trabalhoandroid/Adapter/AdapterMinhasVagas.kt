@@ -27,6 +27,9 @@ class AdapterMinhasVagas(private val context: Context,private val minhasVagas: M
         holder.valorRemuneracao.text = minhasVagas[position].valorRemuneracao
         holder.emailContato.text = minhasVagas[position].emailContato
         holder.telefoneContato.text = minhasVagas[position].telefoneContato
+
+
+
     }
 
     inner class MinhasVagasHolder(itemView: View) : RecyclerView.ViewHolder(itemView){

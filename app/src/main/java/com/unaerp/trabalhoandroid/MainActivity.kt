@@ -14,16 +14,15 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.ktx.Firebase
 import com.unaerp.trabalhoandroid.databinding.ActivityMainBinding
-
+private lateinit var auth: FirebaseAuth
+private lateinit var binding: ActivityMainBinding
+private var tipo: String? = null
 class MainActivity : AppCompatActivity() {
-    private lateinit var auth: FirebaseAuth
-    private lateinit var binding: ActivityMainBinding
-    private var tipo: String? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,14 +34,18 @@ class MainActivity : AppCompatActivity() {
         binding.botaoEntrar.setOnClickListener {
             closeKeyboard()
             if (binding.inputEmailLogin.text.isNullOrEmpty() || binding.inputSenhaLogin.text.isNullOrEmpty()) {
-                Aviso("Preencha os campos!!",binding)
+                Aviso("Preencha os campos!!", binding)
             } else {
-                Login(binding.inputEmailLogin.text.toString(), binding.inputSenhaLogin.text.toString(), it)
+                Login(
+                    binding.inputEmailLogin.text.toString(),
+                    binding.inputSenhaLogin.text.toString(),
+                    it
+                )
             }
         }
 
         binding.botaoCadastrar.setOnClickListener {
-            val intentCadastro = Intent(this, CadastroUsuario::class.java)
+            val intentCadastro = Intent(this, CadastroUsuarioActivity::class.java)
             startActivity(intentCadastro)
         }
     }
@@ -61,8 +64,7 @@ class MainActivity : AppCompatActivity() {
             if (task.isSuccessful) {
                 // Sign in success, update UI with the signed-in user's information
                 Log.d(TAG, "signInWithEmail:success")
-                val user = auth.currentUser
-                updateUI(user)
+                updateUI()
             }
         }.addOnFailureListener { exeption ->
             val mensagemErro = when (exeption) {
@@ -70,70 +72,59 @@ class MainActivity : AppCompatActivity() {
                 is FirebaseNetworkException -> "Sem conexão com a internet!"
                 else -> "Erro ao fazer login!"
             }
-            Aviso(mensagemErro,binding)
+            Aviso(mensagemErro, binding)
 
         }
     }
 
-
-    public override fun onStart() {
-        super.onStart()
-        // Check if user is signed in (non-null) and update UI accordingly.
-        val currentUser = auth.currentUser
-        updateUI(currentUser)
-    }
-
-    private fun updateUI(user: FirebaseUser?) {
+    private fun updateUI() {
         val db = FirestoreSingleton.getInstance()
         //PEGAR TIPO DO PERFIL
         val currentUser = FirebaseAuth.getInstance().currentUser
-        if (currentUser != null) {
-            val userId = currentUser.uid
-            // Recupere o documento do usuário no Firestore
-            db.collection("InformacoesPerfil")
-                .document(userId)
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val document: DocumentSnapshot? = task.result
-                        tipo = document?.getString("Tipo do perfil")
-                        VerificaoPerfil(tipo.toString())
-                    } else {
-                        Toast.makeText(
-                            this,
-                            "Não foi possível verificar seu perfil",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+        val userId = currentUser?.uid
+        // Recupere o documento do usuário no Firestore
+        db.collection("InformacoesPerfil")
+            .document(userId.toString())
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val document: DocumentSnapshot? = task.result
+                    tipo = document?.getString("TipodoPerfil")
+                    VerificaoPerfil(tipo.toString())
+                } else {
+                    Toast.makeText(
+                        this,
+                        "Não foi possível verificar seu perfil",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
-        }
-
-
+            }
     }
 
-    private fun VerificaoPerfil(tipo:String){
+
+
+    private fun VerificaoPerfil(tipo: String) {
         if (tipo == "Empresa") {
-            val intent = Intent(this, Menu::class.java)
+            val intent = Intent(this, MenuActivity::class.java)
             intent.putExtra("mensagem", "Bem vindo!")
             startActivity(intent)
             finish()
-            binding.inputEmailLogin.setText("")
-            binding.inputSenhaLogin.setText("")
+            LimparInput()
         } else {
             val intent = Intent(this, MenuEstagiario::class.java)
             intent.putExtra("mensagem", "Bem vindo!")
             startActivity(intent)
             finish()
-            binding.inputEmailLogin.setText("")
-            binding.inputSenhaLogin.setText("")
+            LimparInput()
         }
     }
 
-    private fun LiparInput(){
+    private fun LimparInput() {
         binding.inputEmailLogin.setText("")
         binding.inputSenhaLogin.setText("")
     }
-    private fun Aviso(mensagem: String, binding: ActivityMainBinding){
+
+    private fun Aviso(mensagem: String, binding: ActivityMainBinding) {
         val snackbar = Snackbar.make(binding.root, mensagem, Snackbar.LENGTH_SHORT)
         snackbar.setBackgroundTint(Color.RED)
         snackbar.show()

@@ -34,10 +34,10 @@
 
     <!-- Tela Card. -->
 
-    <string name="microsoftcard">Microsoft: %s</string>
-    <string name="areadavagacard">Área da vaga: %s</string>
-    <string name="localidadecard">Localidade: %s</string>
-    <string name="datacard">Data termino da vaga: %s</string>
+    <string name="microsoftcard">Anunciante: %1$s</string>
+    <string name="areadavagacard">Área da vaga: %1$s</string>
+    <string name="localidadecard">Localidade: %1$s</string>
+    <string name="datacard">Data termino da vaga: %1$s</string>
     <string name="btnvervagacard">Ver Vaga</string>
 
     <!-- Tela Editar Perfil. -->

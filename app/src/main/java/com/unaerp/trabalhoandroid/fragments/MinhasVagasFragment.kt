@@ -4,15 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.firebase.auth.FirebaseAuth
 import com.unaerp.trabalhoandroid.Adapter.AdapterMinhasVagas
+import com.unaerp.trabalhoandroid.FirestoreSingleton
 import com.unaerp.trabalhoandroid.databinding.FragmentMinhasVagasBinding
 import com.unaerp.trabalhoandroid.model.Vagas
 
-
 class MinhasVagasFragment : Fragment() {
-
+    val listaMinhasVagas: MutableList<Vagas> = mutableListOf()
+    val adapterMinhasVaga by lazy { AdapterMinhasVagas(requireContext(), listaMinhasVagas) }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -22,57 +25,62 @@ class MinhasVagasFragment : Fragment() {
 
         val recyclerViewMinhasVagas = binding.recyclerViewMinhasVagas
         recyclerViewMinhasVagas.layoutManager = LinearLayoutManager(requireContext())
-        recyclerViewMinhasVagas.setHasFixedSize(true)
+
+
 
         //Configurar adapter
-        val listaMinhasVagas : MutableList<Vagas> = mutableListOf()
-        val adapterMinhasVaga = AdapterMinhasVagas(requireContext(), listaMinhasVagas)
+
         recyclerViewMinhasVagas.adapter = adapterMinhasVaga
 
-/*
-        val vaga1 = Vagas(
-            "Ti",
-            "Para esta vaga buscamos gente com experiencia em kotlin",
-            "2500.00",
-            "São Paulo",
-            "joao@gmail.com",
-            "158877665544",
-            "Microsoft",
-            "15/05/2010",
-            "25/06/2022",
-        )
-        listaMinhasVagas.add(vaga1)
+        pegarAnuncios(listaMinhasVagas)
 
-        val vaga2 = Vagas(
-            "Analista de Sistemas Kotlin",
-            "Vaga para analista de sistemas com experiência em Kotlin",
-            "3200.00",
-            "Rio de Janeiro",
-            "maria@gmail.com",
-            "119988776655",
-            "Google",
-            "01/06/2019",
-            "30/07/2022"
-        )
-        listaMinhasVagas.add(vaga2)
-
-        val vaga3 = Vagas(
-            "Engenheiro(a) de Software Kotlin",
-            "Oportunidade para engenheiro(a) de software com expertise em Kotlin",
-            "4500.00",
-            "Belo Horizonte",
-            "carlos@gmail.com",
-            "112233445566",
-            "Amazon",
-            "10/02/2015",
-            "15/09/2022"
-        )
-        listaMinhasVagas.add(vaga3)
-*/
 
         return view
 
 
+    }
+
+    private fun pegarAnuncios(listadeVagas: MutableList<Vagas>) {
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val db = FirestoreSingleton.getInstance()
+        val userId = currentUser?.uid
+        db.collection("AnunciosEmpresas")
+            .whereEqualTo("IdEmpresa", userId)
+            .get()
+            .addOnSuccessListener { result ->
+                listadeVagas.clear()
+                if (result.isEmpty) {
+                    Toast.makeText(requireContext(), "Não foi encontrado nenhum anúncio!.", Toast.LENGTH_SHORT).show()
+                } else {
+                    for (document in result) {
+                        val nomeEmpresa = document.getString("NomeEmpresa").toString()
+                        val descricaoVaga = document.getString("Descricao").toString()
+                        val areaVaga = document.getString("AreaDaVaga").toString()
+                        val valorRemuneracao = document.getString("ValorRemuneracao").toString()
+                        val localidade = document.getString("Localidade").toString()
+                        val emailContato = document.getString("EmailContato").toString()
+                        val telefoneContato = document.getString("TelefoneContato").toString()
+                        val dataTermino = document.getString("DataVencimento").toString()
+                        val dataInicioVaga = document.getString("DataPublicacao").toString()
+
+                        val vaga = Vagas(
+                            nomeEmpresa,
+                            descricaoVaga,
+                            areaVaga,
+                            valorRemuneracao,
+                            localidade,
+                            emailContato,
+                            telefoneContato,
+                            dataTermino,
+                            dataInicioVaga,
+                        )
+
+                        listadeVagas.add(vaga)
+                        adapterMinhasVaga.notifyDataSetChanged()
+                    }
+                }
+
+            }
     }
 
 }
