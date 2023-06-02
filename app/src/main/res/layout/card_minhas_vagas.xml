@@ -29,7 +29,7 @@
                 android:fontFamily="@font/roboto_medium"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
-                android:text="Nome da empresa: Microsoft"
+                android:text="@string/NomedaEmpresa"
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 android:textSize="16sp" />
 
@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_width="wrap_content"
-                android:text="Área da vaga: Ti"
+                android:text="@string/area_da_vaga"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
                 android:textSize="14sp"
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_width="wrap_content"
-                android:text="Localidade: São Paulo"
+                android:text="@string/localidade"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
                 android:textSize="14sp" />
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_width="wrap_content"
-                android:text="Data termino da vaga: 06/06/2023"
+                android:text="@string/data_termino_da_vaga"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
                 android:textSize="14sp" />
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_width="wrap_content"
-                android:text="Remuneração: 2000"
+                android:text="@string/remuneracao"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
                 android:textSize="14sp" />
@@ -85,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_width="wrap_content"
-                android:text="E-mail de contato: microsoft@hotmail.com"
+                android:text="@string/e_mail_de_contato"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
                 android:textSize="14sp" />
@@ -96,7 +96,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_width="wrap_content"
-                android:text="Telefone:(11)99555-1211 "
+                android:text="@string/telefone"
                 android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="?android:attr/textColorSecondary"
                 android:textSize="14sp" />

@@ -5,19 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.unaerp.trabalhoandroid.Adapter.AdapterVaga
 import com.unaerp.trabalhoandroid.FirestoreSingleton
 import com.unaerp.trabalhoandroid.databinding.FragmentPainelVagasBinding
 import com.unaerp.trabalhoandroid.model.Vagas
-import java.util.Locale
 
 class PainelVagasFragment : Fragment() {
-    val listaVagas: MutableList<Vagas> = mutableListOf()
-    val adapterVaga by lazy { AdapterVaga(requireContext(), listaVagas) }
+    private val listaVagas: MutableList<Vagas> = mutableListOf()
+    private lateinit var adapterVaga: AdapterVaga
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,18 +25,19 @@ class PainelVagasFragment : Fragment() {
     ): View {
         val binding = FragmentPainelVagasBinding.inflate(inflater, container, false)
         val view = binding.root
+        val db = Firebase.firestore
 
 
         val recyclerViewVagas = binding.recyclerViewVagas
         recyclerViewVagas.layoutManager = LinearLayoutManager(requireContext())
 
-        //Configurar adapter
+        adapterVaga = AdapterVaga {  }
 
         recyclerViewVagas.adapter = adapterVaga
 
         pegarAnuncios(listaVagas)
 
-        fun filterList(query: String?) {
+        /*fun filterList(query: String?) {
             val filteredList: MutableList<Vagas> = mutableListOf()
 
             if (!query.isNullOrEmpty()) {
@@ -74,7 +75,7 @@ class PainelVagasFragment : Fragment() {
             }
 
 
-        })
+        })*/
 
 
         return view
@@ -114,7 +115,13 @@ class PainelVagasFragment : Fragment() {
                         listaVagas.add(vaga)
 
                     }
-                    adapterVaga.notifyDataSetChanged()
+                    adapterVaga.updateList(listaVagas)
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Não foi encontrado nenhum anúncio!.",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
     }

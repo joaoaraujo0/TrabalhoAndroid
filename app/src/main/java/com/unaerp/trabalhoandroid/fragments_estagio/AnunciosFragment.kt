@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.unaerp.trabalhoandroid.Adapter.AdapterVaga
 import com.unaerp.trabalhoandroid.databinding.FragmentAnuncioEstagiarioBinding
 import com.unaerp.trabalhoandroid.model.Vagas
 
@@ -26,8 +25,8 @@ class AnunciosFragment : Fragment() {
 
         //Configurar adapter
         val listaVagas : MutableList<Vagas> = mutableListOf()
-        val adapterVaga = AdapterVaga(requireContext(), listaVagas)
-        recyclerViewVagas.adapter = adapterVaga
+        //val adapterVaga = AdapterVaga(requireContext(), listaVagas)
+       // recyclerViewVagas.adapter = adapterVaga
 
 /*
         val vaga1 = Vagas(

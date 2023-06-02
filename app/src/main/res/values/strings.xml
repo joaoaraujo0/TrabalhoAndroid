@@ -34,7 +34,7 @@
 
     <!-- Tela Card. -->
 
-    <string name="microsoftcard">Anunciante: %1$s</string>
+    <string name="anunciantecard">Anunciante: %1$s</string>
     <string name="areadavagacard">Área da vaga: %1$s</string>
     <string name="localidadecard">Localidade: %1$s</string>
     <string name="datacard">Data termino da vaga: %1$s</string>
@@ -84,5 +84,12 @@
     <string name="datafinalCadastroed">  06/06/2023</string>
     <string name="emailPerfil">Email: %s</string>
     <string name="nomePerfil">Nome: %s</string>
+    <string name="NomedaEmpresa">Nome da empresa: %1$s</string>
+    <string name="area_da_vaga">Área da vaga: %1$s</string>
+    <string name="localidade">Localidade: %1$s</string>
+    <string name="data_termino_da_vaga">Data termino da vaga: %1$s</string>
+    <string name="remuneracao">Remuneração: %1$s</string>
+    <string name="e_mail_de_contato">E-mail de contato: %1$s</string>
+    <string name="telefone">Telefone: %1$s</string>
 
 </resources>

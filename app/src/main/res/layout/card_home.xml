@@ -27,7 +27,7 @@
                     android:id="@+id/tituloNomeEmpresa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/microsoftcard"
+                    android:text="@string/anunciantecard"
                     android:textSize="16sp"
                     android:textAppearance="?attr/textAppearanceHeadline6"
                     android:fontFamily="@font/roboto_medium"

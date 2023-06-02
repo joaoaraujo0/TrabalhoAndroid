@@ -1,12 +1,13 @@
 package com.unaerp.trabalhoandroid.fragments
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
@@ -33,17 +34,22 @@ class MinhasVagasFragment : Fragment() {
         adapterMinhasVaga = AdapterMinhasVagas { task ->
             db.collection("AnunciosEmpresas")
                 .document(task.id)
-                .delete()
+                .delete().addOnCompleteListener {
+                    Aviso("Vaga excluida com sucesso!!",binding)
+                }.addOnFailureListener {
+                    Aviso("Erro ao excluir vaga, tente novamente mais tarde",binding)
+                }
+
         }
         recyclerViewMinhasVagas.adapter = adapterMinhasVaga
 
-        pegarAnuncios(listaMinhasVagas)
+        pegarAnuncios(listaMinhasVagas,binding)
 
 
         return view
     }
 
-    private fun pegarAnuncios(listadeVagas: MutableList<Vagas>) {
+    private fun pegarAnuncios(listadeVagas: MutableList<Vagas>,binding: FragmentMinhasVagasBinding) {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val db = FirestoreSingleton.getInstance()
         val userId = currentUser?.uid
@@ -52,13 +58,6 @@ class MinhasVagasFragment : Fragment() {
             .addSnapshotListener { result, error ->
                 listadeVagas.clear()
                 if (result != null) {
-                    if (result.isEmpty) {
-                        Toast.makeText(
-                            requireContext(),
-                            "Não foi encontrado nenhum anúncio!.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    } else {
                         for (document in result) {
                             val nomeEmpresa = document.getString("NomeEmpresa").toString()
                             val descricaoVaga = document.getString("Descricao").toString()
@@ -87,8 +86,14 @@ class MinhasVagasFragment : Fragment() {
                         }
 
                         adapterMinhasVaga.updateList(listadeVagas)
-                    }
+                    }else{
+                    Aviso("Não foi encontrado nenhum anúncio!", binding)
                 }
             }
     }
+}
+private fun Aviso(mensagem: String, binding: FragmentMinhasVagasBinding){
+    val snackbar = Snackbar.make(binding.root, mensagem, Snackbar.LENGTH_SHORT)
+    snackbar.setBackgroundTint(Color.GREEN)
+    snackbar.show()
 }
