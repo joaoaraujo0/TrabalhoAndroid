@@ -84,32 +84,36 @@ class PainelVagasFragment : Fragment() {
         val db = FirestoreSingleton.getInstance()
         db.collection("AnunciosEmpresas")
             .orderBy("DataPublicacao", Query.Direction.ASCENDING)
-            .get().addOnSuccessListener { result ->
+            .addSnapshotListener { result, error ->
                 listaVagas.clear()
-                for (document in result) {
-                    val nomeEmpresa = document.getString("NomeEmpresa").toString()
-                    val descricaoVaga = document.getString("Descricao").toString()
-                    val areaVaga = document.getString("AreaDaVaga").toString()
-                    val valorRemuneracao = document.getString("ValorRemuneracao").toString()
-                    val localidade = document.getString("Localidade").toString()
-                    val emailContato = document.getString("EmailContato").toString()
-                    val telefoneContato = document.getString("TelefoneContato").toString()
-                    val dataTermino = document.getString("DataVencimento").toString()
-                    val dataInicioVaga = document.getString("DataPublicacao").toString()
+                if (result != null) {
+                    for (document in result) {
+                        val nomeEmpresa = document.getString("NomeEmpresa").toString()
+                        val descricaoVaga = document.getString("Descricao").toString()
+                        val areaVaga = document.getString("AreaDaVaga").toString()
+                        val valorRemuneracao = document.getString("ValorRemuneracao").toString()
+                        val localidade = document.getString("Localidade").toString()
+                        val emailContato = document.getString("EmailContato").toString()
+                        val telefoneContato = document.getString("TelefoneContato").toString()
+                        val dataTermino = document.getString("DataVencimento").toString()
+                        val dataInicioVaga = document.getString("DataPublicacao").toString()
 
-                    val vaga = Vagas(
-                        nomeEmpresa,
-                        descricaoVaga,
-                        areaVaga,
-                        valorRemuneracao,
-                        localidade,
-                        emailContato,
-                        telefoneContato,
-                        dataTermino,
-                        dataInicioVaga,
-                    )
+                        val vaga = Vagas(
+                            document.id,
+                            nomeEmpresa,
+                            descricaoVaga,
+                            areaVaga,
+                            valorRemuneracao,
+                            localidade,
+                            emailContato,
+                            telefoneContato,
+                            dataTermino,
+                            dataInicioVaga,
+                        )
 
-                    listaVagas.add(vaga)
+                        listaVagas.add(vaga)
+
+                    }
                     adapterVaga.notifyDataSetChanged()
                 }
             }

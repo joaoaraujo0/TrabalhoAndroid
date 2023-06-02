@@ -1,6 +1,7 @@
 package com.unaerp.trabalhoandroid.model
 
 data class Vagas(
+    val id : String,
     val anunciante : String,
     val descricaoVaga : String,
     val areaVaga : String,

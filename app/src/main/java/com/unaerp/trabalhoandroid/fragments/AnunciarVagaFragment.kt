@@ -121,6 +121,7 @@ class AnunciarVagaFragment : Fragment() {
     private fun LimpaInput(binding: FragmentAnunciarVagaBinding){
         binding.nomeEmpresaInput.setText("")
         binding.descricaoInput.setText("")
+        binding.areaDaVagaCadastroInput.setText("")
         binding.valorRemuneracaoInput.setText("")
         binding.localidadeAnuncioInput.setText("")
         binding.emailContatoInput.setText("")
