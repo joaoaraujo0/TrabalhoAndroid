@@ -91,5 +91,16 @@
     <string name="remuneracao">Remuneração: %1$s</string>
     <string name="e_mail_de_contato">E-mail de contato: %1$s</string>
     <string name="telefone">Telefone: %1$s</string>
-
+    <string name="perfil_estagiario">Perfil</string>
+    <string name="sair">Sair</string>
+    <string name="foto_estagiario">Foto estagiario</string>
+    <string name="tirar_foto">Tirar foto</string>
+    <string name="nome_estagiario">Nome: %1$s</string>
+    <string name="email_estagiario">Email: %1$s</string>
+    <string name="editar_estagiario">Editar</string>
+    <string name="esqueceu_senha">Esqueceu sua senha?</string>
+    <string name="recuperar_senha">Clique aqui para recuperar!</string>
+    <string name="recuperar">Recuperar Senha</string>
+    <string name="btnEnviarecuperar">Enviar</string>
+    <string name="btnvoltarrecuperar">Voltar</string>
 </resources>

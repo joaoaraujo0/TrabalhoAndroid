@@ -62,5 +62,5 @@
     <color name="md_theme_dark_surfaceVariant">#514347</color>
     <color name="md_theme_dark_onSurfaceVariant">#D5C2C6</color>
     <color name="branco">#FFFFFF</color>
-
+    <color name="azul">#1F6B8A</color>
 </resources>

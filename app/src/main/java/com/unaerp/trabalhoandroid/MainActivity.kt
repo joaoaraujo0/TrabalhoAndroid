@@ -48,6 +48,11 @@ class MainActivity : AppCompatActivity() {
             val intentCadastro = Intent(this, CadastroUsuarioActivity::class.java)
             startActivity(intentCadastro)
         }
+
+        binding.linkRecuperarSenha.setOnClickListener {
+            val intentRecuperarSenha = Intent(this, RecuperarSenhaActivity::class.java)
+            startActivity(intentRecuperarSenha)
+        }
     }
 
     private fun closeKeyboard() {

@@ -2,10 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
     android:paddingTop="8dp"
     android:background="@color/seed"
     >
@@ -23,12 +21,23 @@
             android:id="@+id/Login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/login"
+            android:text="@string/recuperar"
             android:fontFamily="@font/open_sans_bold"
             android:textSize="30sp"
             android:textAlignment="center"
             android:textStyle="bold"
             />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Digite seu E-mail para fazer a recuperação de senha."
+            android:textSize="16sp"
+            android:padding="8dp"
+            android:layout_margin="8dp"
+            />
+
+
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -53,74 +62,27 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/inputSenhaInput"
-        android:layout_width="match_parent"
-        android:hint="@string/senha"
-        android:padding="8dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputEmailInput">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/inputSenhaLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:fontFamily="@font/roboto_medium"
-            android:inputType="textPassword"
-            />
-
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/textRecuperarSenha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/esqueceu_senha"
-        android:fontFamily="@font/roboto_medium"
-        app:layout_constraintTop_toBottomOf="@+id/inputSenhaInput"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="20sp"
-        android:layout_marginEnd="8dp" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/linkRecuperarSenha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/recuperar_senha"
-        android:textSize="17sp"
-        android:textColor="@color/azul"
-        android:fontFamily="@font/roboto_medium"
-        app:layout_constraintTop_toTopOf="@+id/textRecuperarSenha"
-        app:layout_constraintStart_toEndOf="@+id/textRecuperarSenha"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textRecuperarSenha" />
 
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/botaoEntrar"
+        android:id="@+id/botaoEnviar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btnentrar"
+        android:text="@string/btnEnviarecuperar"
         android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linkRecuperarSenha"
+        app:layout_constraintTop_toBottomOf="@+id/inputEmailInput"
         />
 
-
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/botaoCadastrar"
+        android:id="@+id/botaoVoltarRecuperar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btncadastrarlogin"
+        android:text="@string/btnvoltarrecuperar"
         android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/botaoEntrar"/>
-
-
-
+        app:layout_constraintTop_toBottomOf="@+id/botaoEnviar"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

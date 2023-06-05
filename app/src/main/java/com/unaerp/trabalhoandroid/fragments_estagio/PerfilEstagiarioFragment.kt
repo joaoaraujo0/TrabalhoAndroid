@@ -16,7 +16,6 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.ktx.Firebase
 import com.unaerp.trabalhoandroid.EditarPerfilActivity
 import com.unaerp.trabalhoandroid.FirestoreSingleton
@@ -24,12 +23,12 @@ import com.unaerp.trabalhoandroid.MainActivity
 import com.unaerp.trabalhoandroid.R
 import com.unaerp.trabalhoandroid.databinding.FragmentPerfilEstagiarioBinding
 
-private var userBitmap:Bitmap? = null
+private var userBitmap: Bitmap? = null
+private lateinit var auth: FirebaseAuth
+private var nome: String? = null
+
 class PerfilEstagiarioFragment : Fragment() {
     private var imgPicture: ImageView? = null
-    private var dadosCarregados = false
-    private var nome: String? = null
-    private var email: String? = null
     private var btnTakePicture: Button? = null
 
     private val cameraLauncher = registerForActivityResult(
@@ -47,45 +46,44 @@ class PerfilEstagiarioFragment : Fragment() {
         if (it == true) {
             val intentOpenCamera = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             cameraLauncher.launch(intentOpenCamera)
-        }else {
+        } else {
             Toast.makeText(requireContext(), "Permissão necessária", Toast.LENGTH_LONG).show()
         }
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        auth = Firebase.auth
         val binding = FragmentPerfilEstagiarioBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        PegarDadoUsuario(binding)
 
-        if (!dadosCarregados) {
-            PegarDadoUsuario(binding)
-        } else {
-            val nomePerfilText = getString(R.string.nomePerfil, nome)
-            val tipoDoPerfilText = getString(R.string.emailPerfil, email)
-
-            binding.nomeEstagiario.text = nomePerfilText
-            binding.emailEstagiario.text = tipoDoPerfilText
-        }
 
         binding.sairBotao.setOnClickListener {
             Firebase.auth.signOut()
-            val intent = Intent(requireContext(), MainActivity ::class.java)
+            val intent = Intent(requireContext(), MainActivity::class.java)
             startActivity(intent)
         }
 
         binding.editarEstagiario.setOnClickListener {
             val intent = Intent(activity, EditarPerfilActivity::class.java)
+            intent.putExtra("nome", nome);
             startActivity(intent)
         }
 
         imgPicture = binding.imagemPerfilEstagiario
         userBitmap?.let { imgPicture?.setImageBitmap(it) }
-        btnTakePicture =binding.botaoTirarFoto
+        btnTakePicture = binding.botaoTirarFoto
 
         btnTakePicture?.setOnClickListener {
-            if(ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(
+                    requireContext(),
+                    android.Manifest.permission.CAMERA
+                ) == PackageManager.PERMISSION_GRANTED
+            ) {
                 val intentOpenCamera = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                 cameraLauncher.launch(intentOpenCamera)
             } else {
@@ -97,36 +95,30 @@ class PerfilEstagiarioFragment : Fragment() {
     }
 
     private fun PegarDadoUsuario(binding: FragmentPerfilEstagiarioBinding) {
-        val db = FirestoreSingleton.getInstance()
         val currentUser = FirebaseAuth.getInstance().currentUser
-        if (currentUser != null) {
-            val userId = currentUser.uid
-            // Recupere o documento do usuário no Firestore
-            db.collection("InformacoesPerfil")
-                .document(userId)
-                .get()
-                .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        val document: DocumentSnapshot? = task.result
+        val db = FirestoreSingleton.getInstance()
+        val userId = currentUser?.uid
+        db.collection("InformacoesPerfil").document(userId.toString())
+            .addSnapshotListener { value, error ->
+                if (value != null) {
+                    nome = value.getString("Nome")
 
-                        nome = document?.getString("Nome")
-                        email = document?.getString("Email")
+                    val nomePerfilText = getString(R.string.nome_estagiario, nome)
+                    val emailText = getString(R.string.email_estagiario, auth.currentUser?.email)
 
-                        val nomePerfilText = getString(R.string.nomePerfil, nome)
-                        val tipoDoPerfilText = getString(R.string.emailPerfil, email)
-
-                        binding.nomeEstagiario.text = nomePerfilText
-                        binding.emailEstagiario.text = tipoDoPerfilText
-                        dadosCarregados = true
-                    } else {
-                        Toast.makeText(
-                            requireContext(),
-                            "Não foi possível verificar seu perfil",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+                    binding.nomeEstagiario.text = nomePerfilText
+                    binding.emailEstagiario.text = emailText
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Não foi possível verificar seu perfil",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
-        }
-    }
 
+
+            }
+
+
+    }
 }

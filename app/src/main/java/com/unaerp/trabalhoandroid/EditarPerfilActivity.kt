@@ -9,9 +9,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.unaerp.trabalhoandroid.databinding.EditarPerfilBinding
+
 
 private lateinit var auth: FirebaseAuth
 
@@ -24,7 +26,7 @@ class EditarPerfilActivity : AppCompatActivity() {
         binding = EditarPerfilBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
-
+        val user: FirebaseUser? = auth.currentUser
 
         //recuperar nome e email
         val dados = intent.extras
@@ -32,8 +34,7 @@ class EditarPerfilActivity : AppCompatActivity() {
             nome = dados.getString("nome").toString()
 
             binding.inputNomeEditar.text = Editable.Factory.getInstance().newEditable(nome)
-            binding.inputEmailEditar.text =
-                Editable.Factory.getInstance().newEditable(auth.currentUser?.email)
+            binding.inputEmailEditar.text = Editable.Factory.getInstance().newEditable(auth.currentUser?.email)
 
         } else {
             Aviso("Não foi possível editar perfil tente novamente", binding)
@@ -42,7 +43,7 @@ class EditarPerfilActivity : AppCompatActivity() {
 
 
         binding.botaoCancelar.setOnClickListener {
-            finish()
+            //finish()
         }
 
         binding.botaoEditar.setOnClickListener {

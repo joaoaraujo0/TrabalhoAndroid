@@ -65,7 +65,6 @@ class PerfilEmpresaFragment : Fragment() {
             Firebase.auth.signOut()
             val intent = Intent(requireContext(), MainActivity::class.java)
             startActivity(intent)
-
         }
 
         binding.editarPerfilEmpresa.setOnClickListener {

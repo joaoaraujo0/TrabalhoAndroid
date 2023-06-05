@@ -37,6 +37,7 @@
         <activity android:name=".VagaExpandida" />
         <activity android:name=".EditarPerfilActivity" />
         <activity android:name=".EditarVagaActivity" />
+        <activity android:name=".RecuperarSenhaActivity" />
 
 
 
