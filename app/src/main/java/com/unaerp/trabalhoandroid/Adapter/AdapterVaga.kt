@@ -51,7 +51,6 @@ class AdapterVaga(
                 intent.putExtra("emailContato", vaga.emailContato)
                 intent.putExtra("telefoneContato", vaga.telefoneContato)
                 intent.putExtra("anunciante", vaga.anunciante)
-                intent.putExtra("dataInicioVaga", vaga.dataInicioVaga)
                 intent.putExtra("dataTermino", vaga.dataTermino)
                 itemView.context.startActivity(intent)
             }

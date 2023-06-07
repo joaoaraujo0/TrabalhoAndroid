@@ -31,8 +31,7 @@ class AnunciarVagaFragment : Fragment() {
         //Calendario
         val calendar = Calendar.getInstance()
         val datePickerFinal = DatePickerDialog(
-            requireContext(),
-            DatePickerDialog.OnDateSetListener { _, year, month, dayOfMonth ->
+            requireContext(), { _, year, month, dayOfMonth ->
                 val selectedDate = Calendar.getInstance()
                 selectedDate.set(Calendar.YEAR, year)
                 selectedDate.set(Calendar.MONTH, month)
@@ -67,11 +66,16 @@ class AnunciarVagaFragment : Fragment() {
     }
 
     private fun CadastraAnuncio(binding: FragmentAnunciarVagaBinding) {
-        val formatoData = SimpleDateFormat("dd/MM/yyyy", Locale("pt", "BR"))
         val dataHoraAtual = Date()
-        val data = SimpleDateFormat("dd/MM/yyyy", Locale("pt", "BR")).format(dataHoraAtual)
-        val dataVencimento = formatoData.parse(binding.dataVencimentoInput.text.toString())
-        val dataAgora = formatoData.parse(data)
+
+        val formatoDataSemHora = SimpleDateFormat("dd/MM/yyyy", Locale("pt", "BR"))
+        val formatoDataComHora = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale("pt", "BR")).format(dataHoraAtual)
+
+        val dataVencimento = formatoDataSemHora.parse(binding.dataVencimentoInput.text.toString())
+        val dataDeAgora = formatoDataSemHora.parse(formatoDataComHora)
+
+        val formatoHora = SimpleDateFormat(" HH:mm:ss", Locale("pt", "BR"))
+        val horaAtual = formatoHora.format(Date())
 
         if (binding.nomeEmpresaInput.text.isNullOrEmpty() || binding.descricaoInput.text.isNullOrEmpty()
             || binding.areaDaVagaCadastroInput.text.isNullOrEmpty() || binding.valorRemuneracaoInput.text.isNullOrEmpty()
@@ -79,7 +83,7 @@ class AnunciarVagaFragment : Fragment() {
             || binding.telefoneContatoInput.text.isNullOrEmpty() || binding.dataVencimentoInput.text.isNullOrEmpty()
         ) {
             Aviso("Campos vazios, preencha!", binding)
-        } else if (dataVencimento.before(dataAgora)) {
+        } else if (dataVencimento.before(dataDeAgora)) {
             Aviso("Data menor que o dia atual!", binding)
         } else {
             val currentUser = FirebaseAuth.getInstance().currentUser
@@ -92,19 +96,19 @@ class AnunciarVagaFragment : Fragment() {
                 "Localidade" to binding.localidadeAnuncioInput.text.toString(),
                 "EmailContato" to binding.emailContatoInput.text.toString(),
                 "TelefoneContato" to binding.telefoneContatoInput.text.toString(),
-                "DataVencimento" to binding.dataVencimentoInput.text.toString(),
-                "DataPublicacao" to data,
+                "DataVencimento" to "${binding.dataVencimentoInput.text.toString() + horaAtual} ",
+                "DataPublicacao" to formatoDataComHora,
                 "IdEmpresa" to currentUser?.uid
             )
-                db.collection("AnunciosEmpresas")
-                    .add(anuncio)
-                    .addOnSuccessListener {
-                        Sucesso("Vaga postada com sucesso!!", binding)
-                        LimpaInput(binding)
-                    }
-                    .addOnFailureListener {
-                        Aviso("Não foi possível cadastrar usuário, verifique as informações", binding)
-            }
+            db.collection("AnunciosEmpresas")
+                .add(anuncio)
+                .addOnSuccessListener {
+                    Sucesso("Vaga postada com sucesso!!", binding)
+                    LimpaInput(binding)
+                }
+                .addOnFailureListener {
+                    Aviso("Não foi possível cadastrar usuário, verifique as informações", binding)
+                }
         }
     }
 
@@ -141,7 +145,4 @@ class AnunciarVagaFragment : Fragment() {
         binding.dataVencimentoInput.setText("")
     }
 
-    fun criarMascaraData(): SimpleDateFormat {
-        return SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
-    }
 }

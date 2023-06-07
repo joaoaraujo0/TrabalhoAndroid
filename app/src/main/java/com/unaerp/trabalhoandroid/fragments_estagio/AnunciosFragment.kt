@@ -41,7 +41,7 @@ class AnunciosFragment : Fragment() {
     private fun pegarAnuncios(listaVagas: MutableList<Vagas>) {
         val db = FirestoreSingleton.getInstance()
         db.collection("AnunciosEmpresas")
-            .orderBy("DataPublicacao", Query.Direction.ASCENDING)
+            .orderBy("DataPublicacao", Query.Direction.DESCENDING)
             .addSnapshotListener { result, error ->
                 listaVagas.clear()
                 if (result != null) {

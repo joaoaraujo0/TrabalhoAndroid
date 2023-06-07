@@ -103,4 +103,14 @@
     <string name="recuperar">Recuperar Senha</string>
     <string name="btnEnviarecuperar">Enviar</string>
     <string name="btnvoltarrecuperar">Voltar</string>
+    <string name="editar_vaga">Editar Vaga</string>
+    <string name="nome_da_empresa_editar">Nome da empresa</string>
+    <string name="descricao_editar">Descrição</string>
+    <string name="rea_da_vaga_editar">Área da vaga</string>
+    <string name="valor_editar">Valor</string>
+    <string name="localidade_editar">Localidade</string>
+    <string name="e_mail_de_contato_editar">E-mail de contato</string>
+    <string name="telefone_de_contato_editar">Telefone de contato</string>
+    <string name="editar">Editar</string>
+    <string name="cancelar">Cancelar</string>
 </resources>

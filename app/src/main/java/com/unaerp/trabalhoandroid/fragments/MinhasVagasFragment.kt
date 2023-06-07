@@ -1,5 +1,6 @@
 package com.unaerp.trabalhoandroid.fragments
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,9 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.unaerp.trabalhoandroid.Adapter.AdapterMinhasVagas
+import com.unaerp.trabalhoandroid.EditarVagaActivity
 import com.unaerp.trabalhoandroid.FirestoreSingleton
 import com.unaerp.trabalhoandroid.databinding.FragmentMinhasVagasBinding
 import com.unaerp.trabalhoandroid.model.Vagas
@@ -31,30 +34,40 @@ class MinhasVagasFragment : Fragment() {
         val recyclerViewMinhasVagas = binding.recyclerViewMinhasVagas
         recyclerViewMinhasVagas.layoutManager = LinearLayoutManager(requireContext())
 
-        adapterMinhasVaga = AdapterMinhasVagas { task ->
-            db.collection("AnunciosEmpresas")
-                .document(task.id)
-                .delete().addOnCompleteListener {
-                    Aviso("Vaga excluida com sucesso!!",binding)
-                }.addOnFailureListener {
-                    Aviso("Erro ao excluir vaga, tente novamente mais tarde",binding)
-                }
+
+        adapterMinhasVaga = AdapterMinhasVagas { task, excluir ->
+            if (excluir) {
+                db.collection("AnunciosEmpresas")
+                    .document(task.id)
+                    .delete().addOnCompleteListener {
+                        Aviso("Vaga excluida com sucesso!!", binding)
+                    }.addOnFailureListener {
+                        Aviso("Erro ao excluir vaga, tente novamente mais tarde", binding)
+                    }
+            }
+            else{
+                val intent = Intent(context, EditarVagaActivity::class.java)
+                intent.putExtra("idAnuncio", task.id)
+                context?.startActivity(intent)
+            }
 
         }
+
         recyclerViewMinhasVagas.adapter = adapterMinhasVaga
 
-        pegarAnuncios(listaMinhasVagas,binding)
+        pegarAnuncios(listaMinhasVagas)
 
 
         return view
     }
 
-    private fun pegarAnuncios(listadeVagas: MutableList<Vagas>,binding: FragmentMinhasVagasBinding) {
+    private fun pegarAnuncios(listadeVagas: MutableList<Vagas>) {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val db = FirestoreSingleton.getInstance()
         val userId = currentUser?.uid
         db.collection("AnunciosEmpresas")
             .whereEqualTo("IdEmpresa", userId)
+            .orderBy("DataPublicacao",Query.Direction.DESCENDING)
             .addSnapshotListener { result, error ->
                 listadeVagas.clear()
                 if (result != null) {
@@ -86,9 +99,7 @@ class MinhasVagasFragment : Fragment() {
                         }
 
                         adapterMinhasVaga.updateList(listadeVagas)
-                    }else{
-                    Aviso("Não foi encontrado nenhum anúncio!", binding)
-                }
+                    }
             }
     }
 }

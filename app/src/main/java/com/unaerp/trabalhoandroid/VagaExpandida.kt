@@ -21,7 +21,6 @@ class VagaExpandida : AppCompatActivity() {
         val emailContato = intent.getStringExtra("emailContato")
         val telefoneContato = intent.getStringExtra("telefoneContato")
         val anunciante = intent.getStringExtra("anunciante")
-        val dataInicioVaga = intent.getStringExtra("dataInicioVaga")
         val dataTermino = intent.getStringExtra("dataTermino")
 
         binding.anunciante.text = getString(R.string.anunciante, anunciante)

@@ -1,36 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/seed">
+
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/seed"
-        >
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/title_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Editar Vaga"
-            android:textSize="24sp"
-            android:textColor="@android:color/black"
-            android:textStyle="bold"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="16dp"
             android:layout_margin="8dp"
+            android:layout_marginBottom="16dp"
             android:fontFamily="@font/open_sans_bold"
-            />
+            android:text="@string/editar_vaga"
+            android:textColor="@android:color/black"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/areaDeEditarVaga"
+            android:id="@+id/nomeEmpresaAnuncioEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/areaVagaCadastro"
+            android:layout_below="@+id/title_textview"
+            android:hint="@string/nome_da_empresa_editar">
 
-            android:layout_below="@+id/title_textview" >
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nomeEmpresaInputEditar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -40,44 +41,69 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/descricaoVagaEditar"
+            android:id="@+id/descricaoVagaAnuncioEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/descricaoCadastro"
-            android:layout_below="@+id/areaDeEditarVaga" >
+            android:layout_below="@+id/nomeEmpresaAnuncioEditar"
+            android:hint="@string/descricao_editar">
+
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/descricaoInputEditar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:fontFamily="@font/roboto_medium"
+
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/valorRemuneracaoEditar"
+            android:id="@+id/areaDaVagaCadastroEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/remuneracaocadastro"
-            android:layout_below="@+id/descricaoVagaEditar" >
+            android:layout_below="@+id/descricaoVagaAnuncioEditar"
+            android:hint="@string/rea_da_vaga_editar">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/areaDaVagaCadastroInputEditar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:fontFamily="@font/roboto_medium"
+
+
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/valorRemuneracaoAnuncioEditar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/areaDaVagaCadastroEditar"
+            android:hint="@string/valor_editar">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/valorRemuneracaoInputEditar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 android:drawableStart="@drawable/baseline_attach_money_24"
+                android:fontFamily="@font/roboto_medium"
 
 
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/localidadeEditar"
+            android:id="@+id/localidadeAnuncioEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/text_localidadeCadastro"
-            android:layout_below="@+id/valorRemuneracaoEditar" >
+            android:layout_below="@+id/valorRemuneracaoAnuncioEditar"
+            android:hint="@string/localidade_editar">
+
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/localidadeAnuncioInputEditar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
@@ -90,110 +116,71 @@
             android:id="@+id/emailContatoEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/emailContatoCadastro"
-            android:layout_below="@+id/localidadeEditar"
-            >
+            android:layout_below="@+id/localidadeAnuncioEditar"
+            android:hint="@string/e_mail_de_contato_editar">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailContatoInputEditar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:fontFamily="@font/roboto_medium"
                 android:drawableEnd="@drawable/baseline_email_24"
-
+                android:fontFamily="@font/roboto_medium"
 
                 />
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/telefoneContatoEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/telefoneContatoCadastro"
-            android:layout_below="@+id/emailContatoEditar" >
+            android:layout_below="@+id/emailContatoEditar"
+            android:hint="@string/telefone_de_contato_editar">
+
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/telefoneContatoInputEditar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:inputType="phone"
-                android:fontFamily="@font/roboto_medium"
                 android:drawableEnd="@drawable/baseline_contact_phone_24"
-
-
-                />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/nomeDaEmpresaEditar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/anuncianteCadastro"
-            android:layout_below="@+id/telefoneContatoEditar"
-            >
-            <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
                 android:fontFamily="@font/roboto_medium"
-                />
+                android:inputType="phone" />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/dataDeInicioEditar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/datainicioCadastro"
-            android:layout_below="@+id/nomeDaEmpresaEditar">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/dateInicioEditVagaInicio"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="none"
-                android:layout_margin="8dp"
-                android:focusableInTouchMode="false"
-                android:clickable="true"
-                android:fontFamily="@font/roboto_medium"
-                android:drawableEnd="@drawable/baseline_date_range_24"
-                />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
+        <!-- <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/dataFinalEditar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/datafinalCadastro"
-            android:layout_below="@+id/dataDeInicioEditar">
+            android:layout_below="@+id/telefoneContatoEditar"
+            android:hint="Data de vencimento">
+
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/dateFinalEditVagaFinal"
+                android:id="@+id/dataVencimentoInputEditar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="date"
                 android:layout_margin="8dp"
-                android:fontFamily="@font/roboto_medium"
                 android:drawableEnd="@drawable/baseline_date_range_24"
+                android:fontFamily="@font/roboto_medium"
+                android:inputType="date"
+
                 />
-        </com.google.android.material.textfield.TextInputLayout>
+        </com.google.android.material.textfield.TextInputLayout>-->
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/botaoEditarVagaEmpresa"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Editar"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_below="@id/dataFinalEditar"
-            />
+            android:layout_below="@id/telefoneContatoEditar"
+            android:layout_margin="8dp"
+            android:text="@string/editar" />
+
         <com.google.android.material.button.MaterialButton
             android:id="@+id/botaoVoltarEditarVaga"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cancelar"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
             android:layout_below="@id/botaoEditarVagaEmpresa"
-            />
+            android:layout_margin="8dp"
+            android:text="@string/cancelar" />
     </RelativeLayout>
 </ScrollView>

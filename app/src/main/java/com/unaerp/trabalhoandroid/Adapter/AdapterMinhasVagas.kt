@@ -1,16 +1,14 @@
 package com.unaerp.trabalhoandroid.Adapter
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.unaerp.trabalhoandroid.EditarVagaActivity
 import com.unaerp.trabalhoandroid.R
 import com.unaerp.trabalhoandroid.databinding.CardMinhasVagasBinding
 import com.unaerp.trabalhoandroid.model.Vagas
 
 class AdapterMinhasVagas(
-    private val onItemClickListener: (Vagas) -> Unit
+    private val onItemClickListener: (Vagas, excluir :Boolean) -> Unit
 ) : RecyclerView.Adapter<AdapterMinhasVagas.MinhasVagasHolder>() {
 
     private val minhasVagas: MutableList<Vagas> = mutableListOf()
@@ -45,11 +43,10 @@ class AdapterMinhasVagas(
             binding.emailContatoMinhasVagas.text = itemView.context.getString(R.string.e_mail_de_contato,vaga.emailContato)
             binding.telefoneContatoMinhasVagas.text = itemView.context.getString(R.string.telefone,vaga.telefoneContato)
             binding.excluirvaga.setOnClickListener {
-                onItemClickListener(vaga)
+                onItemClickListener(vaga, true)
             }
             binding.editarVagasEmpresa.setOnClickListener {
-                val intent = Intent(itemView.context, EditarVagaActivity::class.java)
-                itemView.context.startActivity(intent)
+                onItemClickListener(vaga, false)
             }
         }
     }

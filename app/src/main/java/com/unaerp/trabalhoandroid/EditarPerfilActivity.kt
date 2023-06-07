@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.unaerp.trabalhoandroid.databinding.EditarPerfilBinding
@@ -26,7 +25,6 @@ class EditarPerfilActivity : AppCompatActivity() {
         binding = EditarPerfilBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
-        val user: FirebaseUser? = auth.currentUser
 
         //recuperar nome e email
         val dados = intent.extras
@@ -43,7 +41,7 @@ class EditarPerfilActivity : AppCompatActivity() {
 
 
         binding.botaoCancelar.setOnClickListener {
-            //finish()
+            finish()
         }
 
         binding.botaoEditar.setOnClickListener {
@@ -51,36 +49,34 @@ class EditarPerfilActivity : AppCompatActivity() {
             if (binding.inputNomeEditar.text.isNullOrEmpty() || binding.inputEmailEditar.text.isNullOrEmpty()) {
                 closeKeyboard()
                 Aviso("Preencha todos os campos", binding)
+            }else{
+                EditarPerfil()
             }
-            val db = FirestoreSingleton.getInstance()
+        }
 
-            val currentUser = FirebaseAuth.getInstance().currentUser
-            if (currentUser != null) {
-                val userId = currentUser.uid
+    }
 
-                db.collection("InformacoesPerfil")
-                    .document(userId)
-                    .update(
-                        "Nome", binding.inputNomeEditar.text.toString(),
-                        "Email", binding.inputEmailEditar.text.toString()
-                    ).addOnCompleteListener  {task->
-                        if (task.isSuccessful){
-                        Toast.makeText(this, "Usuario Editado com sucesso!!", Toast.LENGTH_SHORT)
-                            .show()
+
+    private fun EditarPerfil(){
+        val db = FirestoreSingleton.getInstance()
+
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        if (currentUser != null) {
+            val userId = currentUser.uid
+            db.collection("InformacoesPerfil")
+                .document(userId)
+                .update("Nome", binding.inputNomeEditar.text.toString(), "Email", binding.inputEmailEditar.text.toString()
+                ).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(this, "Usuario Editado com sucesso!!", Toast.LENGTH_SHORT).show()
                         finish()
-                        }else{
-                            Aviso("Não foi possivel cadastrar usuario", binding)
-                        }
+                    } else {
+                        Aviso("Não foi possivel cadastrar usuario", binding)
                     }
-
-
-
-            }
+                }
 
 
         }
-
-
     }
 
     private fun closeKeyboard() {
