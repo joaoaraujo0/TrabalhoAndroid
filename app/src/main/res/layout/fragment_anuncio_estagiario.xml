@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:scrollbars="vertical"
-        tools:listitem="@layout/card_home"
+        tools:listitem="@layout/activity_card_home"
         app:layout_constraintTop_toBottomOf="@+id/searchViewEstagiario"
         app:layout_constraintBottom_toBottomOf="parent"
         />

@@ -8,13 +8,10 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
-import com.unaerp.trabalhoandroid.Adapter.AdapterMinhasVagas
-import com.unaerp.trabalhoandroid.databinding.EditarVagaBinding
+import com.unaerp.trabalhoandroid.databinding.ActivityEditarVagaBinding
 
 class EditarVagaActivity : AppCompatActivity() {
-    private lateinit var adapterMinhasVaga: AdapterMinhasVagas
-
-    private lateinit var binding: EditarVagaBinding
+    private lateinit var binding: ActivityEditarVagaBinding
     private lateinit var nomeEmpresa: String
     private lateinit var idAnuncio: String
     private lateinit var descricao: String
@@ -28,7 +25,7 @@ class EditarVagaActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = EditarVagaBinding.inflate(layoutInflater)
+        binding = ActivityEditarVagaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val dados = intent.extras
@@ -38,33 +35,6 @@ class EditarVagaActivity : AppCompatActivity() {
         }
 
         PegarInformacoesDoAnuncio(idAnuncio)
-
-        //Calendario
-        /*val calendar = Calendar.getInstance()
-        val datePickerFinal = DatePickerDialog(
-            this, { _, year, month, dayOfMonth ->
-                val selectedDate = Calendar.getInstance()
-                selectedDate.set(Calendar.YEAR, year)
-                selectedDate.set(Calendar.MONTH, month)
-                selectedDate.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-
-                binding.dataVencimentoInputEditar.setText(
-                    SimpleDateFormat("dd/MM/yyyy").format(
-                        selectedDate.time
-                    )
-                )
-            },
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DAY_OF_MONTH)
-        )
-
-        binding.dataVencimentoInputEditar.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                datePickerFinal.show()
-                binding.dataVencimentoInputEditar.clearFocus()
-            }
-        }*/
 
         binding.botaoVoltarEditarVaga.setOnClickListener {
             finish()

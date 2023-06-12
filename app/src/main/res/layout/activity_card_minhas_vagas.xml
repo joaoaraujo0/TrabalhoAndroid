@@ -119,7 +119,7 @@
                     android:layout_width="99dp"
                     android:layout_height="40dp"
                     android:layout_marginEnd="8dp"
-                    android:text="Editar"
+                    android:text="@string/editar_minhas_vagas"
                     android:textColor="@color/branco" />
 
                 <com.google.android.material.button.MaterialButton
@@ -128,7 +128,7 @@
                     android:id="@+id/excluirvaga"
                     android:layout_width="99dp"
                     android:layout_height="40dp"
-                    android:text="Excluir"
+                    android:text="@string/excluir_minhas_vagas"
                     android:textColor="@color/branco" />
             </LinearLayout>
         </LinearLayout>

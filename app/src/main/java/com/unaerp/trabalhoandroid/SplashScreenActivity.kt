@@ -11,14 +11,14 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.ktx.Firebase
-import com.unaerp.trabalhoandroid.databinding.SplashViewBinding
+import com.unaerp.trabalhoandroid.databinding.ActivitySplashViewBinding
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
 
 private lateinit var auth: FirebaseAuth
-private lateinit var binding: SplashViewBinding
+private lateinit var binding: ActivitySplashViewBinding
 private var tipo: String? = null
 
 class SplashScreenActivity : AppCompatActivity() {
@@ -26,7 +26,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = SplashViewBinding.inflate(layoutInflater)
+        binding = ActivitySplashViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
 

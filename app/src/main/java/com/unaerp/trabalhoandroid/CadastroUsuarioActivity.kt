@@ -20,17 +20,17 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.ktx.Firebase
-import com.unaerp.trabalhoandroid.databinding.CadastroBinding
+import com.unaerp.trabalhoandroid.databinding.ActivityCadastroBinding
 private var tipo: String? = null
 class CadastroUsuarioActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var binding: CadastroBinding
+    private lateinit var binding: ActivityCadastroBinding
     private val db = FirestoreSingleton.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = CadastroBinding.inflate(layoutInflater)
+        binding = ActivityCadastroBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
 

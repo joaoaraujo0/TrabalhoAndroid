@@ -11,19 +11,19 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.unaerp.trabalhoandroid.databinding.EditarPerfilBinding
+import com.unaerp.trabalhoandroid.databinding.ActivityEditarPerfilBinding
 
 
 private lateinit var auth: FirebaseAuth
 
 class EditarPerfilActivity : AppCompatActivity() {
-    private lateinit var binding: EditarPerfilBinding
+    private lateinit var binding: ActivityEditarPerfilBinding
     private lateinit var nome: String
     private val db = FirestoreSingleton.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = EditarPerfilBinding.inflate(layoutInflater)
+        binding = ActivityEditarPerfilBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
 

@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.unaerp.trabalhoandroid.R
-import com.unaerp.trabalhoandroid.databinding.CardMinhasVagasBinding
+import com.unaerp.trabalhoandroid.databinding.ActivityCardMinhasVagasBinding
 import com.unaerp.trabalhoandroid.model.Vagas
 
 class AdapterMinhasVagas(
@@ -15,7 +15,7 @@ class AdapterMinhasVagas(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MinhasVagasHolder {
         val binding =
-            CardMinhasVagasBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ActivityCardMinhasVagasBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MinhasVagasHolder(binding)
     }
 
@@ -31,7 +31,7 @@ class AdapterMinhasVagas(
         notifyDataSetChanged()
     }
 
-    inner class MinhasVagasHolder(private val binding: CardMinhasVagasBinding) :
+    inner class MinhasVagasHolder(private val binding: ActivityCardMinhasVagasBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(vaga: Vagas) {

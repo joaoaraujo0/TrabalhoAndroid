@@ -31,7 +31,6 @@
                     android:text="@string/anunciantecard"
                     android:textSize="16sp"
                     android:textColor="@color/preto"
-                    android:textAppearance="?attr/textAppearanceHeadline6"
                     android:fontFamily="@font/roboto_medium"
                     />
                 <TextView
@@ -40,7 +39,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="@string/areadavagacard"
-                    android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="@color/preto"
                     android:textSize="14sp"
                     android:fontFamily="@font/roboto_medium"
@@ -51,7 +49,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/localidadecard"
-                    android:textAppearance="?attr/textAppearanceBody2"
                     android:textSize="14sp"
                     android:textColor="@color/preto"
                     android:fontFamily="@font/roboto_medium"
@@ -62,7 +59,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:text="@string/datacard"
-                    android:textAppearance="?attr/textAppearanceBody2"
                     android:textSize="14sp"
                     android:fontFamily="@font/roboto_medium"
                     android:textColor="@color/preto"

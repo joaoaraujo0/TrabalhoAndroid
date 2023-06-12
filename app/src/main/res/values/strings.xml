@@ -55,7 +55,7 @@
     <string name="remuneracaocadastro"> Valor</string>
     <string name="valor"> R$</string>
     <string name="text_localidadeCadastro"> Localidade</string>
-    <string name="emailContatoCadastro"> Email de Contato</string>
+    <string name="emailContatoCadastro"> E-mail de Contato</string>
     <string name="telefoneContatoCadastro"> Telefone de Contato</string>
     <string name="anuncianteCadastro"> Nome da empresa</string>
     <string name="datainicioCadastro"> Data de Inicio</string>
@@ -121,4 +121,10 @@
     <string name="detalhes_da_vaga">Detalhes da vaga</string>
     <string name="clique_e_envie_um_e_mail">Clique e envie um e-mail</string>
     <string name="voltar">Voltar</string>
+    <string name="editar_minhas_vagas">Editar</string>
+    <string name="excluir_minhas_vagas">Excluir</string>
+    <string name="cadastro_de_anuncios">Cadastro de Anuncios</string>
+    <string name="area_minha_vaga">Área da vaga</string>
+    <string name="anunciar_cadastro_anuncio">Anunciar</string>
+    <string name="texto_recuperar_senha">Digite seu E-mail para fazer a recuperação de senha.</string>
 </resources>

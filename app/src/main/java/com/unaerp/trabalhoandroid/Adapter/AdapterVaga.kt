@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.unaerp.trabalhoandroid.R
 import com.unaerp.trabalhoandroid.VagaExpandida
-import com.unaerp.trabalhoandroid.databinding.CardHomeBinding
+import com.unaerp.trabalhoandroid.databinding.ActivityCardHomeBinding
 import com.unaerp.trabalhoandroid.model.Vagas
 
 class AdapterVaga(
@@ -17,7 +17,7 @@ class AdapterVaga(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VagaViewHolder {
         val binding =
-            CardHomeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            ActivityCardHomeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return VagaViewHolder(binding)
     }
 
@@ -33,7 +33,7 @@ class AdapterVaga(
         notifyDataSetChanged()
     }
 
-    inner class VagaViewHolder(private val binding: CardHomeBinding) :
+    inner class VagaViewHolder(private val binding: ActivityCardHomeBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(vaga: Vagas) {

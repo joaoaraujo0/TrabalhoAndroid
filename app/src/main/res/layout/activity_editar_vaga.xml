@@ -147,26 +147,6 @@
                 android:inputType="phone" />
         </com.google.android.material.textfield.TextInputLayout>
 
-
-        <!-- <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/dataFinalEditar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/telefoneContatoEditar"
-            android:hint="Data de vencimento">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/dataVencimentoInputEditar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:drawableEnd="@drawable/baseline_date_range_24"
-                android:fontFamily="@font/roboto_medium"
-                android:inputType="date"
-
-                />
-        </com.google.android.material.textfield.TextInputLayout>-->
-
         <com.google.android.material.button.MaterialButton
             android:id="@+id/botaoEditarVagaEmpresa"
             android:layout_width="match_parent"

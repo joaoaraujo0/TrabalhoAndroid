@@ -15,7 +15,7 @@
                 android:id="@+id/title_textview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Cadastro de Anuncios"
+                android:text="@string/cadastro_de_anuncios"
                 android:textSize="24sp"
                 android:textColor="@android:color/black"
                 android:textStyle="bold"
@@ -60,7 +60,7 @@
                 android:id="@+id/areaDaVagaCadastro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Área da vaga"
+                android:hint="@string/area_minha_vaga"
                 android:layout_below="@+id/descricaoVagaAnuncio" >
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -168,7 +168,7 @@
                 android:id="@+id/submitBotao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Anunciar"
+                android:text="@string/anunciar_cadastro_anuncio"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="20dp"
                 android:layout_marginStart="20dp"

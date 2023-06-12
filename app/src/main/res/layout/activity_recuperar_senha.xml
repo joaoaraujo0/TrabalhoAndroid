@@ -31,7 +31,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Digite seu E-mail para fazer a recuperação de senha."
+            android:text="@string/texto_recuperar_senha"
             android:textSize="16sp"
             android:padding="8dp"
             android:layout_margin="8dp"

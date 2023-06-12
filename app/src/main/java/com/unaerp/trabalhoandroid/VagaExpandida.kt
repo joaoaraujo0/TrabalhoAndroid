@@ -4,10 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.unaerp.trabalhoandroid.databinding.PainelDeVagasBinding
+import com.unaerp.trabalhoandroid.databinding.ActivityPainelDeVagasBinding
 
 class VagaExpandida : AppCompatActivity() {
-    private lateinit var binding: PainelDeVagasBinding
+    private lateinit var binding: ActivityPainelDeVagasBinding
     private lateinit var idVaga: String
     private val db = FirestoreSingleton.getInstance()
     private lateinit var email: String
@@ -15,7 +15,7 @@ class VagaExpandida : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = PainelDeVagasBinding.inflate(layoutInflater)
+        binding = ActivityPainelDeVagasBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         idVaga = intent.getStringExtra("idDaVaga").toString()
