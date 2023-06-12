@@ -12,7 +12,8 @@
         android:layout_margin="8dp"
         android:layout_width="match_parent"
         tools:context=".MainActivity"
-        app:cardCornerRadius="20dp">
+        app:cardCornerRadius="20dp"
+        android:backgroundTint="@color/branco">
 
 
         <LinearLayout
@@ -31,7 +32,9 @@
                 android:layout_width="wrap_content"
                 android:text="@string/NomedaEmpresa"
                 android:textAppearance="?attr/textAppearanceHeadline6"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textColor="@color/preto"
+                />
 
             <TextView
                 android:id="@+id/areaDaVagaMinhasVagas"
@@ -41,8 +44,8 @@
                 android:layout_width="wrap_content"
                 android:text="@string/area_da_vaga"
                 android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary"
                 android:textSize="14sp"
+                android:textColor="@color/preto"
 
                 />
 
@@ -54,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:text="@string/localidade"
                 android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary"
+                android:textColor="@color/preto"
                 android:textSize="14sp" />
 
             <TextView
@@ -65,7 +68,7 @@
                 android:layout_width="wrap_content"
                 android:text="@string/data_termino_da_vaga"
                 android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary"
+                android:textColor="@color/preto"
                 android:textSize="14sp" />
 
             <TextView
@@ -76,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:text="@string/remuneracao"
                 android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary"
+                android:textColor="@color/preto"
                 android:textSize="14sp" />
 
             <TextView
@@ -87,7 +90,7 @@
                 android:layout_width="wrap_content"
                 android:text="@string/e_mail_de_contato"
                 android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary"
+                android:textColor="@color/preto"
                 android:textSize="14sp" />
 
             <TextView
@@ -98,7 +101,7 @@
                 android:layout_width="wrap_content"
                 android:text="@string/telefone"
                 android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary"
+                android:textColor="@color/preto"
                 android:textSize="14sp" />
 
 

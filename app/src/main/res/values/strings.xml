@@ -9,7 +9,7 @@
     <string name="areaVaga">Área da vaga: %1$s</string>
     <string name="descricao">Descrição: %1$s</string>
     <string name="text_localidade">Localidade: %1$s</string>
-    <string name="dataTermino">dataTermino: %1$s</string>
+    <string name="dataTermino">Data de termino da vaga: %1$s</string>
     <string name="valorRemuneracao">Valor da Remuneração: %1$s</string>
     <string name="emailContato">Email de Contato: %1$s</string>
     <string name="telefoneContato">Telefone de Contato: %1$s</string>
@@ -99,7 +99,7 @@
     <string name="email_estagiario">Email: %1$s</string>
     <string name="editar_estagiario">Editar</string>
     <string name="esqueceu_senha">Esqueceu sua senha?</string>
-    <string name="recuperar_senha">Clique aqui para recuperar!</string>
+    <string name="recuperar_senha">Esqueceu senha?</string>
     <string name="recuperar">Recuperar Senha</string>
     <string name="btnEnviarecuperar">Enviar</string>
     <string name="btnvoltarrecuperar">Voltar</string>
@@ -113,4 +113,12 @@
     <string name="telefone_de_contato_editar">Telefone de contato</string>
     <string name="editar">Editar</string>
     <string name="cancelar">Cancelar</string>
+    <string name="minhas_vagas">Minhas vagas</string>
+    <string name="perfil_user_empresa">Perfil</string>
+    <string name="sair_perfil_empresa">Sair</string>
+    <string name="tirar_foto_empresa">Tirar foto</string>
+    <string name="editar_empresa">Editar</string>
+    <string name="detalhes_da_vaga">Detalhes da vaga</string>
+    <string name="clique_e_envie_um_e_mail">Clique e envie um e-mail</string>
+    <string name="voltar">Voltar</string>
 </resources>

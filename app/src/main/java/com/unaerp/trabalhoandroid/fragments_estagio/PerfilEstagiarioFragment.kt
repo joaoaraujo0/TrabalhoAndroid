@@ -3,6 +3,7 @@ package com.unaerp.trabalhoandroid.fragments_estagio
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -30,6 +32,7 @@ private var nome: String? = null
 class PerfilEstagiarioFragment : Fragment() {
     private var imgPicture: ImageView? = null
     private var btnTakePicture: Button? = null
+    private lateinit var binding: FragmentPerfilEstagiarioBinding
 
     private val cameraLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -56,7 +59,7 @@ class PerfilEstagiarioFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         auth = Firebase.auth
-        val binding = FragmentPerfilEstagiarioBinding.inflate(inflater, container, false)
+        binding = FragmentPerfilEstagiarioBinding.inflate(inflater, container, false)
         val view = binding.root
 
         PegarDadoUsuario(binding)
@@ -109,16 +112,15 @@ class PerfilEstagiarioFragment : Fragment() {
                     binding.nomeEstagiario.text = nomePerfilText
                     binding.emailEstagiario.text = emailText
                 } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Não foi possível verificar seu perfil",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Aviso("Não foi possível verificar seu perfil")
                 }
-
 
             }
 
-
+    }
+    private fun Aviso(mensagem: String) {
+        val snackbar = Snackbar.make(binding.root, mensagem, Snackbar.LENGTH_SHORT)
+        snackbar.setBackgroundTint(Color.parseColor("#ED2B2A"))
+        snackbar.show()
     }
 }

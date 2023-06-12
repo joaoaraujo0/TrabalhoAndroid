@@ -17,11 +17,11 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
 import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.ktx.Firebase
 import com.unaerp.trabalhoandroid.databinding.CadastroBinding
-
+private var tipo: String? = null
 class CadastroUsuarioActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
@@ -53,9 +53,9 @@ class CadastroUsuarioActivity : AppCompatActivity() {
             if (binding.nomeCadastro.text.isNullOrEmpty() || binding.emailCadastro.text.isNullOrEmpty()
                 ||binding.textSenhaCadastro.text.isNullOrEmpty() || binding.textConfirmaSenhaCadastro.text.isNullOrEmpty()
             ) {
-                Aviso("Campos vazios, preencha!",binding)
+                Aviso("Campos vazios, preencha!")
             }else if (binding.textSenhaCadastro.text.toString() != binding.textConfirmaSenhaCadastro.text.toString()){
-                Aviso("Senhas diferentes! ",binding)
+                Aviso("Senhas diferentes! ")
             }
             else {
                 cadastrarUsuario(binding.emailCadastro.text.toString(), binding.textSenhaCadastro.text.toString(), binding.nomeCadastro.text.toString(),it)
@@ -68,7 +68,7 @@ class CadastroUsuarioActivity : AppCompatActivity() {
             if (task.isSuccessful) {
                 Log.d(TAG, "createUserWithEmail:success")
                 val user = auth.currentUser
-                updateUI(user, nome)
+                updateUI()
                 SalvarDados()
             }
         }.addOnFailureListener { exeption ->
@@ -79,7 +79,7 @@ class CadastroUsuarioActivity : AppCompatActivity() {
                 is FirebaseNetworkException -> "Sem conexão com a internet!"
                 else -> "Erro ao cadastrar usuario!"
             }
-            Aviso(mensagemErro,binding)
+            Aviso(mensagemErro)
 
         }
     }
@@ -99,20 +99,48 @@ class CadastroUsuarioActivity : AppCompatActivity() {
                 .document(userId)
                 .set(user)
                 .addOnSuccessListener {
+
                     // Armazenamento bem-sucedido
                     // ...
                 }
                 .addOnFailureListener { e ->
-                     Aviso("Não foi possivel cadastrar usuario",binding)
+                     Aviso("Não foi possivel cadastrar usuario")
                 }
 
         }
     }
 
-    private fun updateUI(user: FirebaseUser?, nome: String?) {
-        if (user != null) {
+    private fun updateUI() {
+        val db = FirestoreSingleton.getInstance()
+        //PEGAR TIPO DO PERFIL
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        val userId = currentUser?.uid
+        // Recupere o documento do usuário no Firestore
+        db.collection("InformacoesPerfil")
+            .document(userId.toString())
+            .get()
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val document: DocumentSnapshot? = task.result
+                    tipo = document?.getString("TipodoPerfil")
+                    VerificaoPerfil(tipo.toString())
+                } else {
+                   Aviso("Não foi possível verificar seu perfil")
+                }
+            }
+    }
+
+
+
+    private fun VerificaoPerfil(tipo: String) {
+        if (tipo == "Empresa") {
             val intent = Intent(this, MenuActivity::class.java)
-            intent.putExtra("mensagem", "Bem vindo: $nome.")
+            intent.putExtra("mensagem", "Bem vindo!")
+            startActivity(intent)
+            finish()
+        } else {
+            val intent = Intent(this, MenuEstagiario::class.java)
+            intent.putExtra("mensagem", "Bem vindo!")
             startActivity(intent)
             finish()
         }
@@ -126,7 +154,7 @@ class CadastroUsuarioActivity : AppCompatActivity() {
         }
     }
 
-    private fun Aviso(mensagem: String, binding: CadastroBinding){
+    private fun Aviso(mensagem: String){
         val snackbar = Snackbar.make(binding.root, mensagem, Snackbar.LENGTH_SHORT)
         snackbar.setBackgroundTint(Color.RED)
         snackbar.show()

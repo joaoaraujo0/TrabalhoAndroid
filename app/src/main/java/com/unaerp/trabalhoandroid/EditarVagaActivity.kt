@@ -75,7 +75,7 @@ class EditarVagaActivity : AppCompatActivity() {
                 binding.telefoneContatoInputEditar.text.isNullOrEmpty()
             ) {
                 closeKeyboard()
-                Aviso("Preencha todos os campos!!", binding)
+                Aviso("Preencha todos os campos!!")
             } else {
                 EditarDados(idAnuncio)
             }
@@ -97,10 +97,10 @@ class EditarVagaActivity : AppCompatActivity() {
                     "TelefoneContato", binding.telefoneContatoInputEditar.text.toString()
                 ).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        Sucesso("Anuncio editado com sucesso!!", binding)
+                        Sucesso("Anuncio editado com sucesso!!")
                         finish()
                     } else {
-                        Aviso("Erro ao editar anuncio, tente mais tarde!", binding)
+                        Aviso("Erro ao editar anuncio, tente mais tarde!")
                         finish()
                     }
 
@@ -138,7 +138,7 @@ class EditarVagaActivity : AppCompatActivity() {
     }
 
 
-    private fun Sucesso(mensagem: String, binding: EditarVagaBinding) {
+    private fun Sucesso(mensagem: String) {
         Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show()
     }
 
@@ -151,7 +151,7 @@ class EditarVagaActivity : AppCompatActivity() {
         }
     }
 
-    private fun Aviso(mensagem: String, binding: EditarVagaBinding) {
+    private fun Aviso(mensagem: String) {
         val snackbar = Snackbar.make(binding.root, mensagem, Snackbar.LENGTH_SHORT)
         snackbar.setBackgroundTint(Color.RED)
         snackbar.show()

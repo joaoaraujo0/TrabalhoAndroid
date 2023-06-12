@@ -22,12 +22,12 @@ import com.unaerp.trabalhoandroid.model.Vagas
 class MinhasVagasFragment : Fragment() {
     private val listaMinhasVagas: MutableList<Vagas> = mutableListOf()
     private lateinit var adapterMinhasVaga: AdapterMinhasVagas
-
+    private lateinit var binding: FragmentMinhasVagasBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentMinhasVagasBinding.inflate(inflater, container, false)
+        binding = FragmentMinhasVagasBinding.inflate(inflater, container, false)
         val view = binding.root
         val db = Firebase.firestore
 
@@ -40,9 +40,9 @@ class MinhasVagasFragment : Fragment() {
                 db.collection("AnunciosEmpresas")
                     .document(task.id)
                     .delete().addOnCompleteListener {
-                        Aviso("Vaga excluida com sucesso!!", binding)
+                        Sucesso("Vaga excluida com sucesso!!")
                     }.addOnFailureListener {
-                        Aviso("Erro ao excluir vaga, tente novamente mais tarde", binding)
+                        Aviso("Erro ao excluir vaga, tente novamente mais tarde")
                     }
             }
             else{
@@ -55,13 +55,13 @@ class MinhasVagasFragment : Fragment() {
 
         recyclerViewMinhasVagas.adapter = adapterMinhasVaga
 
-        pegarAnuncios(listaMinhasVagas)
+        pegarAnuncios()
 
 
         return view
     }
 
-    private fun pegarAnuncios(listadeVagas: MutableList<Vagas>) {
+    private fun pegarAnuncios() {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val db = FirestoreSingleton.getInstance()
         val userId = currentUser?.uid
@@ -69,42 +69,54 @@ class MinhasVagasFragment : Fragment() {
             .whereEqualTo("IdEmpresa", userId)
             .orderBy("DataPublicacao",Query.Direction.DESCENDING)
             .addSnapshotListener { result, error ->
-                listadeVagas.clear()
+                listaMinhasVagas.clear()
                 if (result != null) {
-                        for (document in result) {
-                            val nomeEmpresa = document.getString("NomeEmpresa").toString()
-                            val descricaoVaga = document.getString("Descricao").toString()
-                            val areaVaga = document.getString("AreaDaVaga").toString()
-                            val valorRemuneracao = document.getString("ValorRemuneracao").toString()
-                            val localidade = document.getString("Localidade").toString()
-                            val emailContato = document.getString("EmailContato").toString()
-                            val telefoneContato = document.getString("TelefoneContato").toString()
-                            val dataTermino = document.getString("DataVencimento").toString()
-                            val dataInicioVaga = document.getString("DataPublicacao").toString()
+                    for (document in result) {
+                        val nomeEmpresa = document.getString("NomeEmpresa").toString()
+                        val descricaoVaga = document.getString("Descricao").toString()
+                        val areaVaga = document.getString("AreaDaVaga").toString()
+                        val valorRemuneracao = document.getString("ValorRemuneracao").toString()
+                        val localidade = document.getString("Localidade").toString()
+                        val emailContato = document.getString("EmailContato").toString()
+                        val telefoneContato = document.getString("TelefoneContato").toString()
+                        val dataTermino = document.getString("DataVencimento").toString()
+                        val dataInicioVaga = document.getString("DataPublicacao").toString()
 
-                            val vaga = Vagas(
-                                document.id,
-                                nomeEmpresa,
-                                descricaoVaga,
-                                areaVaga,
-                                valorRemuneracao,
-                                localidade,
-                                emailContato,
-                                telefoneContato,
-                                dataTermino,
-                                dataInicioVaga,
-                            )
+                        val vaga = Vagas(
+                            document.id,
+                            nomeEmpresa,
+                            descricaoVaga,
+                            areaVaga,
+                            valorRemuneracao,
+                            localidade,
+                            emailContato,
+                            telefoneContato,
+                            dataTermino,
+                            dataInicioVaga,
+                        )
 
-                            listadeVagas.add(vaga)
-                        }
-
-                        adapterMinhasVaga.updateList(listadeVagas)
+                        listaMinhasVagas.add(vaga)
                     }
+
+                    adapterMinhasVaga.updateList(listaMinhasVagas)
+                }
             }
     }
-}
-private fun Aviso(mensagem: String, binding: FragmentMinhasVagasBinding){
-    val snackbar = Snackbar.make(binding.root, mensagem, Snackbar.LENGTH_SHORT)
-    snackbar.setBackgroundTint(Color.GREEN)
-    snackbar.show()
+
+    override fun onResume() {
+        super.onResume()
+        pegarAnuncios()
+    }
+
+    private fun Sucesso(mensagem: String) {
+        val snackbar = Snackbar.make(binding.root, mensagem, Snackbar.LENGTH_SHORT)
+        snackbar.setBackgroundTint(Color.parseColor("#03C988"))
+        snackbar.show()
+    }
+    private fun Aviso(mensagem: String){
+        val snackbar = Snackbar.make(binding.root, mensagem, Snackbar.LENGTH_SHORT)
+        snackbar.setBackgroundTint(Color.parseColor("#ED2B2A"))
+        snackbar.show()
+    }
+
 }

@@ -32,10 +32,9 @@ class EditarPerfilActivity : AppCompatActivity() {
             nome = dados.getString("nome").toString()
 
             binding.inputNomeEditar.text = Editable.Factory.getInstance().newEditable(nome)
-            binding.inputEmailEditar.text = Editable.Factory.getInstance().newEditable(auth.currentUser?.email)
 
         } else {
-            Aviso("Não foi possível editar perfil tente novamente", binding)
+            Aviso("Não foi possível editar perfil tente novamente")
             finish()
         }
 
@@ -46,9 +45,9 @@ class EditarPerfilActivity : AppCompatActivity() {
 
         binding.botaoEditar.setOnClickListener {
 
-            if (binding.inputNomeEditar.text.isNullOrEmpty() || binding.inputEmailEditar.text.isNullOrEmpty()) {
+            if (binding.inputNomeEditar.text.isNullOrEmpty()) {
                 closeKeyboard()
-                Aviso("Preencha todos os campos", binding)
+                Aviso("Preencha todos os campos")
             }else{
                 EditarPerfil()
             }
@@ -65,13 +64,13 @@ class EditarPerfilActivity : AppCompatActivity() {
             val userId = currentUser.uid
             db.collection("InformacoesPerfil")
                 .document(userId)
-                .update("Nome", binding.inputNomeEditar.text.toString(), "Email", binding.inputEmailEditar.text.toString()
+                .update("Nome", binding.inputNomeEditar.text.toString()
                 ).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(this, "Usuario Editado com sucesso!!", Toast.LENGTH_SHORT).show()
                         finish()
                     } else {
-                        Aviso("Não foi possivel cadastrar usuario", binding)
+                        Aviso("Não foi possivel cadastrar usuario")
                     }
                 }
 
@@ -88,7 +87,7 @@ class EditarPerfilActivity : AppCompatActivity() {
         }
     }
 
-    private fun Aviso(mensagem: String, binding: EditarPerfilBinding) {
+    private fun Aviso(mensagem: String) {
         val snackbar = Snackbar.make(binding.root, mensagem, Snackbar.LENGTH_SHORT)
         snackbar.setBackgroundTint(Color.RED)
         snackbar.show()

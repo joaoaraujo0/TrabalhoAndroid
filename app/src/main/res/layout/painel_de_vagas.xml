@@ -16,8 +16,8 @@
                 android:layout_margin="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Detalhes da vaga"
-                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:text="@string/detalhes_da_vaga"
+                android:textColor="@color/preto"
                 android:textSize="30sp"
                 android:fontFamily="@font/open_sans_bold"
                 android:textAlignment="center"
@@ -29,8 +29,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/anunciante"
-                android:textAppearance="?attr/textAppearanceHeadline6"
                 android:textSize="16sp"
+                android:textColor="@color/preto"
+
                 />
             <TextView
                 android:id="@+id/areaVaga"
@@ -38,9 +39,8 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/areaVaga"
-                android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary"
                 android:textSize="14sp"
+                android:textColor="@color/preto"
                 android:fontFamily="@font/roboto_medium"
                 />
             <TextView
@@ -49,8 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/descricao"
-                android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary"
+                android:textColor="@color/preto"
                 android:textSize="14sp"
                 android:fontFamily="@font/roboto_medium"
                 />
@@ -60,8 +59,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/text_localidade"
-                android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary"
+                android:textColor="@color/preto"
                 android:textSize="14sp"
                 android:fontFamily="@font/roboto_medium"
                 />
@@ -71,8 +69,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/dataTermino"
-                android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary"
+                android:textColor="@color/preto"
                 android:textSize="14sp"
                 android:fontFamily="@font/roboto_medium"
                 />
@@ -82,8 +79,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/valorRemuneracao"
-                android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary"
+                android:textColor="@color/preto"
                 android:textSize="14sp"
                 android:fontFamily="@font/roboto_medium"
 
@@ -94,8 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/emailContato"
-                android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary"
+                android:textColor="@color/preto"
                 android:textSize="14sp"
                 android:fontFamily="@font/roboto_medium"
                 />
@@ -105,8 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/telefoneContato"
-                android:textAppearance="?attr/textAppearanceBody2"
-                android:textColor="?android:attr/textColorSecondary"
+                android:textColor="@color/preto"
                 android:textSize="14sp"
                 android:fontFamily="@font/roboto_medium"
                 />
@@ -115,7 +109,7 @@
                 android:id="@+id/enviarEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Clique e envie um e-mail"
+                android:text="@string/clique_e_envie_um_e_mail"
                 android:orientation="horizontal"
                 android:layout_gravity="end"
                 android:layout_margin="8dp"
@@ -127,7 +121,7 @@
                 android:id="@+id/voltarBotao"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Voltar"
+                android:text="@string/voltar"
                 android:orientation="horizontal"
                 android:layout_margin="8dp"
                 android:textColor="@color/branco"

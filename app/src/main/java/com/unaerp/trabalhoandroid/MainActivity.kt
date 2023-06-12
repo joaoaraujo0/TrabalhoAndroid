@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.FirebaseNetworkException
@@ -34,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         binding.botaoEntrar.setOnClickListener {
             closeKeyboard()
             if (binding.inputEmailLogin.text.isNullOrEmpty() || binding.inputSenhaLogin.text.isNullOrEmpty()) {
-                Aviso("Preencha os campos!!", binding)
+                Aviso("Preencha os campos!!")
             } else {
                 Login(
                     binding.inputEmailLogin.text.toString(),
@@ -77,7 +76,7 @@ class MainActivity : AppCompatActivity() {
                 is FirebaseNetworkException -> "Sem conexão com a internet!"
                 else -> "Erro ao fazer login!"
             }
-            Aviso(mensagemErro, binding)
+            Aviso(mensagemErro)
 
         }
     }
@@ -97,11 +96,7 @@ class MainActivity : AppCompatActivity() {
                     tipo = document?.getString("TipodoPerfil")
                     VerificaoPerfil(tipo.toString())
                 } else {
-                    Toast.makeText(
-                        this,
-                        "Não foi possível verificar seu perfil",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Aviso("Não foi possível verificar seu perfil")
                 }
             }
     }
@@ -129,7 +124,7 @@ class MainActivity : AppCompatActivity() {
         binding.inputSenhaLogin.setText("")
     }
 
-    private fun Aviso(mensagem: String, binding: ActivityMainBinding) {
+    private fun Aviso(mensagem: String) {
         val snackbar = Snackbar.make(binding.root, mensagem, Snackbar.LENGTH_SHORT)
         snackbar.setBackgroundTint(Color.RED)
         snackbar.show()

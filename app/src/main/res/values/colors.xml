@@ -63,4 +63,6 @@
     <color name="md_theme_dark_onSurfaceVariant">#D5C2C6</color>
     <color name="branco">#FFFFFF</color>
     <color name="azul">#1F6B8A</color>
+    <color name="preto">#000000</color>
+
 </resources>

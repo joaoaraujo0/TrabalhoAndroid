@@ -1,12 +1,13 @@
 package com.unaerp.trabalhoandroid.fragments
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.Query
 import com.unaerp.trabalhoandroid.Adapter.AdapterVaga
 import com.unaerp.trabalhoandroid.FirestoreSingleton
@@ -16,12 +17,12 @@ import com.unaerp.trabalhoandroid.model.Vagas
 class PainelVagasFragment : Fragment() {
     private val listaVagas: MutableList<Vagas> = mutableListOf()
     private lateinit var adapterVaga: AdapterVaga
-
+    private lateinit var binding: FragmentPainelVagasBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentPainelVagasBinding.inflate(inflater, container, false)
+        binding = FragmentPainelVagasBinding.inflate(inflater, container, false)
         val view = binding.root
 
 
@@ -32,7 +33,7 @@ class PainelVagasFragment : Fragment() {
 
         recyclerViewVagas.adapter = adapterVaga
 
-        pegarAnuncios(listaVagas)
+        pegarAnuncios()
 
         /*fun filterList(query: String?) {
             val filteredList: MutableList<Vagas> = mutableListOf()
@@ -78,7 +79,7 @@ class PainelVagasFragment : Fragment() {
         return view
     }
 
-    private fun pegarAnuncios(listaVagas: MutableList<Vagas>) {
+    private fun pegarAnuncios() {
         val db = FirestoreSingleton.getInstance()
         db.collection("AnunciosEmpresas")
             .orderBy("DataPublicacao", Query.Direction.DESCENDING)
@@ -114,13 +115,15 @@ class PainelVagasFragment : Fragment() {
                     }
                     adapterVaga.updateList(listaVagas)
                 } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Não foi encontrado nenhum anúncio!.",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Aviso("Não foi encontrado nenhum anúncio!")
                 }
             }
+    }
+
+    private fun Aviso(mensagem: String) {
+        val snackbar = Snackbar.make(binding.root, mensagem, Snackbar.LENGTH_SHORT)
+        snackbar.setBackgroundTint(Color.parseColor("#ED2B2A"))
+        snackbar.show()
     }
 }
 

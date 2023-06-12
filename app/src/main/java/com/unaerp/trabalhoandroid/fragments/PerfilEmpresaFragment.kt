@@ -3,6 +3,7 @@ package com.unaerp.trabalhoandroid.fragments
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.Color
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -14,6 +15,7 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -30,7 +32,7 @@ private var nome: String? = null
 class PerfilEmpresaFragment : Fragment() {
     private var imgPicture: ImageView? = null
     private var botaoTirarFoto: Button? = null
-
+    private lateinit var binding: FragmentPerfilUserBinding
 
     private val cameraLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -39,26 +41,28 @@ class PerfilEmpresaFragment : Fragment() {
         userBitmap = bitmap
         imgPicture?.setImageBitmap(bitmap)
     }
-    private val permissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestPermission()
-    ) {
-        if (it == true) {
-            val intentOpenCamera = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-            cameraLauncher.launch(intentOpenCamera)
-        } else {
-            Toast.makeText(requireContext(), "Permissão necessária", Toast.LENGTH_LONG).show()
-        }
-    }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         auth = Firebase.auth
-        val binding = FragmentPerfilUserBinding.inflate(inflater, container, false)
+        binding = FragmentPerfilUserBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        PegarDadoUsuario(binding)
+        PegarDadoUsuario()
+
+        val permissionLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) {
+            if (it == true) {
+                val intentOpenCamera = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                cameraLauncher.launch(intentOpenCamera)
+            } else {
+                Toast.makeText(requireContext(), "Permissão necessária", Toast.LENGTH_LONG).show()
+            }
+        }
 
 
         binding.sairBotao.setOnClickListener {
@@ -95,7 +99,7 @@ class PerfilEmpresaFragment : Fragment() {
         return view
     }
 
-    private fun PegarDadoUsuario(binding: FragmentPerfilUserBinding) {
+    private fun PegarDadoUsuario() {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val db = FirestoreSingleton.getInstance()
         val userId = currentUser?.uid
@@ -110,11 +114,7 @@ class PerfilEmpresaFragment : Fragment() {
                     binding.nomePerfil.text = nomePerfilText
                     binding.emailPerfil.text = emailText
                 } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Não foi possível verificar seu perfil",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Aviso("Não foi possível verificar seu perfil")
                 }
 
 
@@ -122,10 +122,9 @@ class PerfilEmpresaFragment : Fragment() {
 
 
     }
-
-
+    private fun Aviso(mensagem: String) {
+        val snackbar = Snackbar.make(binding.root, mensagem, Snackbar.LENGTH_SHORT)
+        snackbar.setBackgroundTint(Color.parseColor("#ED2B2A"))
+        snackbar.show()
+    }
 }
-
-
-
-

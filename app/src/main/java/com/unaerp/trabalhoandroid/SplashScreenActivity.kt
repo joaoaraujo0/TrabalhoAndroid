@@ -1,11 +1,12 @@
 package com.unaerp.trabalhoandroid
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
@@ -50,11 +51,7 @@ class SplashScreenActivity : AppCompatActivity() {
                     tipo = document?.getString("TipodoPerfil")
                     VerificaoPerfil(tipo.toString())
                 } else {
-                    Toast.makeText(
-                        this,
-                        "Não foi possível verificar seu perfil",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                   Aviso("Não foi possível verificar seu perfil")
                 }
             }
     }
@@ -74,7 +71,11 @@ class SplashScreenActivity : AppCompatActivity() {
         }
     }
 
-
+    private fun Aviso(mensagem: String) {
+        val snackbar = Snackbar.make(binding.root, mensagem, Snackbar.LENGTH_SHORT)
+        snackbar.setBackgroundTint(Color.parseColor("#ED2B2A"))
+        snackbar.show()
+    }
 }
 
 

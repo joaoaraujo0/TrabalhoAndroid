@@ -28,20 +28,16 @@ class RecuperarSenhaActivity : AppCompatActivity() {
 
         binding.botaoEnviar.setOnClickListener {
             if (binding.inputEmailLogin.text.isNullOrEmpty()) {
-                Aviso("Preencha os campos!!", binding)
+                Aviso("Preencha os campos!!")
             } else {
                 auth.sendPasswordResetEmail(binding.inputEmailLogin.text.toString())
                     .addOnCompleteListener { task ->
                         if (task.isSuccessful) {
-                            Toast.makeText(
-                                this,
-                                "E-mail enviado com sucesso, verifique sua caixa de entrada!!",
-                                Toast.LENGTH_SHORT
-                            ).show()
+                            Toast.makeText(this, "E-mail enviado com sucesso, verifique sua caixa de entrada!!", Toast.LENGTH_SHORT).show()
                             closeKeyboard()
                             finish()
                         } else {
-                            Aviso("Erro ao enviar e-mail, tente novamente.", binding)
+                            Aviso("Erro ao enviar e-mail, tente novamente.")
                             closeKeyboard()
                         }
 
@@ -55,7 +51,7 @@ class RecuperarSenhaActivity : AppCompatActivity() {
 
     }
 
-    private fun Aviso(mensagem: String, binding: ActivityRecuperarSenhaBinding) {
+    private fun Aviso(mensagem: String) {
         val snackbar = Snackbar.make(binding.root, mensagem, Snackbar.LENGTH_SHORT)
         snackbar.setBackgroundTint(Color.RED)
         snackbar.show()

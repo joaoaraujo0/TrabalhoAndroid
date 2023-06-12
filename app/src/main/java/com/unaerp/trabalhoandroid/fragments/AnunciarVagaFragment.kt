@@ -19,13 +19,13 @@ import java.util.Date
 import java.util.Locale
 
 class AnunciarVagaFragment : Fragment() {
-
+    private lateinit var binding:FragmentAnunciarVagaBinding
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentAnunciarVagaBinding.inflate(inflater, container, false)
+        binding = FragmentAnunciarVagaBinding.inflate(inflater, container, false)
         val view = binding.root
 
         //Calendario
@@ -82,9 +82,9 @@ class AnunciarVagaFragment : Fragment() {
             || binding.localidadeAnuncioInput.text.isNullOrEmpty() || binding.emailContatoInput.text.isNullOrEmpty()
             || binding.telefoneContatoInput.text.isNullOrEmpty() || binding.dataVencimentoInput.text.isNullOrEmpty()
         ) {
-            Aviso("Campos vazios, preencha!", binding)
+            Aviso("Campos vazios, preencha!")
         } else if (dataVencimento.before(dataDeAgora)) {
-            Aviso("Data menor que o dia atual!", binding)
+            Aviso("Data menor que o dia atual!")
         } else {
             val currentUser = FirebaseAuth.getInstance().currentUser
             val db = FirestoreSingleton.getInstance()
@@ -103,25 +103,25 @@ class AnunciarVagaFragment : Fragment() {
             db.collection("AnunciosEmpresas")
                 .add(anuncio)
                 .addOnSuccessListener {
-                    Sucesso("Vaga postada com sucesso!!", binding)
-                    LimpaInput(binding)
+                    Sucesso("Vaga postada com sucesso!!")
+                    LimpaInput()
                 }
                 .addOnFailureListener {
-                    Aviso("Não foi possível cadastrar usuário, verifique as informações", binding)
+                    Aviso("Não foi possível cadastrar usuário, verifique as informações")
                 }
         }
     }
 
 
-    private fun Aviso(mensagem: String, binding: FragmentAnunciarVagaBinding) {
+    private fun Aviso(mensagem: String) {
         val snackbar = Snackbar.make(binding.root, mensagem, Snackbar.LENGTH_SHORT)
-        snackbar.setBackgroundTint(Color.RED)
+        snackbar.setBackgroundTint(Color.parseColor("#ED2B2A"))
         snackbar.show()
     }
 
-    private fun Sucesso(mensagem: String, binding: FragmentAnunciarVagaBinding) {
+    private fun Sucesso(mensagem: String) {
         val snackbar = Snackbar.make(binding.root, mensagem, Snackbar.LENGTH_SHORT)
-        snackbar.setBackgroundTint(Color.GREEN)
+        snackbar.setBackgroundTint(Color.parseColor("#03C988"))
         snackbar.show()
     }
 
@@ -134,7 +134,7 @@ class AnunciarVagaFragment : Fragment() {
         }
     }
 
-    private fun LimpaInput(binding: FragmentAnunciarVagaBinding) {
+    private fun LimpaInput() {
         binding.nomeEmpresaInput.setText("")
         binding.descricaoInput.setText("")
         binding.areaDaVagaCadastroInput.setText("")
