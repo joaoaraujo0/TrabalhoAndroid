@@ -23,6 +23,8 @@ class MinhasVagasFragment : Fragment() {
     private val listaMinhasVagas: MutableList<Vagas> = mutableListOf()
     private lateinit var adapterMinhasVaga: AdapterMinhasVagas
     private lateinit var binding: FragmentMinhasVagasBinding
+    private val db = FirestoreSingleton.getInstance()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -63,7 +65,6 @@ class MinhasVagasFragment : Fragment() {
 
     private fun pegarAnuncios() {
         val currentUser = FirebaseAuth.getInstance().currentUser
-        val db = FirestoreSingleton.getInstance()
         val userId = currentUser?.uid
         db.collection("AnunciosEmpresas")
             .whereEqualTo("IdEmpresa", userId)

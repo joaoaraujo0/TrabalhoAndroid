@@ -33,6 +33,7 @@ class PerfilEstagiarioFragment : Fragment() {
     private var imgPicture: ImageView? = null
     private var btnTakePicture: Button? = null
     private lateinit var binding: FragmentPerfilEstagiarioBinding
+    private val db = FirestoreSingleton.getInstance()
 
     private val cameraLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
@@ -99,7 +100,6 @@ class PerfilEstagiarioFragment : Fragment() {
 
     private fun PegarDadoUsuario(binding: FragmentPerfilEstagiarioBinding) {
         val currentUser = FirebaseAuth.getInstance().currentUser
-        val db = FirestoreSingleton.getInstance()
         val userId = currentUser?.uid
         db.collection("InformacoesPerfil").document(userId.toString())
             .addSnapshotListener { value, error ->

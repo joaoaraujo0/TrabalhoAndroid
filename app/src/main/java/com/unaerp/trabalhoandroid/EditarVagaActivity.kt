@@ -24,6 +24,8 @@ class EditarVagaActivity : AppCompatActivity() {
     private lateinit var emailContato: String
     private lateinit var telefoneContato: String
 
+    private val db = FirestoreSingleton.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = EditarVagaBinding.inflate(layoutInflater)
@@ -84,8 +86,6 @@ class EditarVagaActivity : AppCompatActivity() {
 
 
     private fun EditarDados(idAnuncio:String) {
-        val db= FirestoreSingleton.getInstance()
-
             db.collection("AnunciosEmpresas")
                 .document(idAnuncio)
                 .update("NomeEmpresa", binding.nomeEmpresaInputEditar.text.toString(),
@@ -109,8 +109,6 @@ class EditarVagaActivity : AppCompatActivity() {
     }
 
     private fun PegarInformacoesDoAnuncio(idAnuncio: String) {
-        val db = FirestoreSingleton.getInstance()
-
         db.collection("AnunciosEmpresas")
             .document(idAnuncio)
             .get().addOnSuccessListener { document ->

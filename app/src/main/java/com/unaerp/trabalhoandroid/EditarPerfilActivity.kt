@@ -19,6 +19,7 @@ private lateinit var auth: FirebaseAuth
 class EditarPerfilActivity : AppCompatActivity() {
     private lateinit var binding: EditarPerfilBinding
     private lateinit var nome: String
+    private val db = FirestoreSingleton.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,8 +58,6 @@ class EditarPerfilActivity : AppCompatActivity() {
 
 
     private fun EditarPerfil(){
-        val db = FirestoreSingleton.getInstance()
-
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
             val userId = currentUser.uid

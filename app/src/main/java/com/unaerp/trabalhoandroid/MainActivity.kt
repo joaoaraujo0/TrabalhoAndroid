@@ -21,6 +21,7 @@ private lateinit var auth: FirebaseAuth
 private lateinit var binding: ActivityMainBinding
 private var tipo: String? = null
 class MainActivity : AppCompatActivity() {
+    private val db = FirestoreSingleton.getInstance()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,7 +83,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateUI() {
-        val db = FirestoreSingleton.getInstance()
         //PEGAR TIPO DO PERFIL
         val currentUser = FirebaseAuth.getInstance().currentUser
         val userId = currentUser?.uid

@@ -26,6 +26,7 @@ class CadastroUsuarioActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var binding: CadastroBinding
+    private val db = FirestoreSingleton.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -84,8 +85,6 @@ class CadastroUsuarioActivity : AppCompatActivity() {
         }
     }
     private fun SalvarDados() {
-        val db = FirestoreSingleton.getInstance()
-
         val user = hashMapOf(
             "Nome" to binding.nomeCadastro.text.toString(),
             "TipodoPerfil" to binding.spinerDefinirPerfil.selectedItem.toString(),
@@ -111,7 +110,6 @@ class CadastroUsuarioActivity : AppCompatActivity() {
     }
 
     private fun updateUI() {
-        val db = FirestoreSingleton.getInstance()
         //PEGAR TIPO DO PERFIL
         val currentUser = FirebaseAuth.getInstance().currentUser
         val userId = currentUser?.uid

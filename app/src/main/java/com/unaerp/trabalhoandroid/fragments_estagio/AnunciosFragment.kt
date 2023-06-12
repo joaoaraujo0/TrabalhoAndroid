@@ -18,6 +18,8 @@ class AnunciosFragment : Fragment() {
     private val listaVagas: MutableList<Vagas> = mutableListOf()
     private lateinit var adapterVaga: AdapterVaga
     private lateinit var binding: FragmentAnuncioEstagiarioBinding
+    private val db = FirestoreSingleton.getInstance()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,7 +42,6 @@ class AnunciosFragment : Fragment() {
         return view
     }
     private fun pegarAnuncios() {
-        val db = FirestoreSingleton.getInstance()
         db.collection("AnunciosEmpresas")
             .orderBy("DataPublicacao", Query.Direction.DESCENDING)
             .addSnapshotListener { result, error ->

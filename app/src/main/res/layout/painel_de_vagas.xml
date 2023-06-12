@@ -29,9 +29,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/anunciante"
-                android:textSize="16sp"
                 android:textColor="@color/preto"
-
+                android:textSize="16sp"
+                android:fontFamily="@font/roboto_medium"
                 />
             <TextView
                 android:id="@+id/areaVaga"

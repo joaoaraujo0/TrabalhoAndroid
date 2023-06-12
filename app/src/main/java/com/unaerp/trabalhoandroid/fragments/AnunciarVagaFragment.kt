@@ -20,6 +20,9 @@ import java.util.Locale
 
 class AnunciarVagaFragment : Fragment() {
     private lateinit var binding:FragmentAnunciarVagaBinding
+    private lateinit var dataVencimento: Date
+    private val db = FirestoreSingleton.getInstance()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -71,7 +74,14 @@ class AnunciarVagaFragment : Fragment() {
         val formatoDataSemHora = SimpleDateFormat("dd/MM/yyyy", Locale("pt", "BR"))
         val formatoDataComHora = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale("pt", "BR")).format(dataHoraAtual)
 
-        val dataVencimento = formatoDataSemHora.parse(binding.dataVencimentoInput.text.toString())
+
+        if (binding.dataVencimentoInput.text.isNullOrEmpty()) {
+            Aviso("Campos vazios, preencha!")
+            return
+        } else {
+            dataVencimento = formatoDataSemHora.parse(binding.dataVencimentoInput.text.toString())
+        }
+
         val dataDeAgora = formatoDataSemHora.parse(formatoDataComHora)
 
         val formatoHora = SimpleDateFormat(" HH:mm:ss", Locale("pt", "BR"))
@@ -80,14 +90,13 @@ class AnunciarVagaFragment : Fragment() {
         if (binding.nomeEmpresaInput.text.isNullOrEmpty() || binding.descricaoInput.text.isNullOrEmpty()
             || binding.areaDaVagaCadastroInput.text.isNullOrEmpty() || binding.valorRemuneracaoInput.text.isNullOrEmpty()
             || binding.localidadeAnuncioInput.text.isNullOrEmpty() || binding.emailContatoInput.text.isNullOrEmpty()
-            || binding.telefoneContatoInput.text.isNullOrEmpty() || binding.dataVencimentoInput.text.isNullOrEmpty()
+            || binding.telefoneContatoInput.text.isNullOrEmpty()
         ) {
             Aviso("Campos vazios, preencha!")
-        } else if (dataVencimento.before(dataDeAgora)) {
-            Aviso("Data menor que o dia atual!")
+        } else if (dataVencimento.before(dataDeAgora) || dataVencimento.equals(dataDeAgora) ) {
+            Aviso("Data invalida!")
         } else {
             val currentUser = FirebaseAuth.getInstance().currentUser
-            val db = FirestoreSingleton.getInstance()
             val anuncio = hashMapOf(
                 "NomeEmpresa" to binding.nomeEmpresaInput.text.toString(),
                 "Descricao" to binding.descricaoInput.text.toString(),

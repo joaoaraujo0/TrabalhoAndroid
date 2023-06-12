@@ -12,6 +12,9 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.ktx.Firebase
 import com.unaerp.trabalhoandroid.databinding.SplashViewBinding
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 
 private lateinit var auth: FirebaseAuth
@@ -19,11 +22,15 @@ private lateinit var binding: SplashViewBinding
 private var tipo: String? = null
 
 class SplashScreenActivity : AppCompatActivity() {
+    private val db = FirestoreSingleton.getInstance()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = SplashViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = Firebase.auth
+
+        VerificaVencimentoPublicacao()
 
         Handler(Looper.getMainLooper()).postDelayed({
             if (auth.currentUser != null) {
@@ -36,8 +43,8 @@ class SplashScreenActivity : AppCompatActivity() {
         }, 2000)
 
     }
+
     private fun updateUI() {
-        val db = FirestoreSingleton.getInstance()
         //PEGAR TIPO DO PERFIL
         val currentUser = FirebaseAuth.getInstance().currentUser
         val userId = currentUser?.uid
@@ -51,9 +58,43 @@ class SplashScreenActivity : AppCompatActivity() {
                     tipo = document?.getString("TipodoPerfil")
                     VerificaoPerfil(tipo.toString())
                 } else {
-                   Aviso("Não foi possível verificar seu perfil")
+                    Aviso("Não foi possível verificar seu perfil")
                 }
             }
+    }
+
+    private fun VerificaVencimentoPublicacao() {
+        val dataAgora = Date()
+
+        val formatoDataComHora = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale("pt", "BR")).format(dataAgora)
+        val formatoData = SimpleDateFormat("dd/MM/yyyy HH:mm:ss", Locale("pt", "BR"))
+
+        db.collection("AnunciosEmpresas")
+            .get()
+            .addOnSuccessListener {result ->
+                for (document in result){
+                    val dataVencimento = document.getString("DataVencimento")
+
+                    val dataVencimentoDate = dataVencimento?.let { formatoData.parse(it) }
+
+                    val dataDeAgora = formatoData.parse(formatoDataComHora)
+
+                    if (dataDeAgora != null) {
+                        if(dataDeAgora.after(dataVencimentoDate)){
+                            db.collection("AnunciosEmpresas")
+                                .document(document.id)
+                                .delete()
+
+                        }
+                    }
+
+
+
+                }
+            }
+
+
+
     }
 
 
