@@ -4,6 +4,8 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.graphics.Color
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,8 +15,10 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.unaerp.trabalhoandroid.FirestoreSingleton
 import com.unaerp.trabalhoandroid.databinding.FragmentAnunciarVagaBinding
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.Calendar
+import java.util.Currency
 import java.util.Date
 import java.util.Locale
 
@@ -30,7 +34,73 @@ class AnunciarVagaFragment : Fragment() {
     ): View {
         binding = FragmentAnunciarVagaBinding.inflate(inflater, container, false)
         val view = binding.root
+// telefone
+        val telefoneContatoCadastro = binding.telefoneContatoCadastro.editText
 
+        telefoneContatoCadastro?.addTextChangedListener(object : TextWatcher {
+            private var isFormatting = false
+            private val phonePattern = "([0-9]{2})([0-9]{4,5})([0-9]{0,4})"
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                if (!isFormatting) {
+                    isFormatting = true
+                    val digitsOnly = s?.toString()?.replace(Regex("[^0-9]"), "") ?: ""
+                    val formattedText = buildString {
+                        for (i in digitsOnly.indices) {
+                            if (i == 0) {
+                                append("(")
+                            } else if (i == 2) {
+                                append(") ")
+                            } else if (i == 7) {
+                                append("-")
+                            }
+                            append(digitsOnly[i])
+                        }
+                    }
+                    val maxLength = 15
+                    val formattedTextLimited = if (formattedText.length > maxLength) {
+                        formattedText.substring(0, maxLength)
+                    } else {
+                        formattedText
+                    }
+                    telefoneContatoCadastro?.setText(formattedTextLimited)
+                    telefoneContatoCadastro?.setSelection(formattedTextLimited.length)
+                    isFormatting = false
+                }
+            }
+        })
+        //
+
+        // Formatar valor monetário
+        val editTextValorRemuneracao = binding.valorRemuneracaoInput
+        editTextValorRemuneracao.addTextChangedListener(object : TextWatcher {
+            private var isUpdating = false
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                if (isUpdating) {
+                    return
+                }
+                isUpdating = true
+                val valorTexto = s.toString().replace("[^\\d]".toRegex(), "")
+                val valorNumerico = valorTexto.toDoubleOrNull() ?: 0.0
+                val valorFormatado = formatarValorRemuneracao(valorNumerico)
+                editTextValorRemuneracao.setText(valorFormatado)
+                editTextValorRemuneracao.setSelection(valorFormatado.length)
+                isUpdating = false
+            }
+        })
+        //
         //Calendario
         val calendar = Calendar.getInstance()
         val datePickerFinal = DatePickerDialog(
@@ -95,7 +165,10 @@ class AnunciarVagaFragment : Fragment() {
             Aviso("Campos vazios, preencha!")
         } else if (dataVencimento.before(dataDeAgora) || dataVencimento.equals(dataDeAgora) ) {
             Aviso("Data invalida!")
-        } else {
+        }else if(verificarFormatoEmail() == false){
+            Aviso("Formato do e-mail incorreto")
+        }
+        else {
             val currentUser = FirebaseAuth.getInstance().currentUser
             val anuncio = hashMapOf(
                 "NomeEmpresa" to binding.nomeEmpresaInput.text.toString(),
@@ -153,5 +226,24 @@ class AnunciarVagaFragment : Fragment() {
         binding.telefoneContatoInput.setText("")
         binding.dataVencimentoInput.setText("")
     }
+    private fun formatarValorRemuneracao(valor: Double): String {
+        val numberFormat = NumberFormat.getCurrencyInstance(Locale("pt", "BR"))
+        numberFormat.currency = Currency.getInstance("BRL")
+        val valorFormatado = numberFormat.format(valor / 100)
+        return valorFormatado.replace("R$", "").trim()
+    }
 
+    private fun validarFormatoEmail(email: String): Boolean {
+        val regex = Regex("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.(?!.*\\.com)[A-Za-z]{2,}")
+        return regex.matches(email)
+    }
+
+    private fun verificarFormatoEmail():Boolean {
+        val isValidFormat = validarFormatoEmail(binding.emailContatoInput.text.toString())
+
+        if (!isValidFormat) {
+            return false
+        }
+        return true
+    }
 }

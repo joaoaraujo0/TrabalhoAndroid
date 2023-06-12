@@ -44,14 +44,7 @@ class AdapterVaga(
 
             binding.verVagas.setOnClickListener {
                 val intent = Intent(itemView.context, VagaExpandida::class.java)
-                intent.putExtra("areaVaga", vaga.areaVaga)
-                intent.putExtra("descricaoVaga", vaga.descricaoVaga)
-                intent.putExtra("valorRemuneracao", vaga.valorRemuneracao)
-                intent.putExtra("localidade", vaga.localidade)
-                intent.putExtra("emailContato", vaga.emailContato)
-                intent.putExtra("telefoneContato", vaga.telefoneContato)
-                intent.putExtra("anunciante", vaga.anunciante)
-                intent.putExtra("dataTermino", vaga.dataTermino)
+                intent.putExtra("idDaVaga", vaga.id)
                 itemView.context.startActivity(intent)
             }
         }

@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.Query
-import com.google.firebase.firestore.ktx.firestore
-import com.google.firebase.ktx.Firebase
 import com.unaerp.trabalhoandroid.Adapter.AdapterMinhasVagas
 import com.unaerp.trabalhoandroid.EditarVagaActivity
 import com.unaerp.trabalhoandroid.FirestoreSingleton
@@ -31,7 +29,6 @@ class MinhasVagasFragment : Fragment() {
     ): View {
         binding = FragmentMinhasVagasBinding.inflate(inflater, container, false)
         val view = binding.root
-        val db = Firebase.firestore
 
         val recyclerViewMinhasVagas = binding.recyclerViewMinhasVagas
         recyclerViewMinhasVagas.layoutManager = LinearLayoutManager(requireContext())

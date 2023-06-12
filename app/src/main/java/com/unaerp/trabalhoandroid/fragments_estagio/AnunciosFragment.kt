@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.firestore.Filter
 import com.google.firebase.firestore.Query
 import com.unaerp.trabalhoandroid.Adapter.AdapterVaga
 import com.unaerp.trabalhoandroid.FirestoreSingleton
@@ -27,8 +29,6 @@ class AnunciosFragment : Fragment() {
         binding = FragmentAnuncioEstagiarioBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        //val pesquisa = view.findViewById<SearchView>(R.id.searchViewEstagiario)
-
         val recyclerViewVagas = binding.recyclerViewVagasEstagio
         recyclerViewVagas.layoutManager = LinearLayoutManager(requireContext())
 
@@ -38,8 +38,65 @@ class AnunciosFragment : Fragment() {
 
         pegarAnuncios()
 
+        binding.searchViewEstagiario.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                // Lógica para lidar com a submissão do texto de pesquisa
+                pesquisar(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String): Boolean {
+                if (newText.isEmpty()){
+                    pegarAnuncios()
+                }
+                return true
+            }
+        })
 
         return view
+    }
+
+    private fun pesquisar(mensagem: String){
+        db.collection("AnunciosEmpresas")
+            .orderBy("DataPublicacao", Query.Direction.DESCENDING)
+            .where(
+                Filter.or(
+                Filter.equalTo("NomeEmpresa",mensagem),
+                Filter.equalTo("Localidade",mensagem),
+                Filter.equalTo("AreaDaVaga",mensagem),
+            ))
+            .addSnapshotListener { result, error ->
+                listaVagas.clear()
+                if (result != null) {
+                    for (document in result) {
+                        val nomeEmpresa = document.getString("NomeEmpresa").toString()
+                        val descricaoVaga = document.getString("Descricao").toString()
+                        val areaVaga = document.getString("AreaDaVaga").toString()
+                        val valorRemuneracao = document.getString("ValorRemuneracao").toString()
+                        val localidade = document.getString("Localidade").toString()
+                        val emailContato = document.getString("EmailContato").toString()
+                        val telefoneContato = document.getString("TelefoneContato").toString()
+                        val dataTermino = document.getString("DataVencimento").toString()
+                        val dataInicioVaga = document.getString("DataPublicacao").toString()
+
+                        val vaga = Vagas(
+                            document.id,
+                            nomeEmpresa,
+                            descricaoVaga,
+                            areaVaga,
+                            valorRemuneracao,
+                            localidade,
+                            emailContato,
+                            telefoneContato,
+                            dataTermino,
+                            dataInicioVaga,
+                        )
+                        listaVagas.add(vaga)
+                    }
+                    adapterVaga.updateList(listaVagas)
+                }
+            }
+
     }
     private fun pegarAnuncios() {
         db.collection("AnunciosEmpresas")

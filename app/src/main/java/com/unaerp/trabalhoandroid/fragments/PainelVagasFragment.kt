@@ -9,6 +9,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.firestore.Filter
 import com.google.firebase.firestore.Query
 import com.unaerp.trabalhoandroid.Adapter.AdapterVaga
 import com.unaerp.trabalhoandroid.FirestoreSingleton
@@ -59,7 +60,11 @@ class PainelVagasFragment : Fragment() {
     private fun pesquisar(mensagem: String){
         db.collection("AnunciosEmpresas")
             .orderBy("DataPublicacao", Query.Direction.DESCENDING)
-            .whereEqualTo("NomeEmpresa",mensagem)
+            .where(Filter.or(
+                Filter.equalTo("NomeEmpresa",mensagem),
+                Filter.equalTo("Localidade",mensagem),
+                Filter.equalTo("AreaDaVaga",mensagem),
+                ))
             .addSnapshotListener { result, error ->
                 listaVagas.clear()
                 if (result != null) {
