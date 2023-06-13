@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView android:id="@+id/card"
+<com.google.android.material.card.MaterialCardView
+    android:id="@+id/card"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -13,25 +14,31 @@
         android:background="@color/seed"
         android:padding="8dp">
             <TextView
-                android:layout_margin="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/detalhes_da_vaga"
-                android:textColor="@color/preto"
-                android:textSize="30sp"
-                android:fontFamily="@font/open_sans_bold"
-                android:textAlignment="center"
-                />
-
-            <TextView
                 android:layout_margin="8dp"
                 android:id="@+id/anunciante"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/anunciante"
                 android:textColor="@color/preto"
-                android:textSize="16sp"
-                android:fontFamily="@font/roboto_medium"
+                android:textSize="30sp"
+                android:fontFamily="@font/poppins"
+                android:textAlignment="center"
+                />
+            <TextView
+                android:id="@+id/descricaoVaga"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="@string/descricao"
+                android:textSize="14sp"
+                android:textColor="@color/preto"
+                android:fontFamily="@font/poppins"
+
+                />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="3dp"
+                android:background="@color/md_theme_light_surfaceTint"
                 />
             <TextView
                 android:id="@+id/areaVaga"
@@ -41,27 +48,22 @@
                 android:text="@string/areaVaga"
                 android:textSize="14sp"
                 android:textColor="@color/preto"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/poppins"
+                app:drawableStartCompat="@drawable/baseline_content_paste_24"
+
                 />
-            <TextView
-                android:id="@+id/descricaoVaga"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="@string/descricao"
-                android:textColor="@color/preto"
-                android:textSize="14sp"
-                android:fontFamily="@font/roboto_medium"
-                />
+
             <TextView
                 android:id="@+id/localidadeVaga"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/text_localidade"
-                android:textColor="@color/preto"
                 android:textSize="14sp"
-                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/preto"
+                android:fontFamily="@font/poppins"
+                app:drawableStartCompat="@drawable/baseline_locationnn_on_24"
+
                 />
             <TextView
                 android:id="@+id/dataTerminoDaVaga"
@@ -69,9 +71,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/dataTermino"
-                android:textColor="@color/preto"
                 android:textSize="14sp"
-                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/preto"
+                android:fontFamily="@font/poppins"
+                app:drawableStartCompat="@drawable/baseline_date_range_24"
                 />
             <TextView
                 android:id="@+id/remuneracaoEstagio"
@@ -79,9 +82,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/valorRemuneracao"
-                android:textColor="@color/preto"
                 android:textSize="14sp"
-                android:fontFamily="@font/roboto_medium"
+                android:textColor="@color/preto"
+                android:fontFamily="@font/poppins"
+                app:drawableStartCompat="@drawable/baseline_attach_money_24"
 
                 />
             <TextView
@@ -90,9 +94,10 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:text="@string/emailContato"
-                android:textColor="@color/preto"
                 android:textSize="14sp"
-                android:fontFamily="@font/roboto_medium"
+                app:drawableStartCompat="@drawable/baseline_email_24"
+                android:textColor="@color/preto"
+                android:fontFamily="@font/poppins"
                 />
             <TextView
                 android:id="@+id/telefoneContatoEmpresa"
@@ -101,10 +106,16 @@
                 android:layout_margin="8dp"
                 android:text="@string/telefoneContato"
                 android:textColor="@color/preto"
+                android:fontFamily="@font/poppins"
                 android:textSize="14sp"
-                android:fontFamily="@font/roboto_medium"
-                />
+                app:drawableStartCompat="@drawable/baseline_local_phone_24"
 
+                />
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="3dp"
+                android:background="@color/md_theme_light_surfaceTint"
+                />
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/enviarEmail"
                 android:layout_width="match_parent"
@@ -115,7 +126,7 @@
                 android:layout_margin="8dp"
                 android:textColor="@color/branco"
                 android:backgroundTint="@color/md_theme_light_primary"
-                style="?attr/borderlessButtonStyle" />
+                />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/voltarBotao"

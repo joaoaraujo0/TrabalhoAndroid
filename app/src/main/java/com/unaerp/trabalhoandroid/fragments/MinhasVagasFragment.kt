@@ -59,7 +59,6 @@ class MinhasVagasFragment : Fragment() {
 
         return view
     }
-
     private fun pegarAnuncios() {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val userId = currentUser?.uid

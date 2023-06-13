@@ -64,5 +64,6 @@
     <color name="branco">#FFFFFF</color>
     <color name="azul">#1F6B8A</color>
     <color name="preto">#000000</color>
+    <color name="cinza">#a0a0a0</color>
 
 </resources>

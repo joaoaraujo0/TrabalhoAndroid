@@ -42,7 +42,7 @@
             app:layout_constraintRight_toRightOf="parent"
             android:src="@drawable/logoperfil"
             app:layout_constraintTop_toBottomOf="@+id/Perfil"
-            android:contentDescription="Foto estagiario"
+            android:contentDescription="@string/foto_estagiario_desc"
             />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/botaoTirarFotoEmpresa"
@@ -66,7 +66,7 @@
             android:background="@color/md_theme_dark_secondary"
             android:padding="15dp"
             android:textSize="20sp"
-            android:fontFamily="@font/roboto_medium"
+            android:fontFamily="@font/poppins"
             android:textStyle="bold"
             android:layout_margin="8dp"
             android:textColor="@color/preto"
@@ -92,7 +92,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nomePerfil"
-            android:fontFamily="@font/roboto_medium"
+            android:fontFamily="@font/poppins"
             />
         <com.google.android.material.button.MaterialButton
             android:id="@+id/editarPerfilEmpresa"

@@ -27,23 +27,21 @@
             <!-- Title, secondary and supporting text -->
             <TextView
                 android:id="@+id/nomeEmpresaMinhasVagas"
-                android:fontFamily="@font/roboto_medium"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
                 android:text="@string/NomedaEmpresa"
-                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:fontFamily="@font/poppins"
                 android:textSize="16sp"
                 android:textColor="@color/preto"
                 />
 
             <TextView
                 android:id="@+id/areaDaVagaMinhasVagas"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/poppins"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_width="wrap_content"
                 android:text="@string/area_da_vaga"
-                android:textAppearance="?attr/textAppearanceBody2"
                 android:textSize="14sp"
                 android:textColor="@color/preto"
 
@@ -51,56 +49,51 @@
 
             <TextView
                 android:id="@+id/localidadeMinhasVagas"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/poppins"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_width="wrap_content"
                 android:text="@string/localidade"
-                android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="@color/preto"
                 android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/dataTerminoMinhasVagas"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/poppins"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_width="wrap_content"
                 android:text="@string/data_termino_da_vaga"
-                android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="@color/preto"
                 android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/valorRemuneracaoMinhasVagas"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/poppins"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_width="wrap_content"
                 android:text="@string/remuneracao"
-                android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="@color/preto"
                 android:textSize="14sp" />
 
             <TextView
-                android:fontFamily="@font/roboto_medium"
                 android:id="@+id/emailContatoMinhasVagas"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_width="wrap_content"
                 android:text="@string/e_mail_de_contato"
-                android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="@color/preto"
+                android:fontFamily="@font/poppins"
                 android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/telefoneContatoMinhasVagas"
-                android:fontFamily="@font/roboto_medium"
+                android:fontFamily="@font/poppins"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:layout_width="wrap_content"
                 android:text="@string/telefone"
-                android:textAppearance="?attr/textAppearanceBody2"
                 android:textColor="@color/preto"
                 android:textSize="14sp" />
 

@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<ScrollView android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/seed">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".MainActivity"
-    android:paddingTop="8dp"
-    android:background="@color/seed"
-    >
+    android:paddingTop="8dp">
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textLogin"
@@ -96,7 +99,6 @@
         android:layout_height="wrap_content"
         android:text="@string/btnentrar"
         android:layout_margin="8dp"
-        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linkRecuperarSenha"
@@ -116,3 +118,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

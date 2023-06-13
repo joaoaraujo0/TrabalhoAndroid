@@ -5,13 +5,13 @@
         <item>Estagiario</item>
     </string-array>
 
-    <string name="anunciante">Nome da empresa: %1$s</string>
+    <string name="anunciante">%1$s</string>
     <string name="areaVaga">Área da vaga: %1$s</string>
-    <string name="descricao">Descrição: %1$s</string>
+    <string name="descricao">%1$s</string>
     <string name="text_localidade">Localidade: %1$s</string>
     <string name="dataTermino">Data de termino da vaga: %1$s</string>
     <string name="valorRemuneracao">Valor da Remuneração: %1$s</string>
-    <string name="emailContato">Email de Contato: %1$s</string>
+    <string name="emailContato">E-mail de Contato: %1$s</string>
     <string name="telefoneContato">Telefone de Contato: %1$s</string>
 
     <!-- Tela Login. -->
@@ -127,4 +127,5 @@
     <string name="area_minha_vaga">Área da vaga</string>
     <string name="anunciar_cadastro_anuncio">Anunciar</string>
     <string name="texto_recuperar_senha">Digite seu E-mail para fazer a recuperação de senha.</string>
+    <string name="foto_estagiario_desc">Foto estagiario</string>
 </resources>
