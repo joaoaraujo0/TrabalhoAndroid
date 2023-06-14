@@ -93,7 +93,6 @@ class CadastroUsuarioActivity : AppCompatActivity() {
         val currentUser = FirebaseAuth.getInstance().currentUser
         if (currentUser != null) {
             val userId = currentUser.uid
-
             db.collection("InformacoesPerfil")
                 .document(userId)
                 .set(user)

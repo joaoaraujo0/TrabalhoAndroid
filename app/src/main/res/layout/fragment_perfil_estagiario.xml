@@ -67,9 +67,9 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_margin="8dp"
+            android:textColor="@color/preto"
             app:layout_constraintTop_toBottomOf="@+id/botaoTirarFoto"
             android:fontFamily="@font/poppins"
-
             />
 
         <com.google.android.material.textview.MaterialTextView
@@ -84,6 +84,8 @@
             android:padding="15dp"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:textColor="@color/preto"
+
             android:layout_margin="8dp"
             app:layout_constraintTop_toBottomOf="@+id/nomeEstagiario"
             android:fontFamily="@font/poppins"

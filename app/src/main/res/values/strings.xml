@@ -57,7 +57,7 @@
     <string name="text_localidadeCadastro"> Localidade</string>
     <string name="emailContatoCadastro"> E-mail de Contato</string>
     <string name="telefoneContatoCadastro"> Telefone de Contato</string>
-    <string name="anuncianteCadastro"> Nome da empresa</string>
+    <string name="anuncianteCadastro">Nome da empresa</string>
     <string name="datainicioCadastro"> Data de Inicio</string>
     <string name="datafinalCadastro"> Data de vencimento</string>
 

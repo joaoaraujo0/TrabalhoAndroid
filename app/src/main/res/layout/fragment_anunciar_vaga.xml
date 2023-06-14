@@ -36,7 +36,6 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
                     android:fontFamily="@font/roboto_medium"
-
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
