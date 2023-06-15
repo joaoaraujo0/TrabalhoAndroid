@@ -55,6 +55,28 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputEmail"
+        android:layout_width="0dp"
+        android:hint="@string/editaremail"
+        android:padding="8dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputNome">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/inputEmailEditar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:fontFamily="@font/roboto_medium"
+            />
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/botaoEditar"
         android:layout_width="match_parent"
@@ -63,7 +85,7 @@
         android:layout_margin="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/inputNome"
+        app:layout_constraintTop_toBottomOf="@+id/inputEmail"
         />
 
 

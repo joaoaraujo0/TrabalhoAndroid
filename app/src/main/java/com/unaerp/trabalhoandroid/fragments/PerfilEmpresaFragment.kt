@@ -95,8 +95,6 @@ class PerfilEmpresaFragment : Fragment() {
             }
         }
 
-
-
         return view
     }
 
@@ -127,4 +125,11 @@ class PerfilEmpresaFragment : Fragment() {
         snackbar.setBackgroundTint(Color.parseColor("#ED2B2A"))
         snackbar.show()
     }
+
+
+    override fun onResume() {
+        super.onResume()
+        PegarDadoUsuario()
+    }
+
 }

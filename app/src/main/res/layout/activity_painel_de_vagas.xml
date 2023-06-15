@@ -6,12 +6,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     app:cardCornerRadius="0dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/seed">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@color/seed"
+
         android:padding="8dp">
             <TextView
                 android:layout_margin="8dp"
@@ -139,5 +142,5 @@
                 android:backgroundTint="@color/md_theme_light_primary"
                 style="?attr/borderlessButtonStyle" />
         </LinearLayout>
-
+</ScrollView>
 </com.google.android.material.card.MaterialCardView>

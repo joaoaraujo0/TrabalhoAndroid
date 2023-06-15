@@ -33,6 +33,7 @@ class EditarPerfilActivity : AppCompatActivity() {
             nome = dados.getString("nome").toString()
 
             binding.inputNomeEditar.text = Editable.Factory.getInstance().newEditable(nome)
+            binding.inputEmailEditar.text = Editable.Factory.getInstance().newEditable(auth.currentUser?.email)
 
         } else {
             Aviso("Não foi possível editar perfil tente novamente")
@@ -46,10 +47,10 @@ class EditarPerfilActivity : AppCompatActivity() {
 
         binding.botaoEditar.setOnClickListener {
 
-            if (binding.inputNomeEditar.text.isNullOrEmpty()) {
+            if (binding.inputNomeEditar.text.isNullOrEmpty() || binding.inputEmailEditar.text.isNullOrEmpty()) {
                 closeKeyboard()
                 Aviso("Preencha todos os campos")
-            }else{
+            } else {
                 EditarPerfil()
             }
         }
@@ -57,10 +58,21 @@ class EditarPerfilActivity : AppCompatActivity() {
     }
 
 
-    private fun EditarPerfil(){
+    private fun EditarPerfil() {
         val currentUser = FirebaseAuth.getInstance().currentUser
+        val user = Firebase.auth.currentUser
         if (currentUser != null) {
             val userId = currentUser.uid
+
+            user!!.updateEmail(binding.inputEmailEditar.text.toString())
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                       // Log.d(TAG, "User email address updated.")
+                    }else{
+                        Aviso("Não foi possivel editar usuario")
+                    }
+                }
+
             db.collection("InformacoesPerfil")
                 .document(userId)
                 .update("Nome", binding.inputNomeEditar.text.toString()
@@ -69,7 +81,7 @@ class EditarPerfilActivity : AppCompatActivity() {
                         Toast.makeText(this, "Usuario Editado com sucesso!!", Toast.LENGTH_SHORT).show()
                         finish()
                     } else {
-                        Aviso("Não foi possivel cadastrar usuario")
+                        Aviso("Não foi possivel editar usuario")
                     }
                 }
 
@@ -91,4 +103,7 @@ class EditarPerfilActivity : AppCompatActivity() {
         snackbar.setBackgroundTint(Color.RED)
         snackbar.show()
     }
+
+
+
 }
