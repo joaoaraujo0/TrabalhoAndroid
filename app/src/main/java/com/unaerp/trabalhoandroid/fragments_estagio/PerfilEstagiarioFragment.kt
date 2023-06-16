@@ -23,7 +23,7 @@ import com.unaerp.trabalhoandroid.EditarPerfilActivity
 import com.unaerp.trabalhoandroid.FirestoreSingleton
 import com.unaerp.trabalhoandroid.MainActivity
 import com.unaerp.trabalhoandroid.R
-import com.unaerp.trabalhoandroid.databinding.FragmentPerfilEstagiarioBinding
+import com.unaerp.trabalhoandroid.databinding.FragmentPerfilUserBinding
 
 private var userBitmap: Bitmap? = null
 private lateinit var auth: FirebaseAuth
@@ -32,7 +32,7 @@ private var nome: String? = null
 class PerfilEstagiarioFragment : Fragment() {
     private var imgPicture: ImageView? = null
     private var btnTakePicture: Button? = null
-    private lateinit var binding: FragmentPerfilEstagiarioBinding
+    private lateinit var binding: FragmentPerfilUserBinding
     private val db = FirestoreSingleton.getInstance()
 
     private val cameraLauncher = registerForActivityResult(
@@ -60,10 +60,10 @@ class PerfilEstagiarioFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         auth = Firebase.auth
-        binding = FragmentPerfilEstagiarioBinding.inflate(inflater, container, false)
+        binding = FragmentPerfilUserBinding.inflate(inflater, container, false)
         val view = binding.root
 
-        PegarDadoUsuario(binding)
+        PegarDadoUsuario()
 
 
         binding.sairBotao.setOnClickListener {
@@ -72,13 +72,13 @@ class PerfilEstagiarioFragment : Fragment() {
             startActivity(intent)
         }
 
-        binding.editarEstagiario.setOnClickListener {
+        binding.editarPerfil.setOnClickListener {
             val intent = Intent(activity, EditarPerfilActivity::class.java)
             intent.putExtra("nome", nome);
             startActivity(intent)
         }
 
-        imgPicture = binding.imagemPerfilEstagiario
+        imgPicture = binding.imagemPerfil
         userBitmap?.let { imgPicture?.setImageBitmap(it) }
         btnTakePicture = binding.botaoTirarFoto
 
@@ -98,7 +98,7 @@ class PerfilEstagiarioFragment : Fragment() {
         return view
     }
 
-    private fun PegarDadoUsuario(binding: FragmentPerfilEstagiarioBinding) {
+    private fun PegarDadoUsuario() {
         val currentUser = FirebaseAuth.getInstance().currentUser
         val userId = currentUser?.uid
         db.collection("InformacoesPerfil").document(userId.toString())
@@ -109,8 +109,8 @@ class PerfilEstagiarioFragment : Fragment() {
                     val nomePerfilText = getString(R.string.nome_estagiario, nome)
                     val emailText = getString(R.string.email_estagiario, auth.currentUser?.email)
 
-                    binding.nomeEstagiario.text = nomePerfilText
-                    binding.emailEstagiario.text = emailText
+                    binding.nomePerfil.text = nomePerfilText
+                    binding.emailPerfil.text = emailText
                 } else {
                     Aviso("Não foi possível verificar seu perfil")
                 }

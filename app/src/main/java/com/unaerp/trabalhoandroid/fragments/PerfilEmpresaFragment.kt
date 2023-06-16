@@ -72,15 +72,15 @@ class PerfilEmpresaFragment : Fragment() {
             startActivity(intent)
         }
 
-        binding.editarPerfilEmpresa.setOnClickListener {
+        binding.editarPerfil.setOnClickListener {
             val intent = Intent(activity, EditarPerfilActivity::class.java)
             intent.putExtra("nome", nome);
             startActivity(intent)
         }
 
-        imgPicture = binding.imagemPerfilEmpresa
+        imgPicture = binding.imagemPerfil
         userBitmap?.let { imgPicture?.setImageBitmap(it) }
-        botaoTirarFoto = binding.botaoTirarFotoEmpresa
+        botaoTirarFoto = binding.botaoTirarFoto
 
         botaoTirarFoto?.setOnClickListener {
             if (ContextCompat.checkSelfPermission(

@@ -82,8 +82,8 @@
     <string name="anuncianteCadastroed">  Microsoft</string>
     <string name="datainicioCadastroed">  06/04/2023</string>
     <string name="datafinalCadastroed">  06/06/2023</string>
-    <string name="emailPerfil">Email: %s</string>
-    <string name="nomePerfil">Nome: %s</string>
+    <string name="emailPerfil">Email: %1$s</string>
+    <string name="nomePerfil">Nome: %1$s</string>
     <string name="NomedaEmpresa">Nome da empresa: %1$s</string>
     <string name="area_da_vaga">Área da vaga: %1$s</string>
     <string name="localidade">Localidade: %1$s</string>
